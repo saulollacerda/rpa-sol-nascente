@@ -10,6 +10,7 @@ from typing import Any, Protocol
 
 from app.domain.execucao import Execucao, ParametrosConsulta, StatusExecucao
 from app.domain.modelos import RegistroConsolidado, RegistroUF
+from app.domain.opcoes import Opcoes
 
 
 class RepositorioExecucoes(Protocol):
@@ -58,4 +59,10 @@ class DadosColetados:
 class FonteDeDados(Protocol):
     def obter(self, data_base: str) -> DadosColetados:
         """Levanta ColetaError ou ParsingError."""
+        ...
+
+
+class FonteDeOpcoes(Protocol):
+    def opcoes(self) -> Opcoes:
+        """Data-bases publicadas e administradoras da mais recente. Levanta ColetaError."""
         ...
