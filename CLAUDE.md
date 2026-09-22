@@ -60,6 +60,8 @@ Integrações externas entram por `Protocol` definido no domínio e implementado
 | `infra/db` | ⚠️ parcial | SQLite em memória |
 | `rpa/catalogo.py` | ✅ sempre | JSON real da página capturado em `tests/fixtures/catalogo_*.json` |
 | `rpa/coletor.py` | ❌ não | teste `@pytest.mark.integration` contra o site real, fora da suíte padrão |
+| `frontend/` lógica | ✅ sempre | Vitest: etapas, formatação, formulário, cliente da API, polling |
+| `frontend/` componentes | ✅ sempre | Testing Library: o que o gestor vê e clica, por papel de acessibilidade |
 
 TDD contra um site de terceiro não é TDD. No `rpa/`, o que é função pura (converter o JSON do catálogo) é feito em TDD; o que depende do site (navegar, clicar, baixar) fica no `coletor.py`, coberto por teste de integração.
 
@@ -162,7 +164,7 @@ Em TDD, o commit natural é o ciclo fechado: teste + implementação que o faz p
 Da raiz do projeto. Não exige Python, uv nem Playwright instalados — ver [ADR-007](docs/adr/ADR-007-empacotamento-com-docker.md).
 
 ```bash
-docker compose up                              # sobe em http://localhost:8000
+docker compose up                              # painel em http://localhost:5173, API em :8000
 docker compose run --rm backend pytest         # suíte
 docker compose run --rm backend pytest -m integration   # contra o site real do BCB
 docker compose run --rm backend ruff check .   # lint
@@ -172,6 +174,19 @@ docker compose build                           # rebuild após mudar dependênci
 O Chromium já vem na imagem: **não rode `playwright install` dentro do container.**
 
 Dentro do container não há servidor gráfico, então `PLAYWRIGHT_HEADLESS` é sempre `true`. Para ver a automação navegando numa janela, rode no host.
+
+### Frontend
+
+A partir de `frontend/`. Em desenvolvimento, o Vite repassa `/execucoes`, `/opcoes` e `/health` ao backend.
+
+```bash
+npm install
+npm run dev        # http://localhost:5173 (backend precisa estar em :8000)
+npm test           # Vitest
+npm run build      # checagem de tipos + build de produção
+```
+
+Paleta: vermelho `#DB4B4B`, branco e preto, com modo claro e escuro automático. Verde só no status de sucesso.
 
 ### Direto no host
 

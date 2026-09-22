@@ -30,6 +30,8 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [20](#20-mensagem-de-texto-em-vez-de-template) | Mensagem de texto em vez de template | [003](adr/ADR-003-integracao-whatsapp.md) |
 | [21](#21-praças-do-trimestre-mais-recente-até-a-data-base) | Praças do trimestre mais recente até a data-base | — |
 | [22](#22-processar-nunca-deixa-exceção-escapar) | `processar` nunca deixa exceção escapar | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
+| [23](#23-polling-em-vez-de-websocket) | Polling em vez de WebSocket | — |
+| [24](#24-frontend-sem-biblioteca-de-componentes) | Frontend sem biblioteca de componentes | [001](adr/ADR-001-stack-e-arquitetura.md) |
 
 ---
 
@@ -322,3 +324,23 @@ O processamento roda em segundo plano, depois que a API já respondeu. Uma exce�
 Por isso toda falha, esperada ou não, vira status gravado. As esperadas (`ColetaError`, `EnvioError`) guardam a descrição, que é feita para o gestor ler. As inesperadas guardam só o tipo e *"ver o log da execução"*: o detalhe interno vai para o log, com a pilha completa, e não para a API.
 
 > **Em uma frase:** em segundo plano não existe "o erro sobe" — ou a falha vira histórico, ou ela desaparece.
+
+## 23. Polling em vez de WebSocket
+
+**Alternativa rejeitada:** WebSocket ou Server-Sent Events para empurrar o status ao painel.
+
+Uma execução leva uns 10 segundos, e quem acompanha é um gestor por vez. O painel consulta `GET /execucoes/{id}` a cada segundo e meio e para quando o status é final — umas sete requisições por relatório. Conexão persistente exigiria canal próprio no backend, reconexão no frontend e cuidado extra no proxy, para economizar sete requisições.
+
+A lógica do polling ficou numa função pura (`acompanhar`), testada com relógio simulado: para no status final, pode ser cancelada e sobrevive a uma falha de rede momentânea.
+
+> **Em uma frase:** para sete consultas por relatório, polling é a solução mais simples que resolve — e trocar por WebSocket depois só mexe numa função.
+
+## 24. Frontend sem biblioteca de componentes
+
+**Alternativa rejeitada:** Material UI, Chakra, Tailwind ou similares.
+
+O painel tem um formulário, um acompanhamento e uma tabela. As únicas dependências de produção são `react` e `react-dom`; o visual é CSS próprio, organizado em variáveis de cor que trocam entre modo claro e escuro. Uma biblioteca de componentes traria centenas de kilobytes e um vocabulário visual genérico para resolver um problema pequeno.
+
+Os testes de componente procuram elementos pelo papel de acessibilidade (`role="status"`, `aria-pressed`, `aria-label`) e não por classe CSS. Isso obriga a marcação a ser acessível e deixa os testes imunes a mudanças de estilo — como a troca de paleta feita no meio do desenvolvimento, que não quebrou nenhum teste.
+
+> **Em uma frase:** três telas não justificam uma biblioteca inteira, e testar pelo que o usuário vê manteve os testes estáveis quando o visual mudou.
