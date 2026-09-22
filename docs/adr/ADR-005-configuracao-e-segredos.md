@@ -24,7 +24,7 @@ Nenhum módulo lê `os.environ` diretamente. Todo acesso passa pelo objeto `Sett
 | `WHATSAPP_TOKEN` | **sim** | token de acesso da Graph API |
 | `WHATSAPP_PHONE_NUMBER_ID` | não | identificador do número remetente |
 | `WHATSAPP_DESTINATARIO` | dado pessoal | telefone padrão em formato E.164 |
-| `WHATSAPP_TEMPLATE_NAME` | não | nome do template aprovado |
+| `WHATSAPP_API_VERSION` | não | versão da Graph API, padrão `v23.0` |
 | `BCB_BASE_URL` | não | URL da fonte, parametrizada para permitir fixture em teste |
 | `DATABASE_URL` | não | padrão `sqlite:///./data/execucoes.db` |
 | `DATA_DIR` | não | diretório dos artefatos baixados |
@@ -33,7 +33,7 @@ Nenhum módulo lê `os.environ` diretamente. Todo acesso passa pelo objeto `Sett
 
 ### Regras operacionais
 
-O sistema **falha na inicialização** se `WHATSAPP_PROVIDER=cloud_api` e o token estiver ausente. Falhar cedo e explicitamente é melhor do que descobrir a ausência da credencial no meio de uma execução, depois de já ter baixado os arquivos.
+O sistema **falha na inicialização** se `WHATSAPP_PROVIDER=cloud_api` e o token ou o `WHATSAPP_PHONE_NUMBER_ID` estiverem ausentes. Falhar cedo e explicitamente é melhor do que descobrir a ausência da credencial no meio de uma execução, depois de já ter baixado os arquivos.
 
 Tokens nunca aparecem em log. O logging estruturado tem uma lista de chaves sensíveis que são mascaradas antes da serialização, porque o risco real não é alguém imprimir o token de propósito — é um `log.debug` da configuração inteira vazar tudo de uma vez.
 

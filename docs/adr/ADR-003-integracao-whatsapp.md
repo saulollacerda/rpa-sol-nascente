@@ -19,7 +19,9 @@ class WhatsAppSender(Protocol):
     def enviar(self, destinatario: str, mensagem: str) -> ResultadoEnvio: ...
 ```
 
-- **`CloudApiSender`** — WhatsApp Business Cloud API da Meta, via Graph API. Usa o número de teste gratuito, envia template message e recebe status de entrega por webhook.
+- **`CloudApiSender`** — WhatsApp Business Cloud API da Meta, via Graph API. Usa o número de teste gratuito e envia **mensagem de texto**.
+
+> **Correção factual (2026-09-22):** esta seção previa *template message*. Na implementação, verificou-se que parâmetros de template não aceitam quebra de linha, e o relatório tem dezenas. O adapter envia mensagem de texto comum, que tem outra exigência: **o destinatário precisa ter escrito para o número da empresa nas últimas 24 horas** (janela de atendimento). Fora dela a Meta responde com o código 131047, que o adapter traduz numa mensagem explicando o que fazer. Na demonstração, basta enviar uma mensagem ao número de teste antes. Status de entrega por webhook ficou fora do MVP.
 - **`FakeSender`** — registra a mensagem em log e persiste a execução exatamente como o adapter real, sem tocar a rede.
 
 O domínio depende apenas do `Protocol`. Nenhuma camada de negócio sabe qual adapter está ativo.
