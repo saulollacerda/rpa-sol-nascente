@@ -1,0 +1,33 @@
+# Enunciado do desafio — não versionar
+docs/*.pdf
+
+# Segredos
+.env
+.env.local
+
+# Artefatos baixados do BCB (ZIPs/CSVs)
+data/
+
+# Banco local
+*.db
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node / front
+node_modules/
+dist/
+.vite/
+
+# Playwright
+playwright-report/
+test-results/
+
+# SO
+.DS_Store
