@@ -1,0 +1,3199 @@
+{
+ "conteudo": [
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202607Consorcios.zip",
+   "data": "2026-09-11T02:50:40Z",
+   "Nome": "202607Consorcios.zip",
+   "Tamanho": "108814",
+   "Titulo": "202607Consorcios.zip",
+   "DataPublicacao": "2026-09-11T02:50:40Z",
+   "DataDocumento": "2026-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202606Consorcios.zip",
+   "data": "2026-08-28T13:24:25Z",
+   "Nome": "202606Consorcios.zip",
+   "Tamanho": "450924",
+   "Titulo": "202606Consorcios.zip",
+   "DataPublicacao": "2026-08-28T13:24:25Z",
+   "DataDocumento": "2026-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202605Consorcios.zip",
+   "data": "2026-07-22T18:55:15Z",
+   "Nome": "202605Consorcios.zip",
+   "Tamanho": "108154",
+   "Titulo": "202605Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:15Z",
+   "DataDocumento": "2026-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202604Consorcios.zip",
+   "data": "2026-07-22T18:55:15Z",
+   "Nome": "202604Consorcios.zip",
+   "Tamanho": "103577",
+   "Titulo": "202604Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:15Z",
+   "DataDocumento": "2026-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202603Consorcios.zip",
+   "data": "2026-07-22T18:55:15Z",
+   "Nome": "202603Consorcios.zip",
+   "Tamanho": "453616",
+   "Titulo": "202603Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:15Z",
+   "DataDocumento": "2026-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202602Consorcios.zip",
+   "data": "2026-07-22T18:55:15Z",
+   "Nome": "202602Consorcios.zip",
+   "Tamanho": "106577",
+   "Titulo": "202602Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:15Z",
+   "DataDocumento": "2026-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202601Consorcios.zip",
+   "data": "2026-07-22T18:55:15Z",
+   "Nome": "202601Consorcios.zip",
+   "Tamanho": "105929",
+   "Titulo": "202601Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:15Z",
+   "DataDocumento": "2026-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202512Consorcios.zip",
+   "data": "2026-07-22T18:55:14Z",
+   "Nome": "202512Consorcios.zip",
+   "Tamanho": "455779",
+   "Titulo": "202512Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:14Z",
+   "DataDocumento": "2025-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202511Consorcios.zip",
+   "data": "2026-07-22T18:55:14Z",
+   "Nome": "202511Consorcios.zip",
+   "Tamanho": "104355",
+   "Titulo": "202511Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:14Z",
+   "DataDocumento": "2025-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202510Consorcios.zip",
+   "data": "2026-07-22T18:55:14Z",
+   "Nome": "202510Consorcios.zip",
+   "Tamanho": "103297",
+   "Titulo": "202510Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:14Z",
+   "DataDocumento": "2025-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202509Consorcios.zip",
+   "data": "2026-07-22T18:55:14Z",
+   "Nome": "202509Consorcios.zip",
+   "Tamanho": "454871",
+   "Titulo": "202509Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:14Z",
+   "DataDocumento": "2025-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202508Consorcios.zip",
+   "data": "2026-07-22T18:55:14Z",
+   "Nome": "202508Consorcios.zip",
+   "Tamanho": "100681",
+   "Titulo": "202508Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:14Z",
+   "DataDocumento": "2025-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202507Consorcios.zip",
+   "data": "2026-07-22T18:55:14Z",
+   "Nome": "202507Consorcios.zip",
+   "Tamanho": "99662",
+   "Titulo": "202507Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:14Z",
+   "DataDocumento": "2025-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202506Consorcios.zip",
+   "data": "2026-07-22T18:55:13Z",
+   "Nome": "202506Consorcios.zip",
+   "Tamanho": "450348",
+   "Titulo": "202506Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:13Z",
+   "DataDocumento": "2025-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202505Consorcios.zip",
+   "data": "2026-07-22T18:55:13Z",
+   "Nome": "202505Consorcios.zip",
+   "Tamanho": "98448",
+   "Titulo": "202505Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:13Z",
+   "DataDocumento": "2025-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202504Consorcios.zip",
+   "data": "2026-07-22T18:55:13Z",
+   "Nome": "202504Consorcios.zip",
+   "Tamanho": "98131",
+   "Titulo": "202504Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:13Z",
+   "DataDocumento": "2025-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202503Consorcios.zip",
+   "data": "2026-07-22T18:55:13Z",
+   "Nome": "202503Consorcios.zip",
+   "Tamanho": "448759",
+   "Titulo": "202503Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:13Z",
+   "DataDocumento": "2025-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202502Consorcios.zip",
+   "data": "2026-07-22T18:55:13Z",
+   "Nome": "202502Consorcios.zip",
+   "Tamanho": "96714",
+   "Titulo": "202502Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:13Z",
+   "DataDocumento": "2025-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202501Consorcios.zip",
+   "data": "2026-07-22T18:55:13Z",
+   "Nome": "202501Consorcios.zip",
+   "Tamanho": "96445",
+   "Titulo": "202501Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:13Z",
+   "DataDocumento": "2025-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202412Consorcios.zip",
+   "data": "2026-07-22T18:55:12Z",
+   "Nome": "202412Consorcios.zip",
+   "Tamanho": "447906",
+   "Titulo": "202412Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:12Z",
+   "DataDocumento": "2024-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202411Consorcios.zip",
+   "data": "2026-07-22T18:55:12Z",
+   "Nome": "202411Consorcios.zip",
+   "Tamanho": "95644",
+   "Titulo": "202411Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:12Z",
+   "DataDocumento": "2024-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202410Consorcios.zip",
+   "data": "2026-07-22T18:55:12Z",
+   "Nome": "202410Consorcios.zip",
+   "Tamanho": "95424",
+   "Titulo": "202410Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:12Z",
+   "DataDocumento": "2024-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202409Consorcios.zip",
+   "data": "2026-07-22T18:55:12Z",
+   "Nome": "202409Consorcios.zip",
+   "Tamanho": "448696",
+   "Titulo": "202409Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:12Z",
+   "DataDocumento": "2024-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202408Consorcios.zip",
+   "data": "2026-07-22T18:55:12Z",
+   "Nome": "202408Consorcios.zip",
+   "Tamanho": "94159",
+   "Titulo": "202408Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:12Z",
+   "DataDocumento": "2024-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202407Consorcios.zip",
+   "data": "2026-07-22T18:55:12Z",
+   "Nome": "202407Consorcios.zip",
+   "Tamanho": "93871",
+   "Titulo": "202407Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:55:12Z",
+   "DataDocumento": "2024-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202406Consorcios.zip",
+   "data": "2026-07-22T19:02:19Z",
+   "Nome": "202406Consorcios.zip",
+   "Tamanho": "449106",
+   "Titulo": "202406Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:19Z",
+   "DataDocumento": "2024-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202405Consorcios.zip",
+   "data": "2026-07-22T19:02:19Z",
+   "Nome": "202405Consorcios.zip",
+   "Tamanho": "93236",
+   "Titulo": "202405Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:19Z",
+   "DataDocumento": "2024-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202404Consorcios.zip",
+   "data": "2026-07-22T19:02:19Z",
+   "Nome": "202404Consorcios.zip",
+   "Tamanho": "92830",
+   "Titulo": "202404Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:19Z",
+   "DataDocumento": "2024-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202403Consorcios.zip",
+   "data": "2026-07-22T19:02:19Z",
+   "Nome": "202403Consorcios.zip",
+   "Tamanho": "445883",
+   "Titulo": "202403Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:19Z",
+   "DataDocumento": "2024-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202402Consorcios.zip",
+   "data": "2026-07-22T19:02:19Z",
+   "Nome": "202402Consorcios.zip",
+   "Tamanho": "93030",
+   "Titulo": "202402Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:19Z",
+   "DataDocumento": "2024-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202401Consorcios.zip",
+   "data": "2026-07-22T19:02:19Z",
+   "Nome": "202401Consorcios.zip",
+   "Tamanho": "92674",
+   "Titulo": "202401Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:19Z",
+   "DataDocumento": "2024-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202312Consorcios.zip",
+   "data": "2026-07-22T19:02:18Z",
+   "Nome": "202312Consorcios.zip",
+   "Tamanho": "448919",
+   "Titulo": "202312Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:18Z",
+   "DataDocumento": "2023-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202311Consorcios.zip",
+   "data": "2026-07-22T19:02:18Z",
+   "Nome": "202311Consorcios.zip",
+   "Tamanho": "91701",
+   "Titulo": "202311Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:18Z",
+   "DataDocumento": "2023-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202310Consorcios.zip",
+   "data": "2026-07-22T19:02:18Z",
+   "Nome": "202310Consorcios.zip",
+   "Tamanho": "91376",
+   "Titulo": "202310Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:18Z",
+   "DataDocumento": "2023-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202309Consorcios.zip",
+   "data": "2026-07-22T19:02:18Z",
+   "Nome": "202309Consorcios.zip",
+   "Tamanho": "444131",
+   "Titulo": "202309Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:18Z",
+   "DataDocumento": "2023-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202308Consorcios.zip",
+   "data": "2026-07-22T19:02:18Z",
+   "Nome": "202308Consorcios.zip",
+   "Tamanho": "89814",
+   "Titulo": "202308Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:18Z",
+   "DataDocumento": "2023-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202307Consorcios.zip",
+   "data": "2026-07-22T19:02:18Z",
+   "Nome": "202307Consorcios.zip",
+   "Tamanho": "89807",
+   "Titulo": "202307Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:18Z",
+   "DataDocumento": "2023-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202306Consorcios.zip",
+   "data": "2026-07-22T19:02:17Z",
+   "Nome": "202306Consorcios.zip",
+   "Tamanho": "440849",
+   "Titulo": "202306Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:17Z",
+   "DataDocumento": "2023-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202305Consorcios.zip",
+   "data": "2026-07-22T19:02:17Z",
+   "Nome": "202305Consorcios.zip",
+   "Tamanho": "88732",
+   "Titulo": "202305Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:17Z",
+   "DataDocumento": "2023-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202304Consorcios.zip",
+   "data": "2026-07-22T19:02:17Z",
+   "Nome": "202304Consorcios.zip",
+   "Tamanho": "89089",
+   "Titulo": "202304Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:17Z",
+   "DataDocumento": "2023-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202303Consorcios.zip",
+   "data": "2026-07-22T19:02:17Z",
+   "Nome": "202303Consorcios.zip",
+   "Tamanho": "442093",
+   "Titulo": "202303Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:17Z",
+   "DataDocumento": "2023-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202302Consorcios.zip",
+   "data": "2026-07-22T19:02:17Z",
+   "Nome": "202302Consorcios.zip",
+   "Tamanho": "88562",
+   "Titulo": "202302Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:17Z",
+   "DataDocumento": "2023-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202301Consorcios.zip",
+   "data": "2026-07-22T19:02:17Z",
+   "Nome": "202301Consorcios.zip",
+   "Tamanho": "88397",
+   "Titulo": "202301Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:17Z",
+   "DataDocumento": "2023-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202212Consorcios.zip",
+   "data": "2026-07-22T19:02:16Z",
+   "Nome": "202212Consorcios.zip",
+   "Tamanho": "445127",
+   "Titulo": "202212Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:16Z",
+   "DataDocumento": "2022-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202211Consorcios.zip",
+   "data": "2026-07-22T19:02:16Z",
+   "Nome": "202211Consorcios.zip",
+   "Tamanho": "87711",
+   "Titulo": "202211Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:16Z",
+   "DataDocumento": "2022-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202210Consorcios.zip",
+   "data": "2026-07-22T19:02:16Z",
+   "Nome": "202210Consorcios.zip",
+   "Tamanho": "87299",
+   "Titulo": "202210Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:16Z",
+   "DataDocumento": "2022-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202209Consorcios.zip",
+   "data": "2026-07-22T19:02:16Z",
+   "Nome": "202209Consorcios.zip",
+   "Tamanho": "443427",
+   "Titulo": "202209Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:16Z",
+   "DataDocumento": "2022-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202208Consorcios.zip",
+   "data": "2026-07-22T19:02:16Z",
+   "Nome": "202208Consorcios.zip",
+   "Tamanho": "86053",
+   "Titulo": "202208Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:16Z",
+   "DataDocumento": "2022-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202207Consorcios.zip",
+   "data": "2026-07-22T19:02:16Z",
+   "Nome": "202207Consorcios.zip",
+   "Tamanho": "85539",
+   "Titulo": "202207Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:16Z",
+   "DataDocumento": "2022-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202206Consorcios.zip",
+   "data": "2026-07-22T19:02:15Z",
+   "Nome": "202206Consorcios.zip",
+   "Tamanho": "439028",
+   "Titulo": "202206Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:15Z",
+   "DataDocumento": "2022-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202205Consorcios.zip",
+   "data": "2026-07-22T19:02:15Z",
+   "Nome": "202205Consorcios.zip",
+   "Tamanho": "84469",
+   "Titulo": "202205Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:15Z",
+   "DataDocumento": "2022-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202204Consorcios.zip",
+   "data": "2026-07-22T19:02:15Z",
+   "Nome": "202204Consorcios.zip",
+   "Tamanho": "84100",
+   "Titulo": "202204Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:15Z",
+   "DataDocumento": "2022-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202203Consorcios.zip",
+   "data": "2026-07-22T19:02:15Z",
+   "Nome": "202203Consorcios.zip",
+   "Tamanho": "436057",
+   "Titulo": "202203Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:15Z",
+   "DataDocumento": "2022-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202202Consorcios.zip",
+   "data": "2026-07-22T19:02:15Z",
+   "Nome": "202202Consorcios.zip",
+   "Tamanho": "83520",
+   "Titulo": "202202Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:15Z",
+   "DataDocumento": "2022-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202201Consorcios.zip",
+   "data": "2026-07-22T19:02:15Z",
+   "Nome": "202201Consorcios.zip",
+   "Tamanho": "83222",
+   "Titulo": "202201Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:02:15Z",
+   "DataDocumento": "2022-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202112Consorcios.zip",
+   "data": "2026-07-22T19:01:33Z",
+   "Nome": "202112Consorcios.zip",
+   "Tamanho": "435903",
+   "Titulo": "202112Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:33Z",
+   "DataDocumento": "2021-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202111Consorcios.zip",
+   "data": "2026-07-22T19:01:33Z",
+   "Nome": "202111Consorcios.zip",
+   "Tamanho": "82544",
+   "Titulo": "202111Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:33Z",
+   "DataDocumento": "2021-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202110Consorcios.zip",
+   "data": "2026-07-22T19:01:33Z",
+   "Nome": "202110Consorcios.zip",
+   "Tamanho": "82203",
+   "Titulo": "202110Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:33Z",
+   "DataDocumento": "2021-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202109Consorcios.zip",
+   "data": "2026-07-22T19:01:33Z",
+   "Nome": "202109Consorcios.zip",
+   "Tamanho": "432066",
+   "Titulo": "202109Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:33Z",
+   "DataDocumento": "2021-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202108Consorcios.zip",
+   "data": "2026-07-22T19:01:33Z",
+   "Nome": "202108Consorcios.zip",
+   "Tamanho": "81049",
+   "Titulo": "202108Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:33Z",
+   "DataDocumento": "2021-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202107Consorcios.zip",
+   "data": "2026-07-22T19:01:33Z",
+   "Nome": "202107Consorcios.zip",
+   "Tamanho": "80746",
+   "Titulo": "202107Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:33Z",
+   "DataDocumento": "2021-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202106Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202106Consorcios.zip",
+   "Tamanho": "419219",
+   "Titulo": "202106Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2021-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202105Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202105Consorcios.zip",
+   "Tamanho": "80583",
+   "Titulo": "202105Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2021-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202104Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202104Consorcios.zip",
+   "Tamanho": "80338",
+   "Titulo": "202104Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2021-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202103Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202103Consorcios.zip",
+   "Tamanho": "418301",
+   "Titulo": "202103Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2021-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202102Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202102Consorcios.zip",
+   "Tamanho": "79904",
+   "Titulo": "202102Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2021-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202101Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202101Consorcios.zip",
+   "Tamanho": "79614",
+   "Titulo": "202101Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2021-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202012Consorcios.zip",
+   "data": "2026-07-22T19:01:32Z",
+   "Nome": "202012Consorcios.zip",
+   "Tamanho": "416688",
+   "Titulo": "202012Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:32Z",
+   "DataDocumento": "2020-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202011Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202011Consorcios.zip",
+   "Tamanho": "78748",
+   "Titulo": "202011Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202010Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202010Consorcios.zip",
+   "Tamanho": "79124",
+   "Titulo": "202010Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202009Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202009Consorcios.zip",
+   "Tamanho": "414870",
+   "Titulo": "202009Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202008Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202008Consorcios.zip",
+   "Tamanho": "78848",
+   "Titulo": "202008Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202007Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202007Consorcios.zip",
+   "Tamanho": "79024",
+   "Titulo": "202007Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202006Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202006Consorcios.zip",
+   "Tamanho": "417407",
+   "Titulo": "202006Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202005Consorcios.zip",
+   "data": "2026-07-22T19:01:31Z",
+   "Nome": "202005Consorcios.zip",
+   "Tamanho": "79835",
+   "Titulo": "202005Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:31Z",
+   "DataDocumento": "2020-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202004Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "202004Consorcios.zip",
+   "Tamanho": "79956",
+   "Titulo": "202004Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2020-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202003Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "202003Consorcios.zip",
+   "Tamanho": "424603",
+   "Titulo": "202003Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2020-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202002Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "202002Consorcios.zip",
+   "Tamanho": "80574",
+   "Titulo": "202002Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2020-02-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/202001Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "202001Consorcios.zip",
+   "Tamanho": "81032",
+   "Titulo": "202001Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2020-01-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201912Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "201912Consorcios.zip",
+   "Tamanho": "428133",
+   "Titulo": "201912Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2019-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201911Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "201911Consorcios.zip",
+   "Tamanho": "80831",
+   "Titulo": "201911Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2019-11-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201910Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "201910Consorcios.zip",
+   "Tamanho": "80707",
+   "Titulo": "201910Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2019-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201909Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "201909Consorcios.zip",
+   "Tamanho": "429075",
+   "Titulo": "201909Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2019-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201908Consorcios.zip",
+   "data": "2026-07-22T19:01:30Z",
+   "Nome": "201908Consorcios.zip",
+   "Tamanho": "80809",
+   "Titulo": "201908Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:30Z",
+   "DataDocumento": "2019-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201907Consorcios.zip",
+   "data": "2026-07-22T19:01:29Z",
+   "Nome": "201907Consorcios.zip",
+   "Tamanho": "80828",
+   "Titulo": "201907Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:29Z",
+   "DataDocumento": "2019-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201906Consorcios.zip",
+   "data": "2026-07-22T19:01:15Z",
+   "Nome": "201906Consorcios.zip",
+   "Tamanho": "430225",
+   "Titulo": "201906Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:15Z",
+   "DataDocumento": "2019-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201905Consorcios.zip",
+   "data": "2026-07-22T19:01:14Z",
+   "Nome": "201905Consorcios.zip",
+   "Tamanho": "80540",
+   "Titulo": "201905Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:14Z",
+   "DataDocumento": "2019-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201904Consorcios.zip",
+   "data": "2026-07-22T19:01:14Z",
+   "Nome": "201904Consorcios.zip",
+   "Tamanho": "80429",
+   "Titulo": "201904Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:14Z",
+   "DataDocumento": "2019-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201903Consorcios.zip",
+   "data": "2026-07-22T19:01:14Z",
+   "Nome": "201903Consorcios.zip",
+   "Tamanho": "431413",
+   "Titulo": "201903Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:14Z",
+   "DataDocumento": "2019-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201902Consorcios.zip",
+   "data": "2026-07-22T19:01:14Z",
+   "Nome": "201902Consorcios.zip",
+   "Tamanho": "80089",
+   "Titulo": "201902Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:14Z",
+   "DataDocumento": "2019-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201901Consorcios.zip",
+   "data": "2026-07-22T19:01:14Z",
+   "Nome": "201901Consorcios.zip",
+   "Tamanho": "79949",
+   "Titulo": "201901Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:14Z",
+   "DataDocumento": "2019-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201812Consorcios.zip",
+   "data": "2026-07-22T19:01:13Z",
+   "Nome": "201812Consorcios.zip",
+   "Tamanho": "433289",
+   "Titulo": "201812Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:13Z",
+   "DataDocumento": "2018-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201811Consorcios.zip",
+   "data": "2026-07-22T19:01:13Z",
+   "Nome": "201811Consorcios.zip",
+   "Tamanho": "79621",
+   "Titulo": "201811Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:13Z",
+   "DataDocumento": "2018-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201810Consorcios.zip",
+   "data": "2026-07-22T19:01:13Z",
+   "Nome": "201810Consorcios.zip",
+   "Tamanho": "79233",
+   "Titulo": "201810Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:13Z",
+   "DataDocumento": "2018-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201809Consorcios.zip",
+   "data": "2026-07-22T19:01:13Z",
+   "Nome": "201809Consorcios.zip",
+   "Tamanho": "427538",
+   "Titulo": "201809Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:13Z",
+   "DataDocumento": "2018-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201808Consorcios.zip",
+   "data": "2026-07-22T19:01:13Z",
+   "Nome": "201808Consorcios.zip",
+   "Tamanho": "78643",
+   "Titulo": "201808Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:13Z",
+   "DataDocumento": "2018-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201807Consorcios.zip",
+   "data": "2026-07-22T19:01:13Z",
+   "Nome": "201807Consorcios.zip",
+   "Tamanho": "79093",
+   "Titulo": "201807Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:13Z",
+   "DataDocumento": "2018-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201806Consorcios.zip",
+   "data": "2026-07-22T19:01:12Z",
+   "Nome": "201806Consorcios.zip",
+   "Tamanho": "432318",
+   "Titulo": "201806Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:12Z",
+   "DataDocumento": "2018-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201805Consorcios.zip",
+   "data": "2026-07-22T19:01:12Z",
+   "Nome": "201805Consorcios.zip",
+   "Tamanho": "79439",
+   "Titulo": "201805Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:12Z",
+   "DataDocumento": "2018-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201804Consorcios.zip",
+   "data": "2026-07-22T19:01:12Z",
+   "Nome": "201804Consorcios.zip",
+   "Tamanho": "79337",
+   "Titulo": "201804Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:12Z",
+   "DataDocumento": "2018-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201803Consorcios.zip",
+   "data": "2026-07-22T19:01:12Z",
+   "Nome": "201803Consorcios.zip",
+   "Tamanho": "436375",
+   "Titulo": "201803Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:12Z",
+   "DataDocumento": "2018-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201802Consorcios.zip",
+   "data": "2026-07-22T19:01:12Z",
+   "Nome": "201802Consorcios.zip",
+   "Tamanho": "78997",
+   "Titulo": "201802Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:12Z",
+   "DataDocumento": "2018-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201801Consorcios.zip",
+   "data": "2026-07-22T19:01:12Z",
+   "Nome": "201801Consorcios.zip",
+   "Tamanho": "78896",
+   "Titulo": "201801Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:12Z",
+   "DataDocumento": "2018-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201712Consorcios.zip",
+   "data": "2026-07-22T19:01:11Z",
+   "Nome": "201712Consorcios.zip",
+   "Tamanho": "440035",
+   "Titulo": "201712Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:11Z",
+   "DataDocumento": "2017-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201711Consorcios.zip",
+   "data": "2026-07-22T19:01:11Z",
+   "Nome": "201711Consorcios.zip",
+   "Tamanho": "78523",
+   "Titulo": "201711Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:11Z",
+   "DataDocumento": "2017-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201710Consorcios.zip",
+   "data": "2026-07-22T19:01:11Z",
+   "Nome": "201710Consorcios.zip",
+   "Tamanho": "79004",
+   "Titulo": "201710Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:11Z",
+   "DataDocumento": "2017-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201709Consorcios.zip",
+   "data": "2026-07-22T19:01:11Z",
+   "Nome": "201709Consorcios.zip",
+   "Tamanho": "442648",
+   "Titulo": "201709Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:11Z",
+   "DataDocumento": "2017-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201708Consorcios.zip",
+   "data": "2026-07-22T19:01:11Z",
+   "Nome": "201708Consorcios.zip",
+   "Tamanho": "79062",
+   "Titulo": "201708Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:11Z",
+   "DataDocumento": "2017-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201707Consorcios.zip",
+   "data": "2026-07-22T19:01:11Z",
+   "Nome": "201707Consorcios.zip",
+   "Tamanho": "79473",
+   "Titulo": "201707Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:11Z",
+   "DataDocumento": "2017-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201706Consorcios.zip",
+   "data": "2026-07-22T19:01:10Z",
+   "Nome": "201706Consorcios.zip",
+   "Tamanho": "451260",
+   "Titulo": "201706Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:10Z",
+   "DataDocumento": "2017-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201705Consorcios.zip",
+   "data": "2026-07-22T19:01:10Z",
+   "Nome": "201705Consorcios.zip",
+   "Tamanho": "79706",
+   "Titulo": "201705Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:10Z",
+   "DataDocumento": "2017-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201704Consorcios.zip",
+   "data": "2026-07-22T19:01:10Z",
+   "Nome": "201704Consorcios.zip",
+   "Tamanho": "80040",
+   "Titulo": "201704Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:10Z",
+   "DataDocumento": "2017-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201703Consorcios.zip",
+   "data": "2026-07-22T19:01:10Z",
+   "Nome": "201703Consorcios.zip",
+   "Tamanho": "459813",
+   "Titulo": "201703Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:10Z",
+   "DataDocumento": "2017-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201702Consorcios.zip",
+   "data": "2026-07-22T19:01:10Z",
+   "Nome": "201702Consorcios.zip",
+   "Tamanho": "80614",
+   "Titulo": "201702Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:10Z",
+   "DataDocumento": "2017-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201701Consorcios.zip",
+   "data": "2026-07-22T19:01:10Z",
+   "Nome": "201701Consorcios.zip",
+   "Tamanho": "80393",
+   "Titulo": "201701Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:01:10Z",
+   "DataDocumento": "2017-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201612Consorcios.zip",
+   "data": "2026-07-22T19:00:45Z",
+   "Nome": "201612Consorcios.zip",
+   "Tamanho": "468826",
+   "Titulo": "201612Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:45Z",
+   "DataDocumento": "2016-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201611Consorcios.zip",
+   "data": "2026-07-22T19:00:45Z",
+   "Nome": "201611Consorcios.zip",
+   "Tamanho": "80863",
+   "Titulo": "201611Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:45Z",
+   "DataDocumento": "2016-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201610Consorcios.zip",
+   "data": "2026-07-22T19:00:45Z",
+   "Nome": "201610Consorcios.zip",
+   "Tamanho": "80984",
+   "Titulo": "201610Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:45Z",
+   "DataDocumento": "2016-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201609Consorcios.zip",
+   "data": "2026-07-22T19:00:45Z",
+   "Nome": "201609Consorcios.zip",
+   "Tamanho": "472505",
+   "Titulo": "201609Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:45Z",
+   "DataDocumento": "2016-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201608Consorcios.zip",
+   "data": "2026-07-22T19:00:45Z",
+   "Nome": "201608Consorcios.zip",
+   "Tamanho": "81374",
+   "Titulo": "201608Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:45Z",
+   "DataDocumento": "2016-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201607Consorcios.zip",
+   "data": "2026-07-22T19:00:45Z",
+   "Nome": "201607Consorcios.zip",
+   "Tamanho": "82302",
+   "Titulo": "201607Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:45Z",
+   "DataDocumento": "2016-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201606Consorcios.zip",
+   "data": "2026-07-22T19:00:44Z",
+   "Nome": "201606Consorcios.zip",
+   "Tamanho": "479680",
+   "Titulo": "201606Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:44Z",
+   "DataDocumento": "2016-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201605Consorcios.zip",
+   "data": "2026-07-22T19:00:44Z",
+   "Nome": "201605Consorcios.zip",
+   "Tamanho": "82581",
+   "Titulo": "201605Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:44Z",
+   "DataDocumento": "2016-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201604Consorcios.zip",
+   "data": "2026-07-22T19:00:44Z",
+   "Nome": "201604Consorcios.zip",
+   "Tamanho": "83030",
+   "Titulo": "201604Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:44Z",
+   "DataDocumento": "2016-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201603Consorcios.zip",
+   "data": "2026-07-22T19:00:44Z",
+   "Nome": "201603Consorcios.zip",
+   "Tamanho": "487860",
+   "Titulo": "201603Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:44Z",
+   "DataDocumento": "2016-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201602Consorcios.zip",
+   "data": "2026-07-22T19:00:44Z",
+   "Nome": "201602Consorcios.zip",
+   "Tamanho": "83505",
+   "Titulo": "201602Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:44Z",
+   "DataDocumento": "2016-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201601Consorcios.zip",
+   "data": "2026-07-22T19:00:44Z",
+   "Nome": "201601Consorcios.zip",
+   "Tamanho": "84597",
+   "Titulo": "201601Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:44Z",
+   "DataDocumento": "2016-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201512Consorcios.zip",
+   "data": "2026-07-22T19:00:43Z",
+   "Nome": "201512Consorcios.zip",
+   "Tamanho": "497427",
+   "Titulo": "201512Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:43Z",
+   "DataDocumento": "2015-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201511Consorcios.zip",
+   "data": "2026-07-22T19:00:43Z",
+   "Nome": "201511Consorcios.zip",
+   "Tamanho": "85824",
+   "Titulo": "201511Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:43Z",
+   "DataDocumento": "2015-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201510Consorcios.zip",
+   "data": "2026-07-22T19:00:43Z",
+   "Nome": "201510Consorcios.zip",
+   "Tamanho": "86261",
+   "Titulo": "201510Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:43Z",
+   "DataDocumento": "2015-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201509Consorcios.zip",
+   "data": "2026-07-22T19:00:43Z",
+   "Nome": "201509Consorcios.zip",
+   "Tamanho": "505006",
+   "Titulo": "201509Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:43Z",
+   "DataDocumento": "2015-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201508Consorcios.zip",
+   "data": "2026-07-22T19:00:43Z",
+   "Nome": "201508Consorcios.zip",
+   "Tamanho": "86365",
+   "Titulo": "201508Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:43Z",
+   "DataDocumento": "2015-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201507Consorcios.zip",
+   "data": "2026-07-22T19:00:42Z",
+   "Nome": "201507Consorcios.zip",
+   "Tamanho": "86483",
+   "Titulo": "201507Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:42Z",
+   "DataDocumento": "2015-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201506Consorcios.zip",
+   "data": "2026-07-22T19:00:42Z",
+   "Nome": "201506Consorcios.zip",
+   "Tamanho": "506504",
+   "Titulo": "201506Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:42Z",
+   "DataDocumento": "2015-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201505Consorcios.zip",
+   "data": "2026-07-22T19:00:42Z",
+   "Nome": "201505Consorcios.zip",
+   "Tamanho": "86211",
+   "Titulo": "201505Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:42Z",
+   "DataDocumento": "2015-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201504Consorcios.zip",
+   "data": "2026-07-22T19:00:41Z",
+   "Nome": "201504Consorcios.zip",
+   "Tamanho": "86301",
+   "Titulo": "201504Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:41Z",
+   "DataDocumento": "2015-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201503Consorcios.zip",
+   "data": "2026-07-22T19:00:41Z",
+   "Nome": "201503Consorcios.zip",
+   "Tamanho": "505947",
+   "Titulo": "201503Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:41Z",
+   "DataDocumento": "2015-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201502Consorcios.zip",
+   "data": "2026-07-22T19:00:41Z",
+   "Nome": "201502Consorcios.zip",
+   "Tamanho": "86920",
+   "Titulo": "201502Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:41Z",
+   "DataDocumento": "2015-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201501Consorcios.zip",
+   "data": "2026-07-22T19:00:41Z",
+   "Nome": "201501Consorcios.zip",
+   "Tamanho": "87420",
+   "Titulo": "201501Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:41Z",
+   "DataDocumento": "2015-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201412Consorcios.zip",
+   "data": "2026-07-22T19:00:41Z",
+   "Nome": "201412Consorcios.zip",
+   "Tamanho": "506535",
+   "Titulo": "201412Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:41Z",
+   "DataDocumento": "2014-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201411Consorcios.zip",
+   "data": "2026-07-22T19:00:41Z",
+   "Nome": "201411Consorcios.zip",
+   "Tamanho": "86908",
+   "Titulo": "201411Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:41Z",
+   "DataDocumento": "2014-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201410Consorcios.zip",
+   "data": "2026-07-22T19:00:40Z",
+   "Nome": "201410Consorcios.zip",
+   "Tamanho": "87238",
+   "Titulo": "201410Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:40Z",
+   "DataDocumento": "2014-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201409Consorcios.zip",
+   "data": "2026-07-22T19:00:40Z",
+   "Nome": "201409Consorcios.zip",
+   "Tamanho": "504409",
+   "Titulo": "201409Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:40Z",
+   "DataDocumento": "2014-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201408Consorcios.zip",
+   "data": "2026-07-22T19:00:40Z",
+   "Nome": "201408Consorcios.zip",
+   "Tamanho": "87365",
+   "Titulo": "201408Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:40Z",
+   "DataDocumento": "2014-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201407Consorcios.zip",
+   "data": "2026-07-22T19:00:40Z",
+   "Nome": "201407Consorcios.zip",
+   "Tamanho": "88365",
+   "Titulo": "201407Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:40Z",
+   "DataDocumento": "2014-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201406Consorcios.zip",
+   "data": "2026-07-22T19:00:23Z",
+   "Nome": "201406Consorcios.zip",
+   "Tamanho": "507014",
+   "Titulo": "201406Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:23Z",
+   "DataDocumento": "2014-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201405Consorcios.zip",
+   "data": "2026-07-22T19:00:23Z",
+   "Nome": "201405Consorcios.zip",
+   "Tamanho": "89111",
+   "Titulo": "201405Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:23Z",
+   "DataDocumento": "2014-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201404Consorcios.zip",
+   "data": "2026-07-22T19:00:23Z",
+   "Nome": "201404Consorcios.zip",
+   "Tamanho": "89444",
+   "Titulo": "201404Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:23Z",
+   "DataDocumento": "2014-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201403Consorcios.zip",
+   "data": "2026-07-22T19:00:23Z",
+   "Nome": "201403Consorcios.zip",
+   "Tamanho": "504944",
+   "Titulo": "201403Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:23Z",
+   "DataDocumento": "2014-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201402Consorcios.zip",
+   "data": "2026-07-22T19:00:23Z",
+   "Nome": "201402Consorcios.zip",
+   "Tamanho": "87674",
+   "Titulo": "201402Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:23Z",
+   "DataDocumento": "2014-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201401Consorcios.zip",
+   "data": "2026-07-22T19:00:23Z",
+   "Nome": "201401Consorcios.zip",
+   "Tamanho": "88164",
+   "Titulo": "201401Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:23Z",
+   "DataDocumento": "2014-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201312Consorcios.zip",
+   "data": "2026-07-22T19:00:22Z",
+   "Nome": "201312Consorcios.zip",
+   "Tamanho": "500026",
+   "Titulo": "201312Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:22Z",
+   "DataDocumento": "2013-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201311Consorcios.zip",
+   "data": "2026-07-22T19:00:22Z",
+   "Nome": "201311Consorcios.zip",
+   "Tamanho": "86192",
+   "Titulo": "201311Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:22Z",
+   "DataDocumento": "2013-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201310Consorcios.zip",
+   "data": "2026-07-22T19:00:22Z",
+   "Nome": "201310Consorcios.zip",
+   "Tamanho": "87205",
+   "Titulo": "201310Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:22Z",
+   "DataDocumento": "2013-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201309Consorcios.zip",
+   "data": "2026-07-22T19:00:22Z",
+   "Nome": "201309Consorcios.zip",
+   "Tamanho": "486360",
+   "Titulo": "201309Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:22Z",
+   "DataDocumento": "2013-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201308Consorcios.zip",
+   "data": "2026-07-22T19:00:22Z",
+   "Nome": "201308Consorcios.zip",
+   "Tamanho": "88023",
+   "Titulo": "201308Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:22Z",
+   "DataDocumento": "2013-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201307Consorcios.zip",
+   "data": "2026-07-22T19:00:22Z",
+   "Nome": "201307Consorcios.zip",
+   "Tamanho": "87867",
+   "Titulo": "201307Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:22Z",
+   "DataDocumento": "2013-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201306Consorcios.zip",
+   "data": "2026-07-22T19:00:21Z",
+   "Nome": "201306Consorcios.zip",
+   "Tamanho": "480612",
+   "Titulo": "201306Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:21Z",
+   "DataDocumento": "2013-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201305Consorcios.zip",
+   "data": "2026-07-22T19:00:21Z",
+   "Nome": "201305Consorcios.zip",
+   "Tamanho": "87772",
+   "Titulo": "201305Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:21Z",
+   "DataDocumento": "2013-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201304Consorcios.zip",
+   "data": "2026-07-22T19:00:21Z",
+   "Nome": "201304Consorcios.zip",
+   "Tamanho": "87889",
+   "Titulo": "201304Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:21Z",
+   "DataDocumento": "2013-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201303Consorcios.zip",
+   "data": "2026-07-22T19:00:21Z",
+   "Nome": "201303Consorcios.zip",
+   "Tamanho": "479490",
+   "Titulo": "201303Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:21Z",
+   "DataDocumento": "2013-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201302Consorcios.zip",
+   "data": "2026-07-22T19:00:21Z",
+   "Nome": "201302Consorcios.zip",
+   "Tamanho": "87905",
+   "Titulo": "201302Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:21Z",
+   "DataDocumento": "2013-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201301Consorcios.zip",
+   "data": "2026-07-22T19:00:21Z",
+   "Nome": "201301Consorcios.zip",
+   "Tamanho": "88303",
+   "Titulo": "201301Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:21Z",
+   "DataDocumento": "2013-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201212Consorcios.zip",
+   "data": "2026-07-22T19:00:20Z",
+   "Nome": "201212Consorcios.zip",
+   "Tamanho": "470913",
+   "Titulo": "201212Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:20Z",
+   "DataDocumento": "2012-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201211Consorcios.zip",
+   "data": "2026-07-22T19:00:20Z",
+   "Nome": "201211Consorcios.zip",
+   "Tamanho": "88360",
+   "Titulo": "201211Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:20Z",
+   "DataDocumento": "2012-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201210Consorcios.zip",
+   "data": "2026-07-22T19:00:20Z",
+   "Nome": "201210Consorcios.zip",
+   "Tamanho": "88463",
+   "Titulo": "201210Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:20Z",
+   "DataDocumento": "2012-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201209Consorcios.zip",
+   "data": "2026-07-22T19:00:20Z",
+   "Nome": "201209Consorcios.zip",
+   "Tamanho": "467105",
+   "Titulo": "201209Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:20Z",
+   "DataDocumento": "2012-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201208Consorcios.zip",
+   "data": "2026-07-22T19:00:20Z",
+   "Nome": "201208Consorcios.zip",
+   "Tamanho": "88218",
+   "Titulo": "201208Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:20Z",
+   "DataDocumento": "2012-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201207Consorcios.zip",
+   "data": "2026-07-22T19:00:20Z",
+   "Nome": "201207Consorcios.zip",
+   "Tamanho": "88207",
+   "Titulo": "201207Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:20Z",
+   "DataDocumento": "2012-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201206Consorcios.zip",
+   "data": "2026-07-22T19:00:19Z",
+   "Nome": "201206Consorcios.zip",
+   "Tamanho": "468876",
+   "Titulo": "201206Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:19Z",
+   "DataDocumento": "2012-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201205Consorcios.zip",
+   "data": "2026-07-22T19:00:19Z",
+   "Nome": "201205Consorcios.zip",
+   "Tamanho": "88156",
+   "Titulo": "201205Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:19Z",
+   "DataDocumento": "2012-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201204Consorcios.zip",
+   "data": "2026-07-22T19:00:19Z",
+   "Nome": "201204Consorcios.zip",
+   "Tamanho": "88967",
+   "Titulo": "201204Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:19Z",
+   "DataDocumento": "2012-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201203Consorcios.zip",
+   "data": "2026-07-22T19:00:19Z",
+   "Nome": "201203Consorcios.zip",
+   "Tamanho": "471449",
+   "Titulo": "201203Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:19Z",
+   "DataDocumento": "2012-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201202Consorcios.zip",
+   "data": "2026-07-22T19:00:19Z",
+   "Nome": "201202Consorcios.zip",
+   "Tamanho": "88995",
+   "Titulo": "201202Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:19Z",
+   "DataDocumento": "2012-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201201Consorcios.zip",
+   "data": "2026-07-22T19:00:19Z",
+   "Nome": "201201Consorcios.zip",
+   "Tamanho": "87761",
+   "Titulo": "201201Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:19Z",
+   "DataDocumento": "2012-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201112Consorcios.zip",
+   "data": "2026-07-22T19:00:02Z",
+   "Nome": "201112Consorcios.zip",
+   "Tamanho": "474592",
+   "Titulo": "201112Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:02Z",
+   "DataDocumento": "2011-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201111Consorcios.zip",
+   "data": "2026-07-22T19:00:02Z",
+   "Nome": "201111Consorcios.zip",
+   "Tamanho": "88034",
+   "Titulo": "201111Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:02Z",
+   "DataDocumento": "2011-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201110Consorcios.zip",
+   "data": "2026-07-22T19:00:02Z",
+   "Nome": "201110Consorcios.zip",
+   "Tamanho": "87705",
+   "Titulo": "201110Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:02Z",
+   "DataDocumento": "2011-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201109Consorcios.zip",
+   "data": "2026-07-22T19:00:02Z",
+   "Nome": "201109Consorcios.zip",
+   "Tamanho": "472661",
+   "Titulo": "201109Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:02Z",
+   "DataDocumento": "2011-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201108Consorcios.zip",
+   "data": "2026-07-22T19:00:02Z",
+   "Nome": "201108Consorcios.zip",
+   "Tamanho": "88141",
+   "Titulo": "201108Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:02Z",
+   "DataDocumento": "2011-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201107Consorcios.zip",
+   "data": "2026-07-22T19:00:02Z",
+   "Nome": "201107Consorcios.zip",
+   "Tamanho": "88323",
+   "Titulo": "201107Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:02Z",
+   "DataDocumento": "2011-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201106Consorcios.zip",
+   "data": "2026-07-22T19:00:00Z",
+   "Nome": "201106Consorcios.zip",
+   "Tamanho": "469150",
+   "Titulo": "201106Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:00Z",
+   "DataDocumento": "2011-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201105Consorcios.zip",
+   "data": "2026-07-22T19:00:00Z",
+   "Nome": "201105Consorcios.zip",
+   "Tamanho": "89365",
+   "Titulo": "201105Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:00Z",
+   "DataDocumento": "2011-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201104Consorcios.zip",
+   "data": "2026-07-22T19:00:00Z",
+   "Nome": "201104Consorcios.zip",
+   "Tamanho": "89119",
+   "Titulo": "201104Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:00Z",
+   "DataDocumento": "2011-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201103Consorcios.zip",
+   "data": "2026-07-22T19:00:00Z",
+   "Nome": "201103Consorcios.zip",
+   "Tamanho": "462959",
+   "Titulo": "201103Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:00Z",
+   "DataDocumento": "2011-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201102Consorcios.zip",
+   "data": "2026-07-22T19:00:00Z",
+   "Nome": "201102Consorcios.zip",
+   "Tamanho": "87341",
+   "Titulo": "201102Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:00Z",
+   "DataDocumento": "2011-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201101Consorcios.zip",
+   "data": "2026-07-22T19:00:00Z",
+   "Nome": "201101Consorcios.zip",
+   "Tamanho": "87464",
+   "Titulo": "201101Consorcios.zip",
+   "DataPublicacao": "2026-07-22T19:00:00Z",
+   "DataDocumento": "2011-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201012Consorcios.zip",
+   "data": "2026-07-22T18:59:59Z",
+   "Nome": "201012Consorcios.zip",
+   "Tamanho": "460254",
+   "Titulo": "201012Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:59Z",
+   "DataDocumento": "2010-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201011Consorcios.zip",
+   "data": "2026-07-22T18:59:59Z",
+   "Nome": "201011Consorcios.zip",
+   "Tamanho": "88108",
+   "Titulo": "201011Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:59Z",
+   "DataDocumento": "2010-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201010Consorcios.zip",
+   "data": "2026-07-22T18:59:59Z",
+   "Nome": "201010Consorcios.zip",
+   "Tamanho": "87105",
+   "Titulo": "201010Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:59Z",
+   "DataDocumento": "2010-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201009Consorcios.zip",
+   "data": "2026-07-22T18:59:59Z",
+   "Nome": "201009Consorcios.zip",
+   "Tamanho": "459916",
+   "Titulo": "201009Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:59Z",
+   "DataDocumento": "2010-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201008Consorcios.zip",
+   "data": "2026-07-22T18:59:59Z",
+   "Nome": "201008Consorcios.zip",
+   "Tamanho": "86030",
+   "Titulo": "201008Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:59Z",
+   "DataDocumento": "2010-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201007Consorcios.zip",
+   "data": "2026-07-22T18:59:59Z",
+   "Nome": "201007Consorcios.zip",
+   "Tamanho": "85734",
+   "Titulo": "201007Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:59Z",
+   "DataDocumento": "2010-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201006Consorcios.zip",
+   "data": "2026-07-22T18:59:58Z",
+   "Nome": "201006Consorcios.zip",
+   "Tamanho": "460369",
+   "Titulo": "201006Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:58Z",
+   "DataDocumento": "2010-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201005Consorcios.zip",
+   "data": "2026-07-22T18:59:58Z",
+   "Nome": "201005Consorcios.zip",
+   "Tamanho": "85573",
+   "Titulo": "201005Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:58Z",
+   "DataDocumento": "2010-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201004Consorcios.zip",
+   "data": "2026-07-22T18:59:58Z",
+   "Nome": "201004Consorcios.zip",
+   "Tamanho": "85066",
+   "Titulo": "201004Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:58Z",
+   "DataDocumento": "2010-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201003Consorcios.zip",
+   "data": "2026-07-22T18:59:58Z",
+   "Nome": "201003Consorcios.zip",
+   "Tamanho": "458121",
+   "Titulo": "201003Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:58Z",
+   "DataDocumento": "2010-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201002Consorcios.zip",
+   "data": "2026-07-22T18:59:58Z",
+   "Nome": "201002Consorcios.zip",
+   "Tamanho": "84789",
+   "Titulo": "201002Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:58Z",
+   "DataDocumento": "2010-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/201001Consorcios.zip",
+   "data": "2026-07-22T18:59:58Z",
+   "Nome": "201001Consorcios.zip",
+   "Tamanho": "84050",
+   "Titulo": "201001Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:58Z",
+   "DataDocumento": "2010-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200912Consorcios.zip",
+   "data": "2026-07-22T18:59:57Z",
+   "Nome": "200912Consorcios.zip",
+   "Tamanho": "463116",
+   "Titulo": "200912Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:57Z",
+   "DataDocumento": "2009-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200911Consorcios.zip",
+   "data": "2026-07-22T18:59:57Z",
+   "Nome": "200911Consorcios.zip",
+   "Tamanho": "84171",
+   "Titulo": "200911Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:57Z",
+   "DataDocumento": "2009-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200910Consorcios.zip",
+   "data": "2026-07-22T18:59:57Z",
+   "Nome": "200910Consorcios.zip",
+   "Tamanho": "83528",
+   "Titulo": "200910Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:57Z",
+   "DataDocumento": "2009-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200909Consorcios.zip",
+   "data": "2026-07-22T18:59:57Z",
+   "Nome": "200909Consorcios.zip",
+   "Tamanho": "468460",
+   "Titulo": "200909Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:57Z",
+   "DataDocumento": "2009-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200908Consorcios.zip",
+   "data": "2026-07-22T18:59:57Z",
+   "Nome": "200908Consorcios.zip",
+   "Tamanho": "83164",
+   "Titulo": "200908Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:57Z",
+   "DataDocumento": "2009-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200907Consorcios.zip",
+   "data": "2026-07-22T18:59:57Z",
+   "Nome": "200907Consorcios.zip",
+   "Tamanho": "83398",
+   "Titulo": "200907Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:57Z",
+   "DataDocumento": "2009-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200906Consorcios.zip",
+   "data": "2026-07-22T18:59:31Z",
+   "Nome": "200906Consorcios.zip",
+   "Tamanho": "466620",
+   "Titulo": "200906Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:31Z",
+   "DataDocumento": "2009-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200905Consorcios.zip",
+   "data": "2026-07-22T18:59:31Z",
+   "Nome": "200905Consorcios.zip",
+   "Tamanho": "38400",
+   "Titulo": "200905Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:31Z",
+   "DataDocumento": "2009-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200904Consorcios.zip",
+   "data": "2026-07-22T18:59:31Z",
+   "Nome": "200904Consorcios.zip",
+   "Tamanho": "38459",
+   "Titulo": "200904Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:31Z",
+   "DataDocumento": "2009-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200903Consorcios.zip",
+   "data": "2026-07-22T18:59:31Z",
+   "Nome": "200903Consorcios.zip",
+   "Tamanho": "440123",
+   "Titulo": "200903Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:31Z",
+   "DataDocumento": "2009-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200902Consorcios.zip",
+   "data": "2026-07-22T18:59:31Z",
+   "Nome": "200902Consorcios.zip",
+   "Tamanho": "39344",
+   "Titulo": "200902Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:31Z",
+   "DataDocumento": "2009-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200901Consorcios.zip",
+   "data": "2026-07-22T18:59:31Z",
+   "Nome": "200901Consorcios.zip",
+   "Tamanho": "46792",
+   "Titulo": "200901Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:31Z",
+   "DataDocumento": "2009-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200812Consorcios.zip",
+   "data": "2026-07-22T18:59:30Z",
+   "Nome": "200812Consorcios.zip",
+   "Tamanho": "446743",
+   "Titulo": "200812Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:30Z",
+   "DataDocumento": "2008-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200811Consorcios.zip",
+   "data": "2026-07-22T18:59:30Z",
+   "Nome": "200811Consorcios.zip",
+   "Tamanho": "45052",
+   "Titulo": "200811Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:30Z",
+   "DataDocumento": "2008-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200810Consorcios.zip",
+   "data": "2026-07-22T18:59:30Z",
+   "Nome": "200810Consorcios.zip",
+   "Tamanho": "45235",
+   "Titulo": "200810Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:30Z",
+   "DataDocumento": "2008-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200809Consorcios.zip",
+   "data": "2026-07-22T18:59:30Z",
+   "Nome": "200809Consorcios.zip",
+   "Tamanho": "447024",
+   "Titulo": "200809Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:30Z",
+   "DataDocumento": "2008-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200808Consorcios.zip",
+   "data": "2026-07-22T18:59:30Z",
+   "Nome": "200808Consorcios.zip",
+   "Tamanho": "70417",
+   "Titulo": "200808Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:30Z",
+   "DataDocumento": "2008-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200807Consorcios.zip",
+   "data": "2026-07-22T18:59:30Z",
+   "Nome": "200807Consorcios.zip",
+   "Tamanho": "70058",
+   "Titulo": "200807Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:30Z",
+   "DataDocumento": "2008-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200806Consorcios.zip",
+   "data": "2026-07-22T18:59:29Z",
+   "Nome": "200806Consorcios.zip",
+   "Tamanho": "69866",
+   "Titulo": "200806Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:29Z",
+   "DataDocumento": "2008-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200805Consorcios.zip",
+   "data": "2026-07-22T18:59:29Z",
+   "Nome": "200805Consorcios.zip",
+   "Tamanho": "69675",
+   "Titulo": "200805Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:29Z",
+   "DataDocumento": "2008-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200804Consorcios.zip",
+   "data": "2026-07-22T18:59:29Z",
+   "Nome": "200804Consorcios.zip",
+   "Tamanho": "69498",
+   "Titulo": "200804Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:29Z",
+   "DataDocumento": "2008-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200803Consorcios.zip",
+   "data": "2026-07-22T18:59:29Z",
+   "Nome": "200803Consorcios.zip",
+   "Tamanho": "69209",
+   "Titulo": "200803Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:29Z",
+   "DataDocumento": "2008-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200802Consorcios.zip",
+   "data": "2026-07-22T18:59:29Z",
+   "Nome": "200802Consorcios.zip",
+   "Tamanho": "68789",
+   "Titulo": "200802Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:29Z",
+   "DataDocumento": "2008-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200801Consorcios.zip",
+   "data": "2026-07-22T18:59:29Z",
+   "Nome": "200801Consorcios.zip",
+   "Tamanho": "68763",
+   "Titulo": "200801Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:29Z",
+   "DataDocumento": "2008-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200712Consorcios.zip",
+   "data": "2026-07-22T18:59:28Z",
+   "Nome": "200712Consorcios.zip",
+   "Tamanho": "68483",
+   "Titulo": "200712Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:28Z",
+   "DataDocumento": "2007-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200711Consorcios.zip",
+   "data": "2026-07-22T18:59:28Z",
+   "Nome": "200711Consorcios.zip",
+   "Tamanho": "67997",
+   "Titulo": "200711Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:28Z",
+   "DataDocumento": "2007-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200710Consorcios.zip",
+   "data": "2026-07-22T18:59:28Z",
+   "Nome": "200710Consorcios.zip",
+   "Tamanho": "67629",
+   "Titulo": "200710Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:28Z",
+   "DataDocumento": "2007-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200709Consorcios.zip",
+   "data": "2026-07-22T18:59:28Z",
+   "Nome": "200709Consorcios.zip",
+   "Tamanho": "67372",
+   "Titulo": "200709Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:28Z",
+   "DataDocumento": "2007-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200708Consorcios.zip",
+   "data": "2026-07-22T18:59:28Z",
+   "Nome": "200708Consorcios.zip",
+   "Tamanho": "66967",
+   "Titulo": "200708Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:28Z",
+   "DataDocumento": "2007-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200707Consorcios.zip",
+   "data": "2026-07-22T18:59:28Z",
+   "Nome": "200707Consorcios.zip",
+   "Tamanho": "66698",
+   "Titulo": "200707Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:28Z",
+   "DataDocumento": "2007-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200706Consorcios.zip",
+   "data": "2026-07-22T18:59:27Z",
+   "Nome": "200706Consorcios.zip",
+   "Tamanho": "66338",
+   "Titulo": "200706Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:27Z",
+   "DataDocumento": "2007-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200705Consorcios.zip",
+   "data": "2026-07-22T18:59:27Z",
+   "Nome": "200705Consorcios.zip",
+   "Tamanho": "65841",
+   "Titulo": "200705Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:27Z",
+   "DataDocumento": "2007-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200704Consorcios.zip",
+   "data": "2026-07-22T18:59:27Z",
+   "Nome": "200704Consorcios.zip",
+   "Tamanho": "65434",
+   "Titulo": "200704Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:27Z",
+   "DataDocumento": "2007-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200703Consorcios.zip",
+   "data": "2026-07-22T18:59:27Z",
+   "Nome": "200703Consorcios.zip",
+   "Tamanho": "65125",
+   "Titulo": "200703Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:27Z",
+   "DataDocumento": "2007-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200702Consorcios.zip",
+   "data": "2026-07-22T18:59:27Z",
+   "Nome": "200702Consorcios.zip",
+   "Tamanho": "64593",
+   "Titulo": "200702Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:27Z",
+   "DataDocumento": "2007-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200701Consorcios.zip",
+   "data": "2026-07-22T18:59:27Z",
+   "Nome": "200701Consorcios.zip",
+   "Tamanho": "64247",
+   "Titulo": "200701Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:59:27Z",
+   "DataDocumento": "2007-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200612Consorcios.zip",
+   "data": "2026-07-22T18:58:38Z",
+   "Nome": "200612Consorcios.zip",
+   "Tamanho": "64284",
+   "Titulo": "200612Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:38Z",
+   "DataDocumento": "2006-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200611Consorcios.zip",
+   "data": "2026-07-22T18:58:38Z",
+   "Nome": "200611Consorcios.zip",
+   "Tamanho": "63776",
+   "Titulo": "200611Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:38Z",
+   "DataDocumento": "2006-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200610Consorcios.zip",
+   "data": "2026-07-22T18:58:38Z",
+   "Nome": "200610Consorcios.zip",
+   "Tamanho": "63460",
+   "Titulo": "200610Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:38Z",
+   "DataDocumento": "2006-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200609Consorcios.zip",
+   "data": "2026-07-22T18:58:38Z",
+   "Nome": "200609Consorcios.zip",
+   "Tamanho": "63426",
+   "Titulo": "200609Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:38Z",
+   "DataDocumento": "2006-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200608Consorcios.zip",
+   "data": "2026-07-22T18:58:23Z",
+   "Nome": "200608Consorcios.zip",
+   "Tamanho": "62871",
+   "Titulo": "200608Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:23Z",
+   "DataDocumento": "2006-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200607Consorcios.zip",
+   "data": "2026-07-22T18:58:23Z",
+   "Nome": "200607Consorcios.zip",
+   "Tamanho": "62951",
+   "Titulo": "200607Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:23Z",
+   "DataDocumento": "2006-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200606Consorcios.zip",
+   "data": "2026-07-22T18:58:23Z",
+   "Nome": "200606Consorcios.zip",
+   "Tamanho": "62190",
+   "Titulo": "200606Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:23Z",
+   "DataDocumento": "2006-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200605Consorcios.zip",
+   "data": "2026-07-22T18:58:23Z",
+   "Nome": "200605Consorcios.zip",
+   "Tamanho": "61605",
+   "Titulo": "200605Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:23Z",
+   "DataDocumento": "2006-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200604Consorcios.zip",
+   "data": "2026-07-22T18:58:23Z",
+   "Nome": "200604Consorcios.zip",
+   "Tamanho": "60916",
+   "Titulo": "200604Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:23Z",
+   "DataDocumento": "2006-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200603Consorcios.zip",
+   "data": "2026-07-22T18:58:22Z",
+   "Nome": "200603Consorcios.zip",
+   "Tamanho": "60247",
+   "Titulo": "200603Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:22Z",
+   "DataDocumento": "2006-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200602Consorcios.zip",
+   "data": "2026-07-22T18:58:22Z",
+   "Nome": "200602Consorcios.zip",
+   "Tamanho": "60026",
+   "Titulo": "200602Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:22Z",
+   "DataDocumento": "2006-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200601Consorcios.zip",
+   "data": "2026-07-22T18:58:22Z",
+   "Nome": "200601Consorcios.zip",
+   "Tamanho": "59838",
+   "Titulo": "200601Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:22Z",
+   "DataDocumento": "2006-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200512Consorcios.zip",
+   "data": "2026-07-22T18:58:22Z",
+   "Nome": "200512Consorcios.zip",
+   "Tamanho": "59698",
+   "Titulo": "200512Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:22Z",
+   "DataDocumento": "2005-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200511Consorcios.zip",
+   "data": "2026-07-22T18:58:22Z",
+   "Nome": "200511Consorcios.zip",
+   "Tamanho": "59457",
+   "Titulo": "200511Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:22Z",
+   "DataDocumento": "2005-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200510Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200510Consorcios.zip",
+   "Tamanho": "58886",
+   "Titulo": "200510Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200509Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200509Consorcios.zip",
+   "Tamanho": "58312",
+   "Titulo": "200509Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200508Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200508Consorcios.zip",
+   "Tamanho": "57808",
+   "Titulo": "200508Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200507Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200507Consorcios.zip",
+   "Tamanho": "57620",
+   "Titulo": "200507Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200506Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200506Consorcios.zip",
+   "Tamanho": "57418",
+   "Titulo": "200506Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200505Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200505Consorcios.zip",
+   "Tamanho": "57283",
+   "Titulo": "200505Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200504Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200504Consorcios.zip",
+   "Tamanho": "56970",
+   "Titulo": "200504Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200503Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200503Consorcios.zip",
+   "Tamanho": "56706",
+   "Titulo": "200503Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200502Consorcios.zip",
+   "data": "2026-07-22T18:58:21Z",
+   "Nome": "200502Consorcios.zip",
+   "Tamanho": "56456",
+   "Titulo": "200502Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:21Z",
+   "DataDocumento": "2005-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200501Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200501Consorcios.zip",
+   "Tamanho": "55963",
+   "Titulo": "200501Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2005-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200412Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200412Consorcios.zip",
+   "Tamanho": "56116",
+   "Titulo": "200412Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2004-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200411Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200411Consorcios.zip",
+   "Tamanho": "56004",
+   "Titulo": "200411Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2004-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200410Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200410Consorcios.zip",
+   "Tamanho": "55592",
+   "Titulo": "200410Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2004-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200409Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200409Consorcios.zip",
+   "Tamanho": "55108",
+   "Titulo": "200409Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2004-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200408Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200408Consorcios.zip",
+   "Tamanho": "54839",
+   "Titulo": "200408Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2004-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200407Consorcios.zip",
+   "data": "2026-07-22T18:58:20Z",
+   "Nome": "200407Consorcios.zip",
+   "Tamanho": "54562",
+   "Titulo": "200407Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:58:20Z",
+   "DataDocumento": "2004-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200406Consorcios.zip",
+   "data": "2026-07-22T18:57:45Z",
+   "Nome": "200406Consorcios.zip",
+   "Tamanho": "54490",
+   "Titulo": "200406Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:45Z",
+   "DataDocumento": "2004-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200405Consorcios.zip",
+   "data": "2026-07-22T18:57:45Z",
+   "Nome": "200405Consorcios.zip",
+   "Tamanho": "54577",
+   "Titulo": "200405Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:45Z",
+   "DataDocumento": "2004-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200404Consorcios.zip",
+   "data": "2026-07-22T18:57:45Z",
+   "Nome": "200404Consorcios.zip",
+   "Tamanho": "54076",
+   "Titulo": "200404Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:45Z",
+   "DataDocumento": "2004-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200403Consorcios.zip",
+   "data": "2026-07-22T18:57:45Z",
+   "Nome": "200403Consorcios.zip",
+   "Tamanho": "53745",
+   "Titulo": "200403Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:45Z",
+   "DataDocumento": "2004-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200402Consorcios.zip",
+   "data": "2026-07-22T18:57:45Z",
+   "Nome": "200402Consorcios.zip",
+   "Tamanho": "53379",
+   "Titulo": "200402Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:45Z",
+   "DataDocumento": "2004-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200401Consorcios.zip",
+   "data": "2026-07-22T18:57:45Z",
+   "Nome": "200401Consorcios.zip",
+   "Tamanho": "53692",
+   "Titulo": "200401Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:45Z",
+   "DataDocumento": "2004-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200312Consorcios.zip",
+   "data": "2026-07-22T18:57:44Z",
+   "Nome": "200312Consorcios.zip",
+   "Tamanho": "53635",
+   "Titulo": "200312Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:44Z",
+   "DataDocumento": "2003-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200311Consorcios.zip",
+   "data": "2026-07-22T18:57:44Z",
+   "Nome": "200311Consorcios.zip",
+   "Tamanho": "53538",
+   "Titulo": "200311Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:44Z",
+   "DataDocumento": "2003-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200310Consorcios.zip",
+   "data": "2026-07-22T18:57:44Z",
+   "Nome": "200310Consorcios.zip",
+   "Tamanho": "53393",
+   "Titulo": "200310Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:44Z",
+   "DataDocumento": "2003-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200309Consorcios.zip",
+   "data": "2026-07-22T18:57:44Z",
+   "Nome": "200309Consorcios.zip",
+   "Tamanho": "52973",
+   "Titulo": "200309Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:44Z",
+   "DataDocumento": "2003-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200308Consorcios.zip",
+   "data": "2026-07-22T18:57:44Z",
+   "Nome": "200308Consorcios.zip",
+   "Tamanho": "52647",
+   "Titulo": "200308Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:44Z",
+   "DataDocumento": "2003-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200307Consorcios.zip",
+   "data": "2026-07-22T18:57:44Z",
+   "Nome": "200307Consorcios.zip",
+   "Tamanho": "52842",
+   "Titulo": "200307Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:44Z",
+   "DataDocumento": "2003-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200306Consorcios.zip",
+   "data": "2026-07-22T18:57:43Z",
+   "Nome": "200306Consorcios.zip",
+   "Tamanho": "52893",
+   "Titulo": "200306Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:43Z",
+   "DataDocumento": "2003-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200305Consorcios.zip",
+   "data": "2026-07-22T18:57:43Z",
+   "Nome": "200305Consorcios.zip",
+   "Tamanho": "52700",
+   "Titulo": "200305Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:43Z",
+   "DataDocumento": "2003-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200304Consorcios.zip",
+   "data": "2026-07-22T18:57:43Z",
+   "Nome": "200304Consorcios.zip",
+   "Tamanho": "52425",
+   "Titulo": "200304Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:43Z",
+   "DataDocumento": "2003-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200303Consorcios.zip",
+   "data": "2026-07-22T18:57:43Z",
+   "Nome": "200303Consorcios.zip",
+   "Tamanho": "52094",
+   "Titulo": "200303Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:43Z",
+   "DataDocumento": "2003-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200302Consorcios.zip",
+   "data": "2026-07-22T18:57:43Z",
+   "Nome": "200302Consorcios.zip",
+   "Tamanho": "52067",
+   "Titulo": "200302Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:43Z",
+   "DataDocumento": "2003-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200301Consorcios.zip",
+   "data": "2026-07-22T18:57:43Z",
+   "Nome": "200301Consorcios.zip",
+   "Tamanho": "51627",
+   "Titulo": "200301Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:43Z",
+   "DataDocumento": "2003-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200212Consorcios.zip",
+   "data": "2026-07-22T18:57:42Z",
+   "Nome": "200212Consorcios.zip",
+   "Tamanho": "51738",
+   "Titulo": "200212Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:42Z",
+   "DataDocumento": "2002-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200211Consorcios.zip",
+   "data": "2026-07-22T18:57:42Z",
+   "Nome": "200211Consorcios.zip",
+   "Tamanho": "51509",
+   "Titulo": "200211Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:42Z",
+   "DataDocumento": "2002-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200210Consorcios.zip",
+   "data": "2026-07-22T18:57:42Z",
+   "Nome": "200210Consorcios.zip",
+   "Tamanho": "51096",
+   "Titulo": "200210Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:42Z",
+   "DataDocumento": "2002-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200209Consorcios.zip",
+   "data": "2026-07-22T18:57:42Z",
+   "Nome": "200209Consorcios.zip",
+   "Tamanho": "50694",
+   "Titulo": "200209Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:42Z",
+   "DataDocumento": "2002-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200208Consorcios.zip",
+   "data": "2026-07-22T18:57:42Z",
+   "Nome": "200208Consorcios.zip",
+   "Tamanho": "50458",
+   "Titulo": "200208Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:42Z",
+   "DataDocumento": "2002-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200207Consorcios.zip",
+   "data": "2026-07-22T18:57:42Z",
+   "Nome": "200207Consorcios.zip",
+   "Tamanho": "50434",
+   "Titulo": "200207Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:42Z",
+   "DataDocumento": "2002-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200206Consorcios.zip",
+   "data": "2026-07-22T18:57:41Z",
+   "Nome": "200206Consorcios.zip",
+   "Tamanho": "50887",
+   "Titulo": "200206Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:41Z",
+   "DataDocumento": "2002-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200205Consorcios.zip",
+   "data": "2026-07-22T18:57:41Z",
+   "Nome": "200205Consorcios.zip",
+   "Tamanho": "50999",
+   "Titulo": "200205Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:41Z",
+   "DataDocumento": "2002-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200204Consorcios.zip",
+   "data": "2026-07-22T18:57:41Z",
+   "Nome": "200204Consorcios.zip",
+   "Tamanho": "51039",
+   "Titulo": "200204Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:41Z",
+   "DataDocumento": "2002-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200203Consorcios.zip",
+   "data": "2026-07-22T18:57:41Z",
+   "Nome": "200203Consorcios.zip",
+   "Tamanho": "50456",
+   "Titulo": "200203Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:41Z",
+   "DataDocumento": "2002-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200202Consorcios.zip",
+   "data": "2026-07-22T18:57:41Z",
+   "Nome": "200202Consorcios.zip",
+   "Tamanho": "50520",
+   "Titulo": "200202Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:41Z",
+   "DataDocumento": "2002-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200201Consorcios.zip",
+   "data": "2026-07-22T18:57:41Z",
+   "Nome": "200201Consorcios.zip",
+   "Tamanho": "50888",
+   "Titulo": "200201Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:57:41Z",
+   "DataDocumento": "2002-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200112Consorcios.zip",
+   "data": "2026-07-22T18:56:54Z",
+   "Nome": "200112Consorcios.zip",
+   "Tamanho": "50646",
+   "Titulo": "200112Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:54Z",
+   "DataDocumento": "2001-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200111Consorcios.zip",
+   "data": "2026-07-22T18:56:54Z",
+   "Nome": "200111Consorcios.zip",
+   "Tamanho": "50395",
+   "Titulo": "200111Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:54Z",
+   "DataDocumento": "2001-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200110Consorcios.zip",
+   "data": "2026-07-22T18:56:54Z",
+   "Nome": "200110Consorcios.zip",
+   "Tamanho": "50303",
+   "Titulo": "200110Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:54Z",
+   "DataDocumento": "2001-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200109Consorcios.zip",
+   "data": "2026-07-22T18:56:54Z",
+   "Nome": "200109Consorcios.zip",
+   "Tamanho": "50370",
+   "Titulo": "200109Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:54Z",
+   "DataDocumento": "2001-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200108Consorcios.zip",
+   "data": "2026-07-22T18:56:53Z",
+   "Nome": "200108Consorcios.zip",
+   "Tamanho": "50466",
+   "Titulo": "200108Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:53Z",
+   "DataDocumento": "2001-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200107Consorcios.zip",
+   "data": "2026-07-22T18:56:53Z",
+   "Nome": "200107Consorcios.zip",
+   "Tamanho": "50666",
+   "Titulo": "200107Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:53Z",
+   "DataDocumento": "2001-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200106Consorcios.zip",
+   "data": "2026-07-22T18:56:53Z",
+   "Nome": "200106Consorcios.zip",
+   "Tamanho": "50561",
+   "Titulo": "200106Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:53Z",
+   "DataDocumento": "2001-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200105Consorcios.zip",
+   "data": "2026-07-22T18:56:53Z",
+   "Nome": "200105Consorcios.zip",
+   "Tamanho": "50431",
+   "Titulo": "200105Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:53Z",
+   "DataDocumento": "2001-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200104Consorcios.zip",
+   "data": "2026-07-22T18:56:53Z",
+   "Nome": "200104Consorcios.zip",
+   "Tamanho": "50265",
+   "Titulo": "200104Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:53Z",
+   "DataDocumento": "2001-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200103Consorcios.zip",
+   "data": "2026-07-22T18:56:53Z",
+   "Nome": "200103Consorcios.zip",
+   "Tamanho": "50030",
+   "Titulo": "200103Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:53Z",
+   "DataDocumento": "2001-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200102Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200102Consorcios.zip",
+   "Tamanho": "49903",
+   "Titulo": "200102Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2001-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200101Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200101Consorcios.zip",
+   "Tamanho": "49913",
+   "Titulo": "200101Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2001-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200012Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200012Consorcios.zip",
+   "Tamanho": "50063",
+   "Titulo": "200012Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2000-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200011Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200011Consorcios.zip",
+   "Tamanho": "49958",
+   "Titulo": "200011Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2000-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200010Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200010Consorcios.zip",
+   "Tamanho": "49957",
+   "Titulo": "200010Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2000-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200009Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200009Consorcios.zip",
+   "Tamanho": "49498",
+   "Titulo": "200009Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2000-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200008Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200008Consorcios.zip",
+   "Tamanho": "49624",
+   "Titulo": "200008Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2000-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200007Consorcios.zip",
+   "data": "2026-07-22T18:56:52Z",
+   "Nome": "200007Consorcios.zip",
+   "Tamanho": "49086",
+   "Titulo": "200007Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:52Z",
+   "DataDocumento": "2000-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200006Consorcios.zip",
+   "data": "2026-07-22T18:56:51Z",
+   "Nome": "200006Consorcios.zip",
+   "Tamanho": "49166",
+   "Titulo": "200006Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:51Z",
+   "DataDocumento": "2000-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200005Consorcios.zip",
+   "data": "2026-07-22T18:56:51Z",
+   "Nome": "200005Consorcios.zip",
+   "Tamanho": "49306",
+   "Titulo": "200005Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:51Z",
+   "DataDocumento": "2000-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200004Consorcios.zip",
+   "data": "2026-07-22T18:56:51Z",
+   "Nome": "200004Consorcios.zip",
+   "Tamanho": "48937",
+   "Titulo": "200004Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:51Z",
+   "DataDocumento": "2000-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200003Consorcios.zip",
+   "data": "2026-07-22T18:56:51Z",
+   "Nome": "200003Consorcios.zip",
+   "Tamanho": "48934",
+   "Titulo": "200003Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:51Z",
+   "DataDocumento": "2000-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200002Consorcios.zip",
+   "data": "2026-07-22T18:56:51Z",
+   "Nome": "200002Consorcios.zip",
+   "Tamanho": "48761",
+   "Titulo": "200002Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:51Z",
+   "DataDocumento": "2000-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/200001Consorcios.zip",
+   "data": "2026-07-22T18:56:51Z",
+   "Nome": "200001Consorcios.zip",
+   "Tamanho": "48863",
+   "Titulo": "200001Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:51Z",
+   "DataDocumento": "2000-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199912Consorcios.zip",
+   "data": "2026-07-22T18:56:50Z",
+   "Nome": "199912Consorcios.zip",
+   "Tamanho": "48859",
+   "Titulo": "199912Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:50Z",
+   "DataDocumento": "1999-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199911Consorcios.zip",
+   "data": "2026-07-22T18:56:50Z",
+   "Nome": "199911Consorcios.zip",
+   "Tamanho": "48863",
+   "Titulo": "199911Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:50Z",
+   "DataDocumento": "1999-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199910Consorcios.zip",
+   "data": "2026-07-22T18:56:50Z",
+   "Nome": "199910Consorcios.zip",
+   "Tamanho": "48565",
+   "Titulo": "199910Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:50Z",
+   "DataDocumento": "1999-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199909Consorcios.zip",
+   "data": "2026-07-22T18:56:50Z",
+   "Nome": "199909Consorcios.zip",
+   "Tamanho": "48672",
+   "Titulo": "199909Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:50Z",
+   "DataDocumento": "1999-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199908Consorcios.zip",
+   "data": "2026-07-22T18:56:50Z",
+   "Nome": "199908Consorcios.zip",
+   "Tamanho": "48749",
+   "Titulo": "199908Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:50Z",
+   "DataDocumento": "1999-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199907Consorcios.zip",
+   "data": "2026-07-22T18:56:50Z",
+   "Nome": "199907Consorcios.zip",
+   "Tamanho": "48100",
+   "Titulo": "199907Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:50Z",
+   "DataDocumento": "1999-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199906Consorcios.zip",
+   "data": "2026-07-22T18:56:38Z",
+   "Nome": "199906Consorcios.zip",
+   "Tamanho": "48184",
+   "Titulo": "199906Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:38Z",
+   "DataDocumento": "1999-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199905Consorcios.zip",
+   "data": "2026-07-22T18:56:38Z",
+   "Nome": "199905Consorcios.zip",
+   "Tamanho": "48217",
+   "Titulo": "199905Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:38Z",
+   "DataDocumento": "1999-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199904Consorcios.zip",
+   "data": "2026-07-22T18:56:38Z",
+   "Nome": "199904Consorcios.zip",
+   "Tamanho": "48355",
+   "Titulo": "199904Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:38Z",
+   "DataDocumento": "1999-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199903Consorcios.zip",
+   "data": "2026-07-22T18:56:38Z",
+   "Nome": "199903Consorcios.zip",
+   "Tamanho": "48492",
+   "Titulo": "199903Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:38Z",
+   "DataDocumento": "1999-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199902Consorcios.zip",
+   "data": "2026-07-22T18:56:38Z",
+   "Nome": "199902Consorcios.zip",
+   "Tamanho": "48396",
+   "Titulo": "199902Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:38Z",
+   "DataDocumento": "1999-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199901Consorcios.zip",
+   "data": "2026-07-22T18:56:38Z",
+   "Nome": "199901Consorcios.zip",
+   "Tamanho": "48255",
+   "Titulo": "199901Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:38Z",
+   "DataDocumento": "1999-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199812Consorcios.zip",
+   "data": "2026-07-22T18:56:37Z",
+   "Nome": "199812Consorcios.zip",
+   "Tamanho": "48638",
+   "Titulo": "199812Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:37Z",
+   "DataDocumento": "1998-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199811Consorcios.zip",
+   "data": "2026-07-22T18:56:37Z",
+   "Nome": "199811Consorcios.zip",
+   "Tamanho": "48952",
+   "Titulo": "199811Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:37Z",
+   "DataDocumento": "1998-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199810Consorcios.zip",
+   "data": "2026-07-22T18:56:37Z",
+   "Nome": "199810Consorcios.zip",
+   "Tamanho": "48445",
+   "Titulo": "199810Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:37Z",
+   "DataDocumento": "1998-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199809Consorcios.zip",
+   "data": "2026-07-22T18:56:37Z",
+   "Nome": "199809Consorcios.zip",
+   "Tamanho": "48520",
+   "Titulo": "199809Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:37Z",
+   "DataDocumento": "1998-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199808Consorcios.zip",
+   "data": "2026-07-22T18:56:37Z",
+   "Nome": "199808Consorcios.zip",
+   "Tamanho": "48608",
+   "Titulo": "199808Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:37Z",
+   "DataDocumento": "1998-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199807Consorcios.zip",
+   "data": "2026-07-22T18:56:37Z",
+   "Nome": "199807Consorcios.zip",
+   "Tamanho": "48496",
+   "Titulo": "199807Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:37Z",
+   "DataDocumento": "1998-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199806Consorcios.zip",
+   "data": "2026-07-22T18:56:36Z",
+   "Nome": "199806Consorcios.zip",
+   "Tamanho": "48557",
+   "Titulo": "199806Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:36Z",
+   "DataDocumento": "1998-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199805Consorcios.zip",
+   "data": "2026-07-22T18:56:36Z",
+   "Nome": "199805Consorcios.zip",
+   "Tamanho": "48475",
+   "Titulo": "199805Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:36Z",
+   "DataDocumento": "1998-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199804Consorcios.zip",
+   "data": "2026-07-22T18:56:36Z",
+   "Nome": "199804Consorcios.zip",
+   "Tamanho": "48819",
+   "Titulo": "199804Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:36Z",
+   "DataDocumento": "1998-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199803Consorcios.zip",
+   "data": "2026-07-22T18:56:36Z",
+   "Nome": "199803Consorcios.zip",
+   "Tamanho": "48630",
+   "Titulo": "199803Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:36Z",
+   "DataDocumento": "1998-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199802Consorcios.zip",
+   "data": "2026-07-22T18:56:36Z",
+   "Nome": "199802Consorcios.zip",
+   "Tamanho": "48472",
+   "Titulo": "199802Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:36Z",
+   "DataDocumento": "1998-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199801Consorcios.zip",
+   "data": "2026-07-22T18:56:36Z",
+   "Nome": "199801Consorcios.zip",
+   "Tamanho": "48748",
+   "Titulo": "199801Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:36Z",
+   "DataDocumento": "1998-01-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199712Consorcios.zip",
+   "data": "2026-07-22T18:56:35Z",
+   "Nome": "199712Consorcios.zip",
+   "Tamanho": "48934",
+   "Titulo": "199712Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:35Z",
+   "DataDocumento": "1997-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199711Consorcios.zip",
+   "data": "2026-07-22T18:56:35Z",
+   "Nome": "199711Consorcios.zip",
+   "Tamanho": "48572",
+   "Titulo": "199711Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:35Z",
+   "DataDocumento": "1997-11-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199710Consorcios.zip",
+   "data": "2026-07-22T18:56:35Z",
+   "Nome": "199710Consorcios.zip",
+   "Tamanho": "48485",
+   "Titulo": "199710Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:35Z",
+   "DataDocumento": "1997-10-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199709Consorcios.zip",
+   "data": "2026-07-22T18:56:35Z",
+   "Nome": "199709Consorcios.zip",
+   "Tamanho": "48436",
+   "Titulo": "199709Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:35Z",
+   "DataDocumento": "1997-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199708Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199708Consorcios.zip",
+   "Tamanho": "48328",
+   "Titulo": "199708Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-08-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199707Consorcios.zip",
+   "data": "2026-07-22T18:56:35Z",
+   "Nome": "199707Consorcios.zip",
+   "Tamanho": "48107",
+   "Titulo": "199707Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:35Z",
+   "DataDocumento": "1997-07-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199706Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199706Consorcios.zip",
+   "Tamanho": "48108",
+   "Titulo": "199706Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199705Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199705Consorcios.zip",
+   "Tamanho": "47993",
+   "Titulo": "199705Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-05-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199704Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199704Consorcios.zip",
+   "Tamanho": "47898",
+   "Titulo": "199704Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-04-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199703Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199703Consorcios.zip",
+   "Tamanho": "47803",
+   "Titulo": "199703Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199702Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199702Consorcios.zip",
+   "Tamanho": "47783",
+   "Titulo": "199702Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-02-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-consolidados/199701Consorcios.zip",
+   "data": "2026-07-22T18:56:34Z",
+   "Nome": "199701Consorcios.zip",
+   "Tamanho": "47364",
+   "Titulo": "199701Consorcios.zip",
+   "DataPublicacao": "2026-07-22T18:56:34Z",
+   "DataDocumento": "1997-01-01T02:00:00Z"
+  }
+ ]
+}
