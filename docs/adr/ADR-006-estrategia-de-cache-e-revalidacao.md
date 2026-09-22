@@ -45,7 +45,7 @@ Cache em três camadas:
 
 | Camada | Conteúdo | Invalidação |
 |---|---|---|
-| **Catálogo** | data-bases disponíveis e a URL de cada arquivo, lidas do `ng-select` | TTL de 6 horas |
+| **Catálogo** | data-bases disponíveis e a URL de cada arquivo | TTL de 6 horas |
 | **Artefato** | o ZIP em `data/`, com o `ETag` gravado ao lado | `If-None-Match` a cada uso |
 | **Parse** | não é cacheado | — |
 
@@ -64,6 +64,8 @@ revalida com If-None-Match
       ▼
     parse
 ```
+
+> **Nota (2026-09-22):** a origem do catálogo foi redefinida pelo [ADR-008](ADR-008-catalogo-pela-rede-da-pagina.md). O texto do `ng-select` não traz a URL; o catálogo passou a ser lido da resposta JSON que a própria página requisita.
 
 Resultado: a primeira consulta leva ~20s; as repetições levam menos de 1s **sem abrir o browser**.
 

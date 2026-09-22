@@ -37,8 +37,10 @@ Confirmado que a defasagem não é cache: um fetch com `Cache-Control: no-cache`
 /content/estabilidadefinanceira/consorcio-banco-de-dados/
     dados-consolidados/AAAAMMConsorcios.zip
     dados-por-unidade-da-federacao/AAAAMMConsorcios_UF.zip
-    dados-por-administradora/              → 404, descontinuado
+    dados-contabeis-descontinuados/        → descontinuado, não usado
 ```
+
+> **Correção factual (2026-09-22):** esta seção listava a terceira pasta como `dados-por-administradora/`. O spike contra o site real mostrou que ela se chama **"Dados contábeis consolidados (descontinuado)"**, fica em `/dados-contabeis-descontinuados` e contém arquivos `ConsorciosAdministradoras_*.zip`. O nome `_ADM` é do formulário ASP legado. Ver [ADR-008](ADR-008-catalogo-pela-rede-da-pagina.md).
 
 ### 4. Conteúdo dos arquivos
 
