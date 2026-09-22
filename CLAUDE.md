@@ -148,7 +148,24 @@ Em TDD, o commit natural é o ciclo fechado: teste + implementação que o faz p
 
 ## Comandos
 
-A preencher quando o scaffold existir.
+Gerenciador de pacotes: **`uv`**. Todos os comandos rodam a partir de `backend/`.
+
+```bash
+uv sync                      # cria .venv e instala dependências
+uv run pytest                # suíte padrão (exclui os testes de integração)
+uv run pytest -m integration # só os que batem no site do BCB
+uv run ruff check .          # lint
+uv run black .               # formatação
+uv run uvicorn app.main:app --reload
+```
+
+`uv run <cmd>` dispensa ativar o venv manualmente.
+
+Ainda não instalado, necessário antes de mexer em `rpa/`:
+
+```bash
+uv run playwright install chromium   # ~150 MB
+```
 
 ## Nunca commitar
 
