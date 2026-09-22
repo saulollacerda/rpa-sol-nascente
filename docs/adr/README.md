@@ -14,6 +14,7 @@ A motivação é prática. Decisões de arquitetura são difíceis de reconstrui
 | [004](ADR-004-persistencia-e-idempotencia.md) | Persistência e idempotência | SQLite, hash SHA-256 dos parâmetros sob unique constraint, máquina de estados |
 | [005](ADR-005-configuracao-e-segredos.md) | Configuração e segredos | `pydantic-settings` com `.env`, nenhum token no código, falha na inicialização |
 | [006](ADR-006-estrategia-de-cache-e-revalidacao.md) | Estratégia de cache e revalidação | Cache em três camadas; revalidação por `ETag`; repetições sem abrir o browser |
+| [007](ADR-007-empacotamento-com-docker.md) | Empacotamento com Docker | Imagem oficial do Playwright; alvos `dev` e `prod`; `data/` em bind mount |
 
 Todos os ADRs acima estão com status **Aceito**.
 
