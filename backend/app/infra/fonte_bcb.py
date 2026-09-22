@@ -8,6 +8,7 @@ ADR-006 é o próximo passo.
 from pathlib import Path
 
 from app.domain.erros import ColetaError
+from app.domain.opcoes import Opcoes, listar_administradoras
 from app.domain.periodos import data_base_uf_para
 from app.domain.portas import DadosColetados
 from app.parsing.consolidado import ler_consolidado
@@ -45,4 +46,19 @@ class FonteBCB:
             consolidado=tuple(ler_consolidado(zip_consolidado)),
             data_base_uf=data_base_uf if zip_uf else None,
             uf=tuple(ler_uf(zip_uf)) if zip_uf else None,
+        )
+
+    def opcoes(self) -> Opcoes:
+        """Data-bases publicadas e as administradoras da mais recente."""
+        with ColetorBCB(self._url, headless=self._headless) as coletor:
+            catalogo = coletor.ler_catalogo()
+            recente = catalogo.mais_recente(Dataset.CONSOLIDADO)
+            if recente is None:
+                raise ColetaError("nenhuma data-base do consolidado no catálogo")
+            arquivo = coletor.baixar(recente, self._diretorio)
+
+        return Opcoes(
+            data_bases=tuple(catalogo.data_bases(Dataset.CONSOLIDADO)),
+            data_base_administradoras=recente.data_base,
+            administradoras=listar_administradoras(ler_consolidado(arquivo)),
         )
