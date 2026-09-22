@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      target: dev
+    image: radar-consorcio-backend:dev
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      # Dentro do container os caminhos são absolutos e o volume é montado
+      # em /app/data. Sobrescreve o default relativo do Settings.
+      DATA_DIR: /app/data
+      DATABASE_URL: sqlite:////app/data/execucoes.db
+      # Não há servidor gráfico no container — ver ADR-007.
+      PLAYWRIGHT_HEADLESS: "true"
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/tests:/app/tests
+      # Cache dos ZIPs (ADR-006) e banco SQLite precisam sobreviver ao
+      # container. Bind mount, para que os arquivos fiquem visíveis no host.
+      - ./backend/data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s

@@ -28,7 +28,9 @@ frontend/
 docs/
   PRD.md
   adr/
-data/           artefatos baixados do BCB (ignorado pelo git)
+backend/data/   artefatos baixados do BCB e banco SQLite (ignorado pelo git)
+docker-compose.yml
+backend/Dockerfile
 ```
 
 ## Regras de arquitetura
@@ -148,6 +150,23 @@ Em TDD, o commit natural é o ciclo fechado: teste + implementação que o faz p
 
 ## Comandos
 
+### Com Docker (recomendado)
+
+Da raiz do projeto. Não exige Python, uv nem Playwright instalados — ver [ADR-007](docs/adr/ADR-007-empacotamento-com-docker.md).
+
+```bash
+docker compose up                              # sobe em http://localhost:8000
+docker compose run --rm backend pytest         # suíte
+docker compose run --rm backend ruff check .   # lint
+docker compose build                           # rebuild após mudar dependências
+```
+
+O Chromium já vem na imagem: **não rode `playwright install` dentro do container.**
+
+Dentro do container não há servidor gráfico, então `PLAYWRIGHT_HEADLESS` é sempre `true`. Para ver a automação navegando numa janela, rode no host.
+
+### Direto no host
+
 Gerenciador de pacotes: **`uv`**. Todos os comandos rodam a partir de `backend/`.
 
 ```bash
@@ -161,7 +180,7 @@ uv run uvicorn app.main:app --reload
 
 `uv run <cmd>` dispensa ativar o venv manualmente.
 
-Ainda não instalado, necessário antes de mexer em `rpa/`:
+Ainda não instalado, necessário antes de mexer em `rpa/` **fora do Docker**:
 
 ```bash
 uv run playwright install chromium   # ~150 MB
