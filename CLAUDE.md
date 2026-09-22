@@ -78,8 +78,12 @@ Já verificadas nos arquivos reais — não redescobrir a cada sessão:
   /content/estabilidadefinanceira/consorcio-banco-de-dados/
       dados-consolidados/AAAAMMConsorcios.zip
       dados-por-unidade-da-federacao/AAAAMMConsorcios_UF.zip
-      dados-por-administradora/            → 404, descontinuado
+      dados-contabeis-descontinuados/      → ConsorciosAdministradoras_*.zip, descontinuado, não usar
   ```
+- **A página pede a lista de arquivos a uma API JSON** (`Documentos/byListGuid`, resposta `{"conteudo": [...]}`, com `Url`, `Nome`, `Tamanho`, `DataPublicacao`, `DataDocumento`). O robô **escuta** essa resposta; **não chamar o endpoint direto** nem fixar o `guid` no código. Classificar o dataset pelo `Nome` do arquivo. Ver [ADR-008](docs/adr/ADR-008-catalogo-pela-rede-da-pagina.md).
+- **Banner de cookies** cobre o conteúdo: clicar em "Rejeitar cookies" antes de interagir.
+- Seções localizadas pelo título `<h4>` exato ("Dados consolidados", "Dados por unidade da federação"), não pela posição. O botão "Baixar arquivo" fica **desabilitado até escolher uma opção**.
+- Rótulo da opção: `202606Consorcios_UF (103.4 Kb)`. Sem virtual scroll: todas as opções vêm na lista.
 - CSVs em **`windows-1252`**, separador **`;`**, decimal com **vírgula** (`23,2`).
 - `Nome_da_Administradora` vem com **padding de espaços** — sem `strip()` o agrupamento duplica registros.
 - `CNPJ_da_Administradora` é só a **raiz de 8 dígitos zero-padded** (`00000776`). Manter como string.

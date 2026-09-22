@@ -26,6 +26,7 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [16](#16-domínio-puro-sem-io) | Domínio puro, sem I/O | [001](adr/ADR-001-stack-e-arquitetura.md) |
 | [17](#17-desenvolvimento-guiado-por-testes-tdd) | Desenvolvimento guiado por testes (TDD) | — |
 | [18](#18-cachear-o-catálogo-e-não-só-o-arquivo) | Cachear o catálogo, e não só o arquivo | [006](adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
+| [19](#19-escutar-a-rede-da-página-em-vez-de-chamar-a-api) | Escutar a rede da página em vez de chamar a API | [008](adr/ADR-008-catalogo-pela-rede-da-pagina.md) |
 
 ---
 
@@ -278,3 +279,15 @@ If-Modified-Since  →  HTTP 200, 108.814 bytes   ❌
 Pular o browser parece contrariar a decisão de [não montar a URL do ZIP](#4-navegar-o-dropdown-em-vez-de-montar-a-url-do-zip). Não é o mesmo caso: a URL **vem do catálogo que o browser leu**, não de um padrão de nome inventado. O navegador segue sendo a única fonte de URLs; o cache só evita repetir a navegação enquanto o catálogo estiver fresco.
 
 > **Em uma frase:** medi antes de otimizar e descobri que o cache que eu tinha desenhado economizava 6% do tempo — o que precisava ser cacheado era a navegação, não o download.
+
+## 19. Escutar a rede da página em vez de chamar a API
+
+**Alternativas rejeitadas:** ler o texto do dropdown, e chamar a API interna do BCB diretamente.
+
+O spike contra o site real mostrou que a página não traz a lista de arquivos no HTML: ela pede a uma API JSON interna, que devolve nome, tamanho, data de publicação e **URL** de cada arquivo. O texto do dropdown só dá nome e tamanho, e a URL — de que o cache da entrada [18](#18-cachear-o-catálogo-e-não-só-o-arquivo) precisa — só aparece depois do download.
+
+Chamar a API direto seria oito vezes mais rápido. Mas obrigaria a fixar no código um endpoint não documentado e um `guid` opaco: o mesmo risco rejeitado na entrada [4](#4-navegar-o-dropdown-em-vez-de-montar-a-url-do-zip).
+
+A saída foi navegar normalmente e **escutar** as respostas que a própria página faz. O navegador continua sendo a única fonte; o robô só lê o que a página pediu, seja qual for o endereço. Os itens são classificados pelo padrão do nome do arquivo, dependência que o parser já tinha.
+
+> **Em uma frase:** o spike mostrou que a página já pedia os dados estruturados que eu precisava — em vez de copiar o endereço dela, passei a escutar o que ela pede.

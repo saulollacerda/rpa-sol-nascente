@@ -15,6 +15,7 @@ A motivação é prática. Decisões de arquitetura são difíceis de reconstrui
 | [005](ADR-005-configuracao-e-segredos.md) | Configuração e segredos | `pydantic-settings` com `.env`, nenhum token no código, falha na inicialização |
 | [006](ADR-006-estrategia-de-cache-e-revalidacao.md) | Estratégia de cache e revalidação | Cache em três camadas; revalidação por `ETag`; repetições sem abrir o browser |
 | [007](ADR-007-empacotamento-com-docker.md) | Empacotamento com Docker | Imagem oficial do Playwright; alvos `dev` e `prod`; `data/` em bind mount |
+| [008](ADR-008-catalogo-pela-rede-da-pagina.md) | Catálogo pela rede da página | O robô navega e escuta o JSON que a própria página pede; nenhum endpoint no código |
 
 Todos os ADRs acima estão com status **Aceito**.
 
