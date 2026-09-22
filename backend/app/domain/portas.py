@@ -9,6 +9,7 @@ from datetime import datetime
 from typing import Any, Protocol
 
 from app.domain.execucao import Execucao, ParametrosConsulta, StatusExecucao
+from app.domain.modelos import RegistroConsolidado, RegistroUF
 
 
 class RepositorioExecucoes(Protocol):
@@ -41,4 +42,20 @@ class WhatsAppSender(Protocol):
 
     def enviar(self, destinatario: str, mensagem: str) -> ResultadoEnvio:
         """Levanta EnvioError quando a entrega falha."""
+        ...
+
+
+@dataclass(frozen=True, slots=True)
+class DadosColetados:
+    """Os dois datasets de uma consulta. `uf` é None quando não há trimestre publicado."""
+
+    data_base_consolidado: str
+    consolidado: tuple[RegistroConsolidado, ...]
+    data_base_uf: str | None
+    uf: tuple[RegistroUF, ...] | None
+
+
+class FonteDeDados(Protocol):
+    def obter(self, data_base: str) -> DadosColetados:
+        """Levanta ColetaError ou ParsingError."""
         ...
