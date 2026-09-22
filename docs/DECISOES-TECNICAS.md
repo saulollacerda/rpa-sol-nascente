@@ -28,6 +28,8 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [18](#18-cachear-o-catálogo-e-não-só-o-arquivo) | Cachear o catálogo, e não só o arquivo | [006](adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
 | [19](#19-escutar-a-rede-da-página-em-vez-de-chamar-a-api) | Escutar a rede da página em vez de chamar a API | [008](adr/ADR-008-catalogo-pela-rede-da-pagina.md) |
 | [20](#20-mensagem-de-texto-em-vez-de-template) | Mensagem de texto em vez de template | [003](adr/ADR-003-integracao-whatsapp.md) |
+| [21](#21-praças-do-trimestre-mais-recente-até-a-data-base) | Praças do trimestre mais recente até a data-base | — |
+| [22](#22-processar-nunca-deixa-exceção-escapar) | `processar` nunca deixa exceção escapar | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
 
 ---
 
@@ -302,3 +304,21 @@ Template é o formato que a Meta exige para a empresa iniciar uma conversa a qua
 A mensagem de texto preserva o formato, com uma condição: o destinatário precisa ter escrito para o número da empresa nas últimas 24 horas. Fora dessa janela a Meta devolve o código 131047, e o adapter traduz isso para o que o gestor precisa fazer, em vez de mostrar um código cru.
 
 > **Em uma frase:** preferi manter o relatório legível e explicar a regra da janela de 24 horas a entregar um texto achatado que ninguém leria.
+
+## 21. Praças do trimestre mais recente até a data-base
+
+**Alternativa rejeitada:** a regra original do PRD, de emitir só o bloco nacional quando a data-base escolhida não tem arquivo de UF.
+
+O consolidado é mensal e o de UF é trimestral. Pela regra original, oito de cada doze meses sairiam sem as praças — justamente a parte que interessa a uma concessionária. A regra adotada usa o trimestre de UF mais recente até a data escolhida: para Julho/2026, as praças vêm de Junho/2026.
+
+Isso só é honesto porque a mensagem já informa a data-base de cada bloco (*"Praças: Junho/2026 · Nacional: Julho/2026"*). O gestor sabe de quando é cada número.
+
+> **Em uma frase:** preferi o dado trimestral mais recente, rotulado com a sua data, a esconder as praças em dois de cada três meses.
+
+## 22. `processar` nunca deixa exceção escapar
+
+O processamento roda em segundo plano, depois que a API já respondeu. Uma exceção ali não teria ninguém para capturá-la: a execução ficaria presa em `COLETANDO` para sempre, sem registro do motivo.
+
+Por isso toda falha, esperada ou não, vira status gravado. As esperadas (`ColetaError`, `EnvioError`) guardam a descrição, que é feita para o gestor ler. As inesperadas guardam só o tipo e *"ver o log da execução"*: o detalhe interno vai para o log, com a pilha completa, e não para a API.
+
+> **Em uma frase:** em segundo plano não existe "o erro sobe" — ou a falha vira histórico, ou ela desaparece.
