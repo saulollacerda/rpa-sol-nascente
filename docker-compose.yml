@@ -28,3 +28,23 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+
+  frontend:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm ci --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "5173:5173"
+    environment:
+      # O Vite repassa /execucoes, /opcoes e /health ao backend (ADR-001).
+      VITE_API_ALVO: http://backend:8000
+    volumes:
+      - ./frontend:/app
+      # node_modules fica num volume: os binários do host (macOS) não servem no Linux.
+      - frontend_node_modules:/app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  frontend_node_modules:
