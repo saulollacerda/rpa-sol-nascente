@@ -4,6 +4,7 @@ As implementações ficam em infra/ (ver ADR-001 e ADR-003). Os testes do
 serviço usam implementações falsas destas mesmas interfaces.
 """
 
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Protocol
 
@@ -28,3 +29,16 @@ class RepositorioExecucoes(Protocol):
         ...
 
     def retentar(self, execucao_id: int, agora: datetime) -> Execucao: ...
+
+
+@dataclass(frozen=True, slots=True)
+class ResultadoEnvio:
+    id_mensagem: str
+
+
+class WhatsAppSender(Protocol):
+    """Entrega de mensagens. Implementações: CloudApiSender e FakeSender (ADR-003)."""
+
+    def enviar(self, destinatario: str, mensagem: str) -> ResultadoEnvio:
+        """Levanta EnvioError quando a entrega falha."""
+        ...
