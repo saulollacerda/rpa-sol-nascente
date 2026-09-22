@@ -25,6 +25,7 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [15](#15-pydantic-settings-em-vez-de-osenviron) | pydantic-settings em vez de `os.environ` | [005](adr/ADR-005-configuracao-e-segredos.md) |
 | [16](#16-domínio-puro-sem-io) | Domínio puro, sem I/O | [001](adr/ADR-001-stack-e-arquitetura.md) |
 | [17](#17-desenvolvimento-guiado-por-testes-tdd) | Desenvolvimento guiado por testes (TDD) | — |
+| [18](#18-cachear-o-catálogo-e-não-só-o-arquivo) | Cachear o catálogo, e não só o arquivo | [006](adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
 
 ---
 
@@ -242,3 +243,38 @@ Para o `rpa/`, a abordagem é outra: um **spike exploratório descartável** par
 **Reforça uma decisão anterior.** O domínio puro da entrada [16](#16-domínio-puro-sem-io) deixa de ser preferência estética e passa a ser pré-requisito: só dá para escrever teste antes do código se o código não depender de rede, browser e banco.
 
 > **Em uma frase:** testo primeiro onde o resultado é determinístico, e onde não é — a navegação no site do BCB — uso spike e teste de integração marcado, em vez de fingir que dá para fazer TDD contra um site de terceiro.
+
+## 18. Cachear o catálogo, e não só o arquivo
+
+**Alternativa rejeitada:** cachear apenas os ZIPs baixados, como o ADR-004 previa originalmente.
+
+A pergunta que expôs o problema foi prática: se o gestor consultar sempre a data-base mais recente, baixa tudo de novo toda vez? Medindo, a intuição estava invertida:
+
+| Etapa | Custo |
+|---|---|
+| Playwright: browser, navegação, leitura do `ng-select` | **~10–20s** |
+| Download do ZIP | 1,25s |
+| Unzip e parse de 7.667 linhas | milissegundos |
+
+O download é ~6% do tempo. Cachear só o artefato economizaria a parte barata e manteria a espera de 20 segundos em toda consulta repetida.
+
+A correção é cachear também o **catálogo** — a lista de data-bases e a URL de cada arquivo, com TTL de 6 horas. Com ele válido, o sistema já sabe a URL e não precisa navegar para descobri-la: a consulta repetida cai para menos de 1 segundo, sem abrir o browser.
+
+### O cache permanente estaria errado
+
+O BCB declara que *"a cada data-base são atualizadas as informações relativas aos últimos 12 períodos"* — arquivos publicados são revisados. Cache eterno serviria dado velho sem erro, a mesma falha silenciosa da armadilha do ASP na entrada [3](#3-página-angular-em-vez-da-página-asp-legada).
+
+Testado contra o servidor:
+
+```
+If-None-Match      →  HTTP 304, 0 bytes         ✅
+If-Modified-Since  →  HTTP 200, 108.814 bytes   ❌
+```
+
+`ETag` funciona, `Last-Modified` não. E a data engana: o arquivo de Set/2024 reporta modificação em agosto de 2026, que é a data da migração de CMS do BCB, não revisão de conteúdo.
+
+### Não contradiz a entrada 4
+
+Pular o browser parece contrariar a decisão de [não montar a URL do ZIP](#4-navegar-o-dropdown-em-vez-de-montar-a-url-do-zip). Não é o mesmo caso: a URL **vem do catálogo que o browser leu**, não de um padrão de nome inventado. O navegador segue sendo a única fonte de URLs; o cache só evita repetir a navegação enquanto o catálogo estiver fresco.
+
+> **Em uma frase:** medi antes de otimizar e descobri que o cache que eu tinha desenhado economizava 6% do tempo — o que precisava ser cacheado era a navegação, não o download.

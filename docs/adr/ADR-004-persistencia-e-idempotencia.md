@@ -47,7 +47,9 @@ Guardar `dados_encontrados` separado de `mensagem_gerada` permite reemitir a men
 
 ### Cache de artefatos
 
-Os ZIPs baixados são guardados em `data/` nomeados pela data-base. Uma execução que precise de uma data-base já baixada reaproveita o arquivo em vez de bater no BCB de novo.
+Os ZIPs baixados são guardados em `data/` nomeados pela data-base, para que uma execução não rebaixe um arquivo que já tem.
+
+> **Correção factual (2026-09-22):** esta seção previa cache permanente por data-base. Medições posteriores mostraram que o gargalo é a navegação, não o download, e que o BCB revisa os arquivos das últimas 12 data-bases — o que tornaria o cache permanente uma fonte de dado desatualizado. A estratégia completa, em três camadas e com revalidação por `ETag`, está no [ADR-006](ADR-006-estrategia-de-cache-e-revalidacao.md).
 
 ## Justificativa
 
@@ -55,7 +57,7 @@ SQLite é a escolha certa para a escala real do produto: um usuário, execuçõe
 
 O hash determinístico é preferível a comparar os parâmetros campo a campo porque reduz a regra a uma única constraint no banco — impossível de contornar por esquecimento em algum caminho de código. Incluir o destinatário na chave é intencional: o mesmo relatório para outra pessoa é um envio legítimo, não duplicata.
 
-O cache de artefatos serve a três propósitos ao mesmo tempo: torna a demonstração rápida na segunda execução, reduz carga sobre um serviço público, e é a segunda camada de defesa contra reprocessamento.
+O cache de artefatos serve a três propósitos ao mesmo tempo: torna a demonstração rápida na segunda execução, reduz carga sobre um serviço público, e é a segunda camada de defesa contra reprocessamento. Sua política de invalidação está detalhada no [ADR-006](ADR-006-estrategia-de-cache-e-revalidacao.md).
 
 ## Consequências
 

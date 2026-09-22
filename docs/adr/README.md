@@ -13,6 +13,7 @@ A motivação é prática. Decisões de arquitetura são difíceis de reconstrui
 | [003](ADR-003-integracao-whatsapp.md) | Integração com WhatsApp | Cloud API oficial da Meta, com adapter fake ao lado para teste e demonstração |
 | [004](ADR-004-persistencia-e-idempotencia.md) | Persistência e idempotência | SQLite, hash SHA-256 dos parâmetros sob unique constraint, máquina de estados |
 | [005](ADR-005-configuracao-e-segredos.md) | Configuração e segredos | `pydantic-settings` com `.env`, nenhum token no código, falha na inicialização |
+| [006](ADR-006-estrategia-de-cache-e-revalidacao.md) | Estratégia de cache e revalidação | Cache em três camadas; revalidação por `ETag`; repetições sem abrir o browser |
 
 Todos os ADRs acima estão com status **Aceito**.
 
