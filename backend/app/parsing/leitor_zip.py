@@ -9,12 +9,10 @@ import zipfile
 from collections.abc import Iterator
 from pathlib import Path
 
+from app.domain.erros import ParsingError
+
 ENCODING = "cp1252"
 SEPARADOR = ";"
-
-
-class ParsingError(Exception):
-    """Falha ao ler ou interpretar um arquivo da fonte."""
 
 
 def ler_csv_do_zip(caminho_zip: Path, sufixo: str) -> Iterator[dict[str, str]]:

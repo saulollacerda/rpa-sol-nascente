@@ -21,6 +21,7 @@ from playwright.sync_api import (
     Error as PlaywrightError,
 )
 
+from app.domain.erros import ColetaError
 from app.rpa.catalogo import Catalogo, Dataset, ItemCatalogo, montar_catalogo
 
 TIMEOUT_PADRAO_MS = 60_000
@@ -30,10 +31,6 @@ TITULOS = {
     Dataset.CONSOLIDADO: "Dados consolidados",
     Dataset.UF: "Dados por unidade da federação",
 }
-
-
-class ColetaError(Exception):
-    """Falha ao obter os dados na fonte: site fora do ar, layout mudou, arquivo ausente."""
 
 
 class ColetorBCB:
