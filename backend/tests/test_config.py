@@ -24,5 +24,22 @@ def test_cloud_api_sem_token_falha_na_inicializacao():
 
 
 def test_cloud_api_com_token_e_valida():
-    settings = Settings(whatsapp_provider="cloud_api", whatsapp_token="EAAG...")
+    settings = Settings(
+        whatsapp_provider="cloud_api", whatsapp_token="EAAG...", whatsapp_phone_number_id="123"
+    )
     assert settings.whatsapp_provider is WhatsAppProvider.CLOUD_API
+
+
+def test_cloud_api_sem_phone_number_id_falha_na_inicializacao():
+    with pytest.raises(ValidationError, match="WHATSAPP_PHONE_NUMBER_ID"):
+        Settings(whatsapp_provider="cloud_api", whatsapp_token="EAAG...")
+
+
+def test_fabrica_escolhe_o_adapter_pelo_provider():
+    from app.infra.whatsapp import CloudApiSender, FakeSender, criar_sender
+
+    assert isinstance(criar_sender(Settings(whatsapp_provider="fake")), FakeSender)
+    real = Settings(
+        whatsapp_provider="cloud_api", whatsapp_token="EAAG...", whatsapp_phone_number_id="123"
+    )
+    assert isinstance(criar_sender(real), CloudApiSender)

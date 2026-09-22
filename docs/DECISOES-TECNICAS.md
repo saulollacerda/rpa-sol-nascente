@@ -27,6 +27,7 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [17](#17-desenvolvimento-guiado-por-testes-tdd) | Desenvolvimento guiado por testes (TDD) | — |
 | [18](#18-cachear-o-catálogo-e-não-só-o-arquivo) | Cachear o catálogo, e não só o arquivo | [006](adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
 | [19](#19-escutar-a-rede-da-página-em-vez-de-chamar-a-api) | Escutar a rede da página em vez de chamar a API | [008](adr/ADR-008-catalogo-pela-rede-da-pagina.md) |
+| [20](#20-mensagem-de-texto-em-vez-de-template) | Mensagem de texto em vez de template | [003](adr/ADR-003-integracao-whatsapp.md) |
 
 ---
 
@@ -291,3 +292,13 @@ Chamar a API direto seria oito vezes mais rápido. Mas obrigaria a fixar no cód
 A saída foi navegar normalmente e **escutar** as respostas que a própria página faz. O navegador continua sendo a única fonte; o robô só lê o que a página pediu, seja qual for o endereço. Os itens são classificados pelo padrão do nome do arquivo, dependência que o parser já tinha.
 
 > **Em uma frase:** o spike mostrou que a página já pedia os dados estruturados que eu precisava — em vez de copiar o endereço dela, passei a escutar o que ela pede.
+
+## 20. Mensagem de texto em vez de template
+
+**Alternativa rejeitada:** *template message*, como o ADR-003 previa.
+
+Template é o formato que a Meta exige para a empresa iniciar uma conversa a qualquer momento. Mas os parâmetros de um template **não aceitam quebra de linha**, e o relatório é um texto de dezenas de linhas. Achatá-lo numa linha só destruiria a leitura no celular, que é justamente o produto.
+
+A mensagem de texto preserva o formato, com uma condição: o destinatário precisa ter escrito para o número da empresa nas últimas 24 horas. Fora dessa janela a Meta devolve o código 131047, e o adapter traduz isso para o que o gestor precisa fazer, em vez de mostrar um código cru.
+
+> **Em uma frase:** preferi manter o relatório legível e explicar a regra da janela de 24 horas a entregar um texto achatado que ninguém leria.
