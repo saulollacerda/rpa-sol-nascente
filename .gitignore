@@ -31,3 +31,7 @@ test-results/
 
 # SO
 .DS_Store
+
+# Cobertura de testes
+.coverage
+htmlcov/
