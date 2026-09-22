@@ -188,6 +188,20 @@ uv run uvicorn app.main:app --reload
 
 `uv run <cmd>` dispensa ativar o venv manualmente.
 
+### API
+
+Documentação interativa em `http://localhost:8000/docs`.
+
+```bash
+# dispara a consulta (defaults: segmento 4, PI e MA, Honda, destinatário do .env)
+curl -X POST localhost:8000/execucoes -H 'Content-Type: application/json' \
+     -d '{"data_base": "202607"}'
+curl localhost:8000/execucoes/1     # acompanha o status
+curl localhost:8000/execucoes       # histórico
+```
+
+202 quando cria ou retenta; 200 quando a execução já existia (ADR-004).
+
 Ainda não instalado, necessário antes de mexer em `rpa/` **fora do Docker**:
 
 ```bash

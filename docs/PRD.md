@@ -118,7 +118,9 @@ O formato é texto puro com emojis, otimizado para leitura no WhatsApp — sem t
 - **Consorciados ativos** = contemplados por lance + contemplados por sorteio + não contemplados.
 - **Multi-UF** não soma praças num número único: cada UF é apresentada como bloco próprio, porque a decisão comercial é por praça. O total consolidado aparece apenas no bloco de oportunidade.
 - **Consulta sem resultado** é um desfecho legítimo, não um erro: se a administradora não opera na UF e segmento escolhidos, a execução termina em `SEM_RESULTADO`, registra o motivo e **não dispara envio**.
-- **Divergência de periodicidade**: o consolidado é mensal e o de UF é trimestral. Quando a data-base escolhida não tem arquivo de UF, o relatório é emitido só com o bloco nacional e avisa explicitamente a ausência do recorte geográfico.
+- **Divergência de periodicidade**: o consolidado é mensal e o de UF é trimestral. As praças usam **o trimestre mais recente até a data-base escolhida** — para Julho/2026, Junho/2026 — e o relatório informa a data-base de cada bloco. Só quando não há trimestre publicado até a data (antes de 2008) o relatório sai apenas com o bloco nacional, avisando a ausência do recorte geográfico.
+
+  > **Revisão (2026-09-22):** a regra original emitia só o bloco nacional sempre que a data-base não tivesse arquivo de UF. Como o arquivo de UF é trimestral, isso deixaria oito de cada doze meses sem as praças, que são o principal interesse do gestor.
 
 ## 8. Requisitos não-funcionais
 
