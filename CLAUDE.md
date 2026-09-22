@@ -58,9 +58,12 @@ Integrações externas entram por `Protocol` definido no domínio e implementado
 | `api/` | ✅ sempre | `TestClient` do FastAPI |
 | `infra/whatsapp` | ✅ sempre | via `FakeSender` |
 | `infra/db` | ⚠️ parcial | SQLite em memória |
-| `rpa/` | ❌ não | spike descartável + teste `@pytest.mark.integration`, fora da suíte padrão |
+| `rpa/catalogo.py` | ✅ sempre | JSON real da página capturado em `tests/fixtures/catalogo_*.json` |
+| `rpa/coletor.py` | ❌ não | teste `@pytest.mark.integration` contra o site real, fora da suíte padrão |
 
-TDD contra um site de terceiro não é TDD. Para o `rpa/`, o que se testa é o contrato — dado um ZIP, o que a camada devolve — e isso já é coberto por `parsing/`.
+TDD contra um site de terceiro não é TDD. No `rpa/`, o que é função pura (converter o JSON do catálogo) é feito em TDD; o que depende do site (navegar, clicar, baixar) fica no `coletor.py`, coberto por teste de integração.
+
+**Uma sessão de `ColetorBCB` por thread.** A API síncrona do Playwright não admite duas abertas na mesma thread — por isso os testes de falha ficam num módulo separado da fixture de sessão compartilhada.
 
 **Fixtures ficam em `backend/tests/fixtures/` e são versionadas.** Não confundir com `data/`, que é ignorado pelo git — colocar fixture lá quebra a suíte em qualquer máquina nova.
 
@@ -161,6 +164,7 @@ Da raiz do projeto. Não exige Python, uv nem Playwright instalados — ver [ADR
 ```bash
 docker compose up                              # sobe em http://localhost:8000
 docker compose run --rm backend pytest         # suíte
+docker compose run --rm backend pytest -m integration   # contra o site real do BCB
 docker compose run --rm backend ruff check .   # lint
 docker compose build                           # rebuild após mudar dependências
 ```

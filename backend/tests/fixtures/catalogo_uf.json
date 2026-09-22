@@ -1,0 +1,652 @@
+{
+ "conteudo": [
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202606Consorcios_UF.zip",
+   "data": "2026-08-28T13:19:00Z",
+   "Nome": "202606Consorcios_UF.zip",
+   "Tamanho": "105859",
+   "Titulo": "202606Consorcios_UF.zip",
+   "DataPublicacao": "2026-08-28T13:19:00Z",
+   "DataDocumento": "2026-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202603Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:55Z",
+   "Nome": "202603Consorcios_UF.zip",
+   "Tamanho": "105002",
+   "Titulo": "202603Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:55Z",
+   "DataDocumento": "2026-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202512Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:55Z",
+   "Nome": "202512Consorcios_UF.zip",
+   "Tamanho": "104898",
+   "Titulo": "202512Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:55Z",
+   "DataDocumento": "2025-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202509Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:55Z",
+   "Nome": "202509Consorcios_UF.zip",
+   "Tamanho": "103979",
+   "Titulo": "202509Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:55Z",
+   "DataDocumento": "2025-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202506Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:55Z",
+   "Nome": "202506Consorcios_UF.zip",
+   "Tamanho": "102224",
+   "Titulo": "202506Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:55Z",
+   "DataDocumento": "2025-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202503Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:55Z",
+   "Nome": "202503Consorcios_UF.zip",
+   "Tamanho": "101326",
+   "Titulo": "202503Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:55Z",
+   "DataDocumento": "2025-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202412Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:55Z",
+   "Nome": "202412Consorcios_UF.zip",
+   "Tamanho": "100775",
+   "Titulo": "202412Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:55Z",
+   "DataDocumento": "2024-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202409Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:54Z",
+   "Nome": "202409Consorcios_UF.zip",
+   "Tamanho": "100328",
+   "Titulo": "202409Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:54Z",
+   "DataDocumento": "2024-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202406Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:54Z",
+   "Nome": "202406Consorcios_UF.zip",
+   "Tamanho": "99274",
+   "Titulo": "202406Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:54Z",
+   "DataDocumento": "2024-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202403Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:54Z",
+   "Nome": "202403Consorcios_UF.zip",
+   "Tamanho": "97113",
+   "Titulo": "202403Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:54Z",
+   "DataDocumento": "2024-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202312Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:54Z",
+   "Nome": "202312Consorcios_UF.zip",
+   "Tamanho": "97487",
+   "Titulo": "202312Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:54Z",
+   "DataDocumento": "2023-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202309Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:54Z",
+   "Nome": "202309Consorcios_UF.zip",
+   "Tamanho": "96452",
+   "Titulo": "202309Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:54Z",
+   "DataDocumento": "2023-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202306Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:35Z",
+   "Nome": "202306Consorcios_UF.zip",
+   "Tamanho": "94012",
+   "Titulo": "202306Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:35Z",
+   "DataDocumento": "2023-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202303Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:35Z",
+   "Nome": "202303Consorcios_UF.zip",
+   "Tamanho": "93233",
+   "Titulo": "202303Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:35Z",
+   "DataDocumento": "2023-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202212Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:35Z",
+   "Nome": "202212Consorcios_UF.zip",
+   "Tamanho": "93101",
+   "Titulo": "202212Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:35Z",
+   "DataDocumento": "2022-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202209Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:35Z",
+   "Nome": "202209Consorcios_UF.zip",
+   "Tamanho": "92070",
+   "Titulo": "202209Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:35Z",
+   "DataDocumento": "2022-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202206Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:35Z",
+   "Nome": "202206Consorcios_UF.zip",
+   "Tamanho": "90315",
+   "Titulo": "202206Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:35Z",
+   "DataDocumento": "2022-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202203Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:35Z",
+   "Nome": "202203Consorcios_UF.zip",
+   "Tamanho": "87738",
+   "Titulo": "202203Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:35Z",
+   "DataDocumento": "2022-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202112Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:34Z",
+   "Nome": "202112Consorcios_UF.zip",
+   "Tamanho": "87329",
+   "Titulo": "202112Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:34Z",
+   "DataDocumento": "2021-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202109Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:34Z",
+   "Nome": "202109Consorcios_UF.zip",
+   "Tamanho": "85437",
+   "Titulo": "202109Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:34Z",
+   "DataDocumento": "2021-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202106Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:34Z",
+   "Nome": "202106Consorcios_UF.zip",
+   "Tamanho": "84868",
+   "Titulo": "202106Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:34Z",
+   "DataDocumento": "2021-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202103Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:34Z",
+   "Nome": "202103Consorcios_UF.zip",
+   "Tamanho": "83819",
+   "Titulo": "202103Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:34Z",
+   "DataDocumento": "2021-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202012Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:34Z",
+   "Nome": "202012Consorcios_UF.zip",
+   "Tamanho": "82963",
+   "Titulo": "202012Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:34Z",
+   "DataDocumento": "2020-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202009Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:34Z",
+   "Nome": "202009Consorcios_UF.zip",
+   "Tamanho": "82906",
+   "Titulo": "202009Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:34Z",
+   "DataDocumento": "2020-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202006Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:33Z",
+   "Nome": "202006Consorcios_UF.zip",
+   "Tamanho": "80772",
+   "Titulo": "202006Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:33Z",
+   "DataDocumento": "2020-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/202003Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:33Z",
+   "Nome": "202003Consorcios_UF.zip",
+   "Tamanho": "80679",
+   "Titulo": "202003Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:33Z",
+   "DataDocumento": "2020-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201912Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:33Z",
+   "Nome": "201912Consorcios_UF.zip",
+   "Tamanho": "80069",
+   "Titulo": "201912Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:33Z",
+   "DataDocumento": "2019-12-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201909Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:33Z",
+   "Nome": "201909Consorcios_UF.zip",
+   "Tamanho": "79717",
+   "Titulo": "201909Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:33Z",
+   "DataDocumento": "2019-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201906Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:33Z",
+   "Nome": "201906Consorcios_UF.zip",
+   "Tamanho": "78357",
+   "Titulo": "201906Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:33Z",
+   "DataDocumento": "2019-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201903Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:33Z",
+   "Nome": "201903Consorcios_UF.zip",
+   "Tamanho": "77924",
+   "Titulo": "201903Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:33Z",
+   "DataDocumento": "2019-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201812Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:32Z",
+   "Nome": "201812Consorcios_UF.zip",
+   "Tamanho": "76952",
+   "Titulo": "201812Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:32Z",
+   "DataDocumento": "2018-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201809Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:32Z",
+   "Nome": "201809Consorcios_UF.zip",
+   "Tamanho": "75845",
+   "Titulo": "201809Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:32Z",
+   "DataDocumento": "2018-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201806Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:32Z",
+   "Nome": "201806Consorcios_UF.zip",
+   "Tamanho": "77044",
+   "Titulo": "201806Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:32Z",
+   "DataDocumento": "2018-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201803Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:32Z",
+   "Nome": "201803Consorcios_UF.zip",
+   "Tamanho": "76359",
+   "Titulo": "201803Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:32Z",
+   "DataDocumento": "2018-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201712Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:32Z",
+   "Nome": "201712Consorcios_UF.zip",
+   "Tamanho": "76042",
+   "Titulo": "201712Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:32Z",
+   "DataDocumento": "2017-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201709Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:32Z",
+   "Nome": "201709Consorcios_UF.zip",
+   "Tamanho": "75607",
+   "Titulo": "201709Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:32Z",
+   "DataDocumento": "2017-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201706Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:31Z",
+   "Nome": "201706Consorcios_UF.zip",
+   "Tamanho": "75128",
+   "Titulo": "201706Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:31Z",
+   "DataDocumento": "2017-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201703Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:31Z",
+   "Nome": "201703Consorcios_UF.zip",
+   "Tamanho": "76413",
+   "Titulo": "201703Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:31Z",
+   "DataDocumento": "2017-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201612Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:31Z",
+   "Nome": "201612Consorcios_UF.zip",
+   "Tamanho": "75913",
+   "Titulo": "201612Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:31Z",
+   "DataDocumento": "2016-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201609Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:31Z",
+   "Nome": "201609Consorcios_UF.zip",
+   "Tamanho": "75481",
+   "Titulo": "201609Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:31Z",
+   "DataDocumento": "2016-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201606Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:31Z",
+   "Nome": "201606Consorcios_UF.zip",
+   "Tamanho": "75154",
+   "Titulo": "201606Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:31Z",
+   "DataDocumento": "2016-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201603Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:31Z",
+   "Nome": "201603Consorcios_UF.zip",
+   "Tamanho": "75400",
+   "Titulo": "201603Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:31Z",
+   "DataDocumento": "2016-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201512Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:12Z",
+   "Nome": "201512Consorcios_UF.zip",
+   "Tamanho": "75802",
+   "Titulo": "201512Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:12Z",
+   "DataDocumento": "2015-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201509Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:12Z",
+   "Nome": "201509Consorcios_UF.zip",
+   "Tamanho": "75649",
+   "Titulo": "201509Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:12Z",
+   "DataDocumento": "2015-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201506Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:12Z",
+   "Nome": "201506Consorcios_UF.zip",
+   "Tamanho": "75532",
+   "Titulo": "201506Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:12Z",
+   "DataDocumento": "2015-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201503Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:12Z",
+   "Nome": "201503Consorcios_UF.zip",
+   "Tamanho": "74818",
+   "Titulo": "201503Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:12Z",
+   "DataDocumento": "2015-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201412Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:12Z",
+   "Nome": "201412Consorcios_UF.zip",
+   "Tamanho": "75356",
+   "Titulo": "201412Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:12Z",
+   "DataDocumento": "2014-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201409Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:12Z",
+   "Nome": "201409Consorcios_UF.zip",
+   "Tamanho": "75142",
+   "Titulo": "201409Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:12Z",
+   "DataDocumento": "2014-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201406Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:11Z",
+   "Nome": "201406Consorcios_UF.zip",
+   "Tamanho": "75897",
+   "Titulo": "201406Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:11Z",
+   "DataDocumento": "2014-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201403Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:11Z",
+   "Nome": "201403Consorcios_UF.zip",
+   "Tamanho": "76365",
+   "Titulo": "201403Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:11Z",
+   "DataDocumento": "2014-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201312Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:11Z",
+   "Nome": "201312Consorcios_UF.zip",
+   "Tamanho": "76316",
+   "Titulo": "201312Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:11Z",
+   "DataDocumento": "2013-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201309Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:11Z",
+   "Nome": "201309Consorcios_UF.zip",
+   "Tamanho": "75656",
+   "Titulo": "201309Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:11Z",
+   "DataDocumento": "2013-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201306Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:11Z",
+   "Nome": "201306Consorcios_UF.zip",
+   "Tamanho": "75569",
+   "Titulo": "201306Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:11Z",
+   "DataDocumento": "2013-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201303Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:10Z",
+   "Nome": "201303Consorcios_UF.zip",
+   "Tamanho": "75706",
+   "Titulo": "201303Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:10Z",
+   "DataDocumento": "2013-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201212Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201212Consorcios_UF.zip",
+   "Tamanho": "75770",
+   "Titulo": "201212Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2012-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201209Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201209Consorcios_UF.zip",
+   "Tamanho": "75535",
+   "Titulo": "201209Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2012-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201206Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201206Consorcios_UF.zip",
+   "Tamanho": "75793",
+   "Titulo": "201206Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2012-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201203Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201203Consorcios_UF.zip",
+   "Tamanho": "74775",
+   "Titulo": "201203Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2012-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201112Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201112Consorcios_UF.zip",
+   "Tamanho": "73658",
+   "Titulo": "201112Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2011-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201109Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201109Consorcios_UF.zip",
+   "Tamanho": "73503",
+   "Titulo": "201109Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2011-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201106Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:08Z",
+   "Nome": "201106Consorcios_UF.zip",
+   "Tamanho": "72766",
+   "Titulo": "201106Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:08Z",
+   "DataDocumento": "2011-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201103Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201103Consorcios_UF.zip",
+   "Tamanho": "71741",
+   "Titulo": "201103Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2011-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201012Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201012Consorcios_UF.zip",
+   "Tamanho": "70699",
+   "Titulo": "201012Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2010-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201009Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:09Z",
+   "Nome": "201009Consorcios_UF.zip",
+   "Tamanho": "64481",
+   "Titulo": "201009Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:09Z",
+   "DataDocumento": "2010-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201006Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:08Z",
+   "Nome": "201006Consorcios_UF.zip",
+   "Tamanho": "64909",
+   "Titulo": "201006Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:08Z",
+   "DataDocumento": "2010-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/201003Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:08Z",
+   "Nome": "201003Consorcios_UF.zip",
+   "Tamanho": "64390",
+   "Titulo": "201003Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:08Z",
+   "DataDocumento": "2010-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/200912Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:08Z",
+   "Nome": "200912Consorcios_UF.zip",
+   "Tamanho": "63985",
+   "Titulo": "200912Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:08Z",
+   "DataDocumento": "2009-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/200909Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:08Z",
+   "Nome": "200909Consorcios_UF.zip",
+   "Tamanho": "64689",
+   "Titulo": "200909Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:08Z",
+   "DataDocumento": "2009-09-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/200906Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:07Z",
+   "Nome": "200906Consorcios_UF.zip",
+   "Tamanho": "64741",
+   "Titulo": "200906Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:07Z",
+   "DataDocumento": "2009-06-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/200903Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:07Z",
+   "Nome": "200903Consorcios_UF.zip",
+   "Tamanho": "63523",
+   "Titulo": "200903Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:07Z",
+   "DataDocumento": "2009-03-01T03:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/200812Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:07Z",
+   "Nome": "200812Consorcios_UF.zip",
+   "Tamanho": "65111",
+   "Titulo": "200812Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:07Z",
+   "DataDocumento": "2008-12-01T02:00:00Z"
+  },
+  {
+   "Url": "/content/estabilidadefinanceira/consorcio-banco-de-dados/dados-por-unidade-da-federacao/200809Consorcios_UF.zip",
+   "data": "2026-07-22T19:03:07Z",
+   "Nome": "200809Consorcios_UF.zip",
+   "Tamanho": "64276",
+   "Titulo": "200809Consorcios_UF.zip",
+   "DataPublicacao": "2026-07-22T19:03:07Z",
+   "DataDocumento": "2008-09-01T03:00:00Z"
+  }
+ ]
+}
