@@ -16,6 +16,8 @@ services:
       DATABASE_URL: sqlite:////app/data/execucoes.db
       # Não há servidor gráfico no container — ver ADR-007.
       PLAYWRIGHT_HEADLESS: "true"
+      # Endereço do WAHA na rede do compose — ver ADR-009.
+      WAHA_URL: http://waha:3000
     volumes:
       - ./backend/app:/app/app
       - ./backend/tests:/app/tests
@@ -46,5 +48,24 @@ services:
       backend:
         condition: service_healthy
 
+  # Envio real por WhatsApp, só para demonstração (ADR-009). Não sobe por padrão:
+  #   docker compose --profile waha up
+  # e escaneie o QR code em http://localhost:3000.
+  waha:
+    image: devlikeapro/waha
+    profiles: [waha]
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      # Engine em Go: dispensa o Chromium dentro do container.
+      WHATSAPP_DEFAULT_ENGINE: GOWS
+    volumes:
+      # A sessão sobrevive ao restart: o QR code é escaneado uma vez só.
+      - waha_sessions:/app/.sessions
+
 volumes:
   frontend_node_modules:
+  waha_sessions:

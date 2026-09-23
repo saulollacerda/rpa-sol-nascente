@@ -1,45 +1,23 @@
-"""Configuração — regras definidas no ADR-005."""
-
-import pytest
-from pydantic import ValidationError
+"""Configuração — regras definidas no ADR-005 e no ADR-009."""
 
 from app.config import Settings, WhatsAppProvider
 
 
 def test_usa_adapter_fake_por_padrao():
-    """A demonstração não pode depender de credencial da Meta."""
+    """A demonstração não pode depender de um número conectado."""
     assert Settings().whatsapp_provider is WhatsAppProvider.FAKE
 
 
-def test_adapter_fake_nao_exige_token():
-    settings = Settings(whatsapp_provider="fake")
-    assert settings.whatsapp_token is None
-
-
-def test_cloud_api_sem_token_falha_na_inicializacao():
-    """ADR-005: falhar cedo vale mais que descobrir a credencial faltando
-    no meio da execução, depois de já ter baixado os arquivos."""
-    with pytest.raises(ValidationError, match="WHATSAPP_TOKEN"):
-        Settings(whatsapp_provider="cloud_api", whatsapp_token=None)
-
-
-def test_cloud_api_com_token_e_valida():
-    settings = Settings(
-        whatsapp_provider="cloud_api", whatsapp_token="EAAG...", whatsapp_phone_number_id="123"
-    )
-    assert settings.whatsapp_provider is WhatsAppProvider.CLOUD_API
-
-
-def test_cloud_api_sem_phone_number_id_falha_na_inicializacao():
-    with pytest.raises(ValidationError, match="WHATSAPP_PHONE_NUMBER_ID"):
-        Settings(whatsapp_provider="cloud_api", whatsapp_token="EAAG...")
+def test_waha_funciona_com_os_defaults():
+    settings = Settings(whatsapp_provider="waha")
+    assert settings.whatsapp_provider is WhatsAppProvider.WAHA
+    assert settings.waha_url == "http://localhost:3000"
+    assert settings.waha_session == "default"
+    assert settings.waha_api_key is None
 
 
 def test_fabrica_escolhe_o_adapter_pelo_provider():
-    from app.infra.whatsapp import CloudApiSender, FakeSender, criar_sender
+    from app.infra.whatsapp import FakeSender, WahaSender, criar_sender
 
     assert isinstance(criar_sender(Settings(whatsapp_provider="fake")), FakeSender)
-    real = Settings(
-        whatsapp_provider="cloud_api", whatsapp_token="EAAG...", whatsapp_phone_number_id="123"
-    )
-    assert isinstance(criar_sender(real), CloudApiSender)
+    assert isinstance(criar_sender(Settings(whatsapp_provider="waha")), WahaSender)
