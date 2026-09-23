@@ -38,8 +38,14 @@ async function pedir<T>(url: string, init?: RequestInit): Promise<T> {
   } catch {
     throw new ErroApi(0, "sem conexão com o servidor");
   }
-  const corpo: unknown = await resposta.json().catch(() => null);
-  if (!resposta.ok) throw new ErroApi(resposta.status, mensagemDeErro(resposta.status, corpo));
+  const NAO_JSON = Symbol();
+  const corpo: unknown = await resposta.json().catch(() => NAO_JSON);
+  if (!resposta.ok) {
+    const detalhe = corpo === NAO_JSON ? null : corpo;
+    throw new ErroApi(resposta.status, mensagemDeErro(resposta.status, detalhe));
+  }
+  // 200 com HTML: quem respondeu não foi a API (ex.: proxy do Vite sem a rota).
+  if (corpo === NAO_JSON) throw new ErroApi(resposta.status, "resposta inesperada do servidor");
   return corpo as T;
 }
 

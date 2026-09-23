@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { ErroApi } from "../api/cliente";
 import type { Conexao, SituacaoConexao } from "../api/tipos";
 import { rotuloConexao, vigiarConexao } from "./conexao";
 
@@ -51,6 +52,19 @@ describe("vigiar a conexão do WhatsApp", () => {
     expect(vistas[0].situacao).toBe("INDISPONIVEL");
     expect(vistas[0].mensagem).toMatch(/servidor/);
     expect(vistas[1].situacao).toBe("CONECTADO");
+  });
+
+  it("erro da API aparece com a mensagem dela", async () => {
+    const buscar = vi.fn(async () => {
+      throw new ErroApi(200, "resposta inesperada do servidor");
+    });
+    const vistas: Conexao[] = [];
+    vigiarConexao(buscar, (c) => vistas.push(c), { rapidoMs: 1000, lentoMs: 10_000 });
+    await vi.advanceTimersByTimeAsync(10);
+    expect(vistas[0]).toMatchObject({
+      situacao: "INDISPONIVEL",
+      mensagem: "resposta inesperada do servidor",
+    });
   });
 
   it("cancelar interrompe a vigília", async () => {

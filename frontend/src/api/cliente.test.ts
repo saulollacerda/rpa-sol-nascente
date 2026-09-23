@@ -63,3 +63,26 @@ describe("conexão do WhatsApp", () => {
     expect(init.method).toBe("POST");
   });
 });
+
+describe("resposta que não é da API", () => {
+  it("HTML com status 200 vira erro, não dado vazio", async () => {
+    // Proxy do Vite sem a rota: o dev server devolve o index.html do painel.
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(
+        new Response("<!doctype html><html></html>", {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        }),
+      ),
+    );
+    await expect(obterConexao()).rejects.toEqual(
+      new ErroApi(200, "resposta inesperada do servidor"),
+    );
+  });
+
+  it("corpo JSON null continua válido (POST sem retorno)", async () => {
+    responder(202, null);
+    await expect(reconectarWhatsApp()).resolves.toBeNull();
+  });
+});

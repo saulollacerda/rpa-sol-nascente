@@ -1,3 +1,4 @@
+import { ErroApi } from "../api/cliente";
 import type { Conexao, SituacaoConexao } from "../api/tipos";
 import type { Tom } from "./formatacao";
 
@@ -26,12 +27,12 @@ export function vigiarConexao(
     let conexao: Conexao;
     try {
       conexao = await buscar();
-    } catch {
+    } catch (erro) {
       conexao = {
         situacao: "INDISPONIVEL",
         conta: null,
         qr_code: null,
-        mensagem: "sem conexão com o servidor",
+        mensagem: erro instanceof ErroApi ? erro.message : "sem conexão com o servidor",
       };
     }
     if (!ativo) return;
