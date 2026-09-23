@@ -12,7 +12,7 @@ export type Status =
   | "FALHA_PROCESSAMENTO"
   | "FALHA_ENVIO";
 
-export type Decisao = "CRIAR" | "REUSAR" | "RETENTAR";
+export type Decisao = "CRIAR" | "REUSAR" | "RETENTAR" | "REENVIAR";
 
 export interface Participacao {
   ativos: number;
@@ -106,6 +106,8 @@ export interface Execucao {
   provider_message_id: string | null;
   erro_tipo: string | null;
   erro_descricao: string | null;
+  /** Execução cujos dados e mensagem foram reaproveitados neste reenvio. */
+  origem_id: number | null;
 }
 
 export interface Solicitacao {

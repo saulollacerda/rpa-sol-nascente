@@ -89,13 +89,28 @@ class TestIdempotencia:
         assert solicitacao.decisao is Decisao.CRIAR
         assert solicitacao.processar
 
-    def test_mesmo_pedido_depois_do_envio_nao_reenvia(self, servico, sender, fonte):
-        executar(servico)
+    def test_mesmo_pedido_depois_do_envio_reenvia_sem_coletar(self, servico, sender, fonte):
+        """ADR-010: cada clique envia; os dados da consulta anterior são reaproveitados."""
+        primeira = executar(servico)
         de_novo = servico.solicitar(params(ufs=("MA", "PI")))  # ordem diferente, mesma consulta
-        assert de_novo.decisao is Decisao.REUSAR
-        assert not de_novo.processar
-        assert len(sender.enviadas) == 1
-        assert fonte.chamadas == 1
+        assert de_novo.decisao is Decisao.REENVIAR
+        assert de_novo.processar
+        assert de_novo.execucao.id != primeira.id
+
+        reenviada = servico.processar(de_novo.execucao.id)
+
+        assert reenviada.status is S.ENVIADO
+        assert reenviada.origem_id == primeira.id
+        assert reenviada.mensagem_gerada == primeira.mensagem_gerada
+        assert reenviada.dados_encontrados == primeira.dados_encontrados
+        assert [texto for _, texto in sender.enviadas] == [primeira.mensagem_gerada] * 2
+        assert fonte.chamadas == 1, "o reenvio não abre o site do BCB"
+
+    def test_reenvio_registra_o_proprio_envio(self, servico):
+        executar(servico)
+        reenviada = executar(servico)
+        assert reenviada.provider_message_id == "fake-2"
+        assert reenviada.enviado_em == AGORA
 
     def test_dois_cliques_seguidos_nao_disparam_duas_coletas(self, servico):
         primeira = servico.solicitar(params())
@@ -117,6 +132,20 @@ class TestFalhas:
         assert execucao.erro_tipo == "ColetaError"
         assert execucao.erro_descricao == "site do BCB indisponível"
         assert sender.enviadas == []
+
+    def test_retentar_falha_de_envio_nao_coleta_de_novo(self, repo, fonte):
+        sender = FakeSender(falhar_com="WAHA fora do ar")
+        servico = ServicoExecucao(repo, fonte, sender, relogio=lambda: AGORA)
+        falhou = executar(servico)
+        assert falhou.status is S.FALHA_ENVIO
+
+        sender._falhar_com = None
+        retentada = executar(servico)
+
+        assert retentada.id == falhou.id
+        assert retentada.status is S.ENVIADO
+        assert retentada.tentativas == 2
+        assert fonte.chamadas == 1
 
     def test_falha_de_envio_guarda_a_mensagem(self, repo, fonte):
         servico = ServicoExecucao(

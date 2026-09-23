@@ -8,12 +8,15 @@ from sqlalchemy import (
     JSON,
     DateTime,
     Engine,
+    Index,
     Integer,
     String,
     Text,
     create_engine,
+    inspect,
     make_url,
     select,
+    text,
 )
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, sessionmaker
@@ -21,6 +24,7 @@ from sqlalchemy.pool import StaticPool
 
 from app.domain.erros import ExecucaoDuplicada
 from app.domain.execucao import (
+    EM_ANDAMENTO,
     Execucao,
     ParametrosConsulta,
     StatusExecucao,
@@ -43,12 +47,27 @@ class Base(DeclarativeBase):
     pass
 
 
+_EM_ANDAMENTO_SQL = text(
+    "status IN (" + ", ".join(f"'{s.value}'" for s in sorted(EM_ANDAMENTO)) + ")"
+)
+
+
 class ExecucaoRow(Base):
     __tablename__ = "execucoes"
+    __table_args__ = (
+        # Unique só entre as execuções em andamento (ADR-010): é o banco, e não a
+        # disciplina do código, que barra o clique duplo — e o reenvio vira linha nova.
+        Index(
+            "uq_execucoes_chave_em_andamento",
+            "parametros_hash",
+            unique=True,
+            sqlite_where=_EM_ANDAMENTO_SQL,
+            postgresql_where=_EM_ANDAMENTO_SQL,
+        ),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    # Unique: é o banco, e não a disciplina do código, que barra a duplicata.
-    parametros_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    parametros_hash: Mapped[str] = mapped_column(String(64), index=True)
     parametros: Mapped[dict[str, Any]] = mapped_column(JSON)
     destinatario: Mapped[str] = mapped_column(String(20))
     status: Mapped[str] = mapped_column(String(24), index=True)
@@ -61,6 +80,7 @@ class ExecucaoRow(Base):
     provider_message_id: Mapped[str | None] = mapped_column(String(128), nullable=True)
     erro_tipo: Mapped[str | None] = mapped_column(String(64), nullable=True)
     erro_descricao: Mapped[str | None] = mapped_column(Text, nullable=True)
+    origem_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
 
 def criar_engine(url: str) -> Engine:
@@ -76,13 +96,34 @@ def criar_engine(url: str) -> Engine:
 
 def criar_tabelas(engine: Engine) -> None:
     Base.metadata.create_all(engine)
+    _migrar(engine)
+
+
+def _migrar(engine: Engine) -> None:
+    """Leva bancos anteriores ao ADR-010 ao esquema atual. Idempotente."""
+    inspetor = inspect(engine)
+    with engine.begin() as conexao:
+        colunas = {c["name"] for c in inspetor.get_columns("execucoes")}
+        if "origem_id" not in colunas:
+            conexao.execute(text("ALTER TABLE execucoes ADD COLUMN origem_id INTEGER"))
+        for indice in inspetor.get_indexes("execucoes"):
+            if indice["name"] == "ix_execucoes_parametros_hash" and indice["unique"]:
+                conexao.execute(text("DROP INDEX ix_execucoes_parametros_hash"))
+    for indice in ExecucaoRow.__table__.indexes:
+        indice.create(engine, checkfirst=True)
 
 
 class RepositorioSQL:
     def __init__(self, engine: Engine) -> None:
         self._sessoes = sessionmaker(engine, expire_on_commit=False)
 
-    def criar(self, parametros: ParametrosConsulta, chave: str, agora: datetime) -> Execucao:
+    def criar(
+        self,
+        parametros: ParametrosConsulta,
+        chave: str,
+        agora: datetime,
+        origem: Execucao | None = None,
+    ) -> Execucao:
         row = ExecucaoRow(
             parametros_hash=chave,
             parametros=parametros.como_dict(),
@@ -91,6 +132,9 @@ class RepositorioSQL:
             tentativas=1,
             criado_em=agora,
             atualizado_em=agora,
+            dados_encontrados=origem.dados_encontrados if origem else None,
+            mensagem_gerada=origem.mensagem_gerada if origem else None,
+            origem_id=origem.id if origem else None,
         )
         try:
             with self._sessoes.begin() as sessao:
@@ -109,7 +153,12 @@ class RepositorioSQL:
 
     def buscar_por_chave(self, chave: str) -> Execucao | None:
         with self._sessoes() as sessao:
-            row = sessao.scalar(select(ExecucaoRow).where(ExecucaoRow.parametros_hash == chave))
+            row = sessao.scalar(
+                select(ExecucaoRow)
+                .where(ExecucaoRow.parametros_hash == chave)
+                .order_by(ExecucaoRow.id.desc())
+                .limit(1)
+            )
             return _para_dominio(row) if row else None
 
     def listar(self, limite: int) -> list[Execucao]:
@@ -134,7 +183,10 @@ class RepositorioSQL:
         return _para_dominio(row)
 
     def retentar(self, execucao_id: int, agora: datetime) -> Execucao:
-        """Reabre uma execução que falhou, na mesma linha: a chave continua única."""
+        """Reabre uma execução que falhou, na mesma linha.
+
+        Dados e mensagem ficam: numa falha de envio, a retentativa só reenvia.
+        """
         with self._sessoes.begin() as sessao:
             row = _exigir(sessao, execucao_id)
             validar_transicao(StatusExecucao(row.status), StatusExecucao.PENDENTE)
@@ -175,4 +227,5 @@ def _para_dominio(row: ExecucaoRow) -> Execucao:
         provider_message_id=row.provider_message_id,
         erro_tipo=row.erro_tipo,
         erro_descricao=row.erro_descricao,
+        origem_id=row.origem_id,
     )

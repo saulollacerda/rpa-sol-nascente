@@ -1,6 +1,8 @@
 # ADR-004 — Persistência e idempotência
 
-**Status:** Aceito · 2026-09-22
+**Status:** Aceito · 2026-09-22 · regra de reenvio substituída pelo [ADR-010](ADR-010-reenvio-com-dados-reaproveitados.md) em 2026-09-23
+
+> Uma consulta já enviada agora é **reenviada** a cada pedido, reaproveitando os dados sem nova coleta. A *unique constraint* em `parametros_hash` virou um índice único parcial, que vale só para as execuções em andamento. O restante deste ADR (SQLite, hash canônico, máquina de estados e campos registrados) segue valendo.
 
 ## Contexto
 

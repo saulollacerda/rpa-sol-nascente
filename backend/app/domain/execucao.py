@@ -31,9 +31,12 @@ S = StatusExecucao
 
 FALHAS = frozenset({S.FALHA_COLETA, S.FALHA_PROCESSAMENTO, S.FALHA_ENVIO})
 CONCLUIDAS = frozenset({S.ENVIADO, S.SEM_RESULTADO})
+# Only one execution per key may be in flight at a time (partial unique index, ADR-010).
+EM_ANDAMENTO = frozenset(set(S) - FALHAS - CONCLUIDAS)
 
 TRANSICOES: dict[StatusExecucao, frozenset[StatusExecucao]] = {
-    S.PENDENTE: frozenset({S.COLETANDO}),
+    # PENDENTE → MENSAGEM_GERADA: data reused from an earlier execution (ADR-010).
+    S.PENDENTE: frozenset({S.COLETANDO, S.MENSAGEM_GERADA}),
     S.COLETANDO: frozenset({S.PROCESSANDO, S.FALHA_COLETA}),
     S.PROCESSANDO: frozenset({S.MENSAGEM_GERADA, S.SEM_RESULTADO, S.FALHA_PROCESSAMENTO}),
     S.MENSAGEM_GERADA: frozenset({S.ENVIANDO}),
@@ -53,18 +56,22 @@ class Decisao(StrEnum):
     CRIAR = "CRIAR"
     REUSAR = "REUSAR"
     RETENTAR = "RETENTAR"
+    REENVIAR = "REENVIAR"
 
 
 def decidir(status_anterior: StatusExecucao | None) -> Decisao:
-    """O que fazer diante de uma execução anterior com a mesma chave.
+    """O que fazer diante da execução mais recente com a mesma chave — ADR-010.
 
-    Concluída não se repete (anti-duplicidade); em andamento não se duplica
-    (dois cliques seguidos); só falha pode ser tentada de novo.
+    Enviada: envia de novo, reaproveitando os dados (a coleta não se repete).
+    Em andamento: não duplica (dois cliques seguidos). Falha: tenta de novo.
+    Sem resultado: não há o que enviar.
     """
     if status_anterior is None:
         return Decisao.CRIAR
     if status_anterior in FALHAS:
         return Decisao.RETENTAR
+    if status_anterior is S.ENVIADO:
+        return Decisao.REENVIAR
     return Decisao.REUSAR
 
 
@@ -124,6 +131,7 @@ class Execucao:
     provider_message_id: str | None = None
     erro_tipo: str | None = None
     erro_descricao: str | None = None
+    origem_id: int | None = None  # execução cujos dados e mensagem foram reaproveitados
 
 
 def _digitos(valor: str) -> str:

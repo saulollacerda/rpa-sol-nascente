@@ -49,8 +49,34 @@ describe("acompanhamento da execução", () => {
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 
-  it("pedido repetido: avisa que nada foi reenviado", () => {
-    render(<AcompanhamentoExecucao execucao={execucao()} decisao="REUSAR" />);
-    expect(screen.getByText(/nada foi reenviado/i)).toBeInTheDocument();
+  it("reenvio: avisa de qual execução vieram os dados", () => {
+    render(<AcompanhamentoExecucao execucao={execucao({ id: 12, origem_id: 7 })} decisao="REENVIAR" />);
+    expect(screen.getByText(/dados reaproveitados da execução #7/i)).toBeInTheDocument();
+    expect(screen.getByText(/sem nova coleta/i)).toBeInTheDocument();
+  });
+
+  it("o aviso de reaproveitamento também aparece ao rever pelo histórico", () => {
+    render(<AcompanhamentoExecucao execucao={execucao({ origem_id: 7 })} />);
+    expect(screen.getByText(/dados reaproveitados da execução #7/i)).toBeInTheDocument();
+  });
+
+  it("clique repetido durante a execução: avisa que já está em andamento", () => {
+    render(
+      <AcompanhamentoExecucao
+        execucao={execucao({ status: "COLETANDO", mensagem_gerada: null })}
+        decisao="REUSAR"
+      />,
+    );
+    expect(screen.getByText(/já está em andamento/i)).toBeInTheDocument();
+  });
+
+  it("consulta sem resultado repetida: avisa que já foi feita", () => {
+    render(
+      <AcompanhamentoExecucao
+        execucao={execucao({ status: "SEM_RESULTADO", mensagem_gerada: null })}
+        decisao="REUSAR"
+      />,
+    );
+    expect(screen.getByText(/já foi feita e não teve resultado/i)).toBeInTheDocument();
   });
 });

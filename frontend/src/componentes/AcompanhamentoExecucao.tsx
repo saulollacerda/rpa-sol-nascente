@@ -33,9 +33,22 @@ export function AcompanhamentoExecucao({ execucao, decisao }: Props) {
         {execucao.tentativas > 1 && ` · ${execucao.tentativas}ª tentativa`}
       </p>
 
-      {decisao === "REUSAR" && (
+      {execucao.origem_id !== null && (
         <p className="aviso aviso--neutro">
-          Este relatório já tinha sido gerado com esses parâmetros — nada foi reenviado.
+          Dados reaproveitados da execução #{execucao.origem_id} — relatório enviado sem nova
+          coleta no Banco Central.
+        </p>
+      )}
+
+      {decisao === "REUSAR" && !ehTerminal(status) && (
+        <p className="aviso aviso--neutro">
+          Essa consulta já está em andamento — acompanhe abaixo.
+        </p>
+      )}
+
+      {decisao === "REUSAR" && status === "SEM_RESULTADO" && (
+        <p className="aviso aviso--neutro">
+          Essa consulta já foi feita e não teve resultado — não há relatório para enviar.
         </p>
       )}
 

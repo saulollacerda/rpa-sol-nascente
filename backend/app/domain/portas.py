@@ -15,13 +15,24 @@ from app.domain.opcoes import Opcoes
 
 
 class RepositorioExecucoes(Protocol):
-    def criar(self, parametros: ParametrosConsulta, chave: str, agora: datetime) -> Execucao:
-        """Levanta ExecucaoDuplicada se a chave já existir."""
+    def criar(
+        self,
+        parametros: ParametrosConsulta,
+        chave: str,
+        agora: datetime,
+        origem: Execucao | None = None,
+    ) -> Execucao:
+        """Com `origem`, herda dados e mensagem dela.
+
+        Levanta ExecucaoDuplicada se já houver execução da chave em andamento.
+        """
         ...
 
     def obter(self, execucao_id: int) -> Execucao | None: ...
 
-    def buscar_por_chave(self, chave: str) -> Execucao | None: ...
+    def buscar_por_chave(self, chave: str) -> Execucao | None:
+        """A mais recente com essa chave."""
+        ...
 
     def listar(self, limite: int) -> list[Execucao]: ...
 

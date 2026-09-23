@@ -72,6 +72,7 @@ class ExecucaoOut(BaseModel):
     provider_message_id: str | None
     erro_tipo: str | None
     erro_descricao: str | None
+    origem_id: int | None
 
     @classmethod
     def de_dominio(cls, e: Execucao) -> "ExecucaoOut":
@@ -89,6 +90,7 @@ class ExecucaoOut(BaseModel):
             provider_message_id=e.provider_message_id,
             erro_tipo=e.erro_tipo,
             erro_descricao=e.erro_descricao,
+            origem_id=e.origem_id,
         )
 
 

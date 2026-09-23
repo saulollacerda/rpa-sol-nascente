@@ -52,24 +52,29 @@ class ServicoExecucao:
         self._agora = relogio
 
     def solicitar(self, parametros: ParametrosConsulta) -> Solicitacao:
-        """Cria, reaproveita ou reabre a execução — ADR-004."""
+        """Cria, reenvia, reabre ou reaproveita a execução — ADR-004 e ADR-010."""
         chave = chave_idempotencia(parametros)
         existente = self._repo.buscar_por_chave(chave)
         decisao = decidir(existente.status if existente else None)
 
-        if existente is None:
-            try:
-                return Solicitacao(self._repo.criar(parametros, chave, self._agora()), decisao)
-            except ExecucaoDuplicada as corrida:
-                # Outro pedido idêntico criou a linha entre a busca e a criação.
-                # A unique constraint resolveu; aqui só se reaproveita.
-                vencedora = self._repo.obter(corrida.execucao_id)
-                assert vencedora is not None
-                return Solicitacao(vencedora, Decisao.REUSAR)
-
         if decisao is Decisao.RETENTAR:
+            assert existente is not None
             return Solicitacao(self._repo.retentar(existente.id, self._agora()), decisao)
-        return Solicitacao(existente, decisao)
+        if decisao is Decisao.REUSAR:
+            assert existente is not None
+            return Solicitacao(existente, decisao)
+
+        # CRIAR, ou REENVIAR: linha nova que herda dados e mensagem da enviada.
+        origem = existente if decisao is Decisao.REENVIAR else None
+        try:
+            nova = self._repo.criar(parametros, chave, self._agora(), origem=origem)
+        except ExecucaoDuplicada as corrida:
+            # Outro pedido idêntico entrou em andamento entre a busca e a criação.
+            # O índice único parcial resolveu; aqui só se reaproveita.
+            vencedora = self._repo.obter(corrida.execucao_id)
+            assert vencedora is not None
+            return Solicitacao(vencedora, Decisao.REUSAR)
+        return Solicitacao(nova, decisao)
 
     def obter(self, execucao_id: int) -> Execucao | None:
         return self._repo.obter(execucao_id)
@@ -83,6 +88,13 @@ class ServicoExecucao:
             raise LookupError(f"execução {execucao_id} não existe")
         log = logging.LoggerAdapter(logger, {"execucao_id": execucao_id})
         p = execucao.parametros
+
+        if execucao.mensagem_gerada is not None:
+            # Reenvio (dados herdados) ou retentativa de uma falha de envio:
+            # a coleta já foi feita, só falta entregar.
+            log.info("reaproveitando dados da consulta; sem nova coleta")
+            self._avancar(execucao_id, S.MENSAGEM_GERADA)
+            return self._enviar(execucao_id, p.destinatario, execucao.mensagem_gerada, log)
 
         self._avancar(execucao_id, S.COLETANDO)
         log.info("coletando data-base %s", p.data_base)
@@ -115,9 +127,14 @@ class ServicoExecucao:
             dados_encontrados=encontrados,
             mensagem_gerada=mensagem,
         )
+        return self._enviar(execucao_id, p.destinatario, mensagem, log)
+
+    def _enviar(
+        self, execucao_id: int, destinatario: str, mensagem: str, log: logging.LoggerAdapter
+    ) -> Execucao:
         self._avancar(execucao_id, S.ENVIANDO)
         try:
-            resultado = self._sender.enviar(p.destinatario, mensagem)
+            resultado = self._sender.enviar(destinatario, mensagem)
         except Exception as erro:  # noqa: BLE001
             return self._falhar(execucao_id, S.FALHA_ENVIO, erro, log)
 
