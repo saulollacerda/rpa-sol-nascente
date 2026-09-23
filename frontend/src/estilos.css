@@ -113,10 +113,48 @@ h1, h2, h3, h4 {
   align-items: start;
 }
 
-/* Before the first report, the form stands alone in the middle. */
+/* Before the first report: the form and the WhatsApp card, side by side in the middle. */
 .grade--sozinha {
-  grid-template-columns: minmax(0, 480px);
+  grid-template-columns: minmax(0, 480px) minmax(0, 340px);
   justify-content: center;
+}
+
+/* Right column: WhatsApp connection on top, then the report being tracked. */
+.coluna {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+  min-width: 0;
+}
+
+.conexao {
+  display: grid;
+  gap: 12px;
+}
+
+.conexao__qr {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+}
+
+.conexao__passos {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--texto-2);
+  font-size: 0.9rem;
+  display: grid;
+  gap: 4px;
+}
+
+.conexao .botao-secundario {
+  justify-self: start;
+  margin-left: 0;
 }
 
 @media (max-width: 880px) {

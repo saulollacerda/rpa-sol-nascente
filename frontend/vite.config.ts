@@ -12,7 +12,7 @@ export default defineConfig({
     port: 5173,
     // No compose, outros containers acessam pelo nome do serviço.
     allowedHosts: ["localhost", "frontend"],
-    proxy: { "/execucoes": api, "/opcoes": api, "/health": api },
+    proxy: { "/execucoes": api, "/opcoes": api, "/whatsapp": api, "/health": api },
   },
   test: {
     environment: "jsdom",

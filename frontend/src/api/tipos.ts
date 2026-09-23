@@ -144,3 +144,19 @@ export interface Opcoes {
     tem_destinatario_padrao: boolean;
   };
 }
+
+// app/api/whatsapp.py
+export type SituacaoConexao =
+  | "CONECTADO"
+  | "AGUARDANDO_QR"
+  | "INICIANDO"
+  | "DESCONECTADO"
+  | "INDISPONIVEL";
+
+export interface Conexao {
+  situacao: SituacaoConexao;
+  conta: string | null;
+  /** data URI da imagem; só em AGUARDANDO_QR. */
+  qr_code: string | null;
+  mensagem: string | null;
+}

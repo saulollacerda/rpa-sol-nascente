@@ -10,6 +10,7 @@ import httpx
 import pytest
 
 from app.domain.erros import EnvioError
+from app.domain.portas import SituacaoConexao
 from app.infra.whatsapp import FakeSender, WahaSender
 
 DESTINO = "5586999990000"
@@ -162,3 +163,118 @@ class TestWahaSender:
         """Um log da configuração não pode imprimir a key."""
         sender, _ = sender_com(waha())
         assert API_KEY not in repr(sender)
+
+
+# Respostas capturadas do WAHA 2026.9.1 (engine GOWS), com o número mascarado.
+SESSAO_AGUARDANDO_QR = {"name": "default", "status": "SCAN_QR_CODE", "me": None}
+SESSAO_CONECTADA = {
+    "name": "default",
+    "status": "WORKING",
+    "me": {"id": "558699990000@c.us", "pushName": "Sol Nascente Demo"},
+}
+QR_PNG_BASE64 = "iVBORw0KGgoAAAANSUhEUgAAASQAAAEk"
+
+
+def waha_conexao(sessao: dict | None, qr_status: int = 200):
+    """Responde às rotas de sessão e de QR code como o WAHA."""
+
+    def responder(request: httpx.Request) -> httpx.Response:
+        caminho = request.url.path
+        if caminho == "/api/sessions/default":
+            if sessao is None:
+                return httpx.Response(404, json={"error": "Session not found"})
+            return httpx.Response(200, json=sessao)
+        if caminho == "/api/default/auth/qr":
+            if qr_status != 200:
+                return httpx.Response(qr_status, json={"error": "not in SCAN_QR_CODE"})
+            return httpx.Response(200, json={"mimetype": "image/png", "data": QR_PNG_BASE64})
+        if caminho == "/api/sessions/default/restart":
+            return httpx.Response(201, json={**SESSAO_AGUARDANDO_QR, "status": "STARTING"})
+        if caminho == "/api/sessions":
+            return httpx.Response(201, json={**SESSAO_AGUARDANDO_QR, "status": "STARTING"})
+        return httpx.Response(500)
+
+    return responder
+
+
+class TestConexaoWaha:
+    def test_conectado_mostra_a_conta_e_nenhum_qr_code(self):
+        sender, recebidas = sender_com(waha_conexao(SESSAO_CONECTADA))
+        estado = sender.estado()
+        assert estado.situacao is SituacaoConexao.CONECTADO
+        assert estado.conta == "Sol Nascente Demo (558699990000)"
+        assert estado.qr_code is None
+        assert len(recebidas) == 1, "conectado não precisa buscar QR code"
+
+    def test_aguardando_leitura_traz_o_qr_code_como_imagem(self):
+        sender, _ = sender_com(waha_conexao(SESSAO_AGUARDANDO_QR))
+        estado = sender.estado()
+        assert estado.situacao is SituacaoConexao.AGUARDANDO_QR
+        assert estado.qr_code == f"data:image/png;base64,{QR_PNG_BASE64}"
+
+    def test_pede_o_qr_code_em_json(self):
+        sender, recebidas = sender_com(waha_conexao(SESSAO_AGUARDANDO_QR))
+        sender.estado()
+        _, qr = recebidas
+        assert qr.url.params["format"] == "image"
+        assert qr.headers["Accept"] == "application/json"
+        assert qr.headers["X-Api-Key"] == API_KEY
+
+    def test_qr_code_some_entre_as_duas_chamadas(self):
+        """A sessão conectou ou reiniciou entre ler o status e pedir o QR: não é erro."""
+        sender, _ = sender_com(waha_conexao(SESSAO_AGUARDANDO_QR, qr_status=422))
+        assert sender.estado().situacao is SituacaoConexao.INICIANDO
+
+    def test_iniciando(self):
+        sender, _ = sender_com(waha_conexao({**SESSAO_AGUARDANDO_QR, "status": "STARTING"}))
+        estado = sender.estado()
+        assert estado.situacao is SituacaoConexao.INICIANDO
+        assert estado.qr_code is None
+
+    @pytest.mark.parametrize("status", ["FAILED", "STOPPED"])
+    def test_sessao_parada_fica_desconectada(self, status):
+        """FAILED é o que o WAHA faz quando o QR code vence sem ser lido."""
+        sender, _ = sender_com(waha_conexao({**SESSAO_AGUARDANDO_QR, "status": status}))
+        assert sender.estado().situacao is SituacaoConexao.DESCONECTADO
+
+    def test_sessao_inexistente_fica_desconectada(self):
+        sender, _ = sender_com(waha_conexao(None))
+        assert sender.estado().situacao is SituacaoConexao.DESCONECTADO
+
+    def test_waha_fora_do_ar_levanta_envio_error(self):
+        def cair(request):
+            raise httpx.ConnectError("sem conexão", request=request)
+
+        sender, _ = sender_com(cair)
+        with pytest.raises(EnvioError, match="não está acessível"):
+            sender.estado()
+
+    def test_reconectar_reinicia_a_sessao(self):
+        sender, recebidas = sender_com(waha_conexao(SESSAO_AGUARDANDO_QR))
+        sender.reconectar()
+        [req] = recebidas
+        assert req.method == "POST"
+        assert req.url.path == "/api/sessions/default/restart"
+
+    def test_reconectar_cria_a_sessao_que_nao_existe(self):
+        def responder(request):
+            if request.url.path == "/api/sessions/default/restart":
+                return httpx.Response(404, json={"error": "Session not found"})
+            return waha_conexao(None)(request)
+
+        sender, recebidas = sender_com(responder)
+        sender.reconectar()
+        _, criar = recebidas
+        assert criar.method == "POST"
+        assert criar.url.path == "/api/sessions"
+        assert json.loads(criar.content) == {"name": "default", "start": True}
+
+
+class TestConexaoFake:
+    def test_fake_se_declara_conectado(self):
+        estado = FakeSender().estado()
+        assert estado.situacao is SituacaoConexao.CONECTADO
+        assert "simulado" in (estado.conta or "")
+
+    def test_reconectar_no_fake_nao_faz_nada(self):
+        FakeSender().reconectar()

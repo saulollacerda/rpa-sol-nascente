@@ -5,6 +5,7 @@ from functools import lru_cache
 from fastapi import Request
 
 from app.config import Settings
+from app.domain.portas import ConexaoWhatsApp
 from app.domain.servico import ServicoExecucao
 
 
@@ -15,6 +16,10 @@ def get_settings() -> Settings:
 
 def get_servico(request: Request) -> ServicoExecucao:
     return request.app.state.servico
+
+
+def get_conexao(request: Request) -> ConexaoWhatsApp:
+    return request.app.state.conexao
 
 
 def get_opcoes(request: Request):  # noqa: ANN201 — CacheComValidade[Opcoes]

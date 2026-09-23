@@ -6,6 +6,7 @@ serviço usam implementações falsas destas mesmas interfaces.
 
 from dataclasses import dataclass
 from datetime import datetime
+from enum import StrEnum
 from typing import Any, Protocol
 
 from app.domain.execucao import Execucao, ParametrosConsulta, StatusExecucao
@@ -43,6 +44,34 @@ class WhatsAppSender(Protocol):
 
     def enviar(self, destinatario: str, mensagem: str) -> ResultadoEnvio:
         """Levanta EnvioError quando a entrega falha."""
+        ...
+
+
+class SituacaoConexao(StrEnum):
+    CONECTADO = "CONECTADO"
+    AGUARDANDO_QR = "AGUARDANDO_QR"
+    INICIANDO = "INICIANDO"
+    DESCONECTADO = "DESCONECTADO"
+    INDISPONIVEL = "INDISPONIVEL"  # o provedor não respondeu
+
+
+@dataclass(frozen=True, slots=True)
+class EstadoConexao:
+    situacao: SituacaoConexao
+    conta: str | None = None
+    qr_code: str | None = None  # data URI da imagem, só em AGUARDANDO_QR
+    mensagem: str | None = None
+
+
+class ConexaoWhatsApp(Protocol):
+    """O número que envia está conectado? Quem mostra o QR code é o painel (ADR-009)."""
+
+    def estado(self) -> EstadoConexao:
+        """Levanta EnvioError quando o provedor não responde."""
+        ...
+
+    def reconectar(self) -> None:
+        """Pede um QR code novo. Levanta EnvioError."""
         ...
 
 

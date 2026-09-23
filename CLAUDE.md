@@ -182,13 +182,13 @@ Dentro do container não há servidor gráfico, então `PLAYWRIGHT_HEADLESS` é 
 Em Mac com Apple Silicon, a imagem `latest` do WAHA não existe para arm64: `WAHA_TAG=arm` no `.env` da **raiz** (não o do backend), que o compose lê para montar o nome da imagem.
 
 1. No `backend/.env`, defina a `WAHA_API_KEY`: qualquer segredo (`openssl rand -hex 32`), lido pelo container e pelo backend.
-2. Na primeira vez, escaneie o QR code com o celular do chip (WhatsApp → Dispositivos conectados). A sessão `default` já sobe sozinha (`WHATSAPP_START_SESSION`); no painel em `:3000`, informe a mesma `WAHA_API_KEY` para ele conseguir falar com a API.
+2. Na primeira vez, escaneie o QR code que aparece no cartão **WhatsApp** do painel, ao lado de "Nova consulta" (WhatsApp → Dispositivos conectados). O QR code vence em cerca de um minuto; vencido, a sessão vai para `FAILED` e o cartão oferece **Gerar QR code**. Conectado, o cartão mostra só o status.
 
 Para ensaiar sem celular, use `WHATSAPP_PROVIDER=fake`: a mensagem vai só para o log.
 
 ### Frontend
 
-A partir de `frontend/`. Em desenvolvimento, o Vite repassa `/execucoes`, `/opcoes` e `/health` ao backend.
+A partir de `frontend/`. Em desenvolvimento, o Vite repassa `/execucoes`, `/opcoes`, `/whatsapp` e `/health` ao backend.
 
 ```bash
 npm install

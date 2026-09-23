@@ -13,7 +13,7 @@ import httpx
 
 from app.config import Settings, WhatsAppProvider
 from app.domain.erros import EnvioError
-from app.domain.portas import ResultadoEnvio, WhatsAppSender
+from app.domain.portas import EstadoConexao, ResultadoEnvio, SituacaoConexao
 
 logger = logging.getLogger(__name__)
 
@@ -45,6 +45,12 @@ class FakeSender:
         logger.info("envio simulado %s para %s", id_mensagem, destinatario)
         return ResultadoEnvio(id_mensagem=id_mensagem)
 
+    def estado(self) -> EstadoConexao:
+        return EstadoConexao(SituacaoConexao.CONECTADO, conta="envio simulado")
+
+    def reconectar(self) -> None:
+        pass
+
 
 class WahaSender:
     def __init__(
@@ -71,6 +77,46 @@ class WahaSender:
             raise EnvioError("o WAHA respondeu sem o id da mensagem")
         return ResultadoEnvio(id_mensagem=id_mensagem)
 
+    def estado(self) -> EstadoConexao:
+        try:
+            sessao = self._chamar("GET", f"/api/sessions/{self._sessao}")
+        except SessaoInexistente:
+            return EstadoConexao(SituacaoConexao.DESCONECTADO)
+
+        status = sessao.get("status")
+        if status == "WORKING":
+            return EstadoConexao(SituacaoConexao.CONECTADO, conta=_descrever_conta(sessao))
+        if status == "SCAN_QR_CODE":
+            qr_code = self._qr_code()
+            if qr_code is None:
+                return EstadoConexao(SituacaoConexao.INICIANDO)
+            return EstadoConexao(SituacaoConexao.AGUARDANDO_QR, qr_code=qr_code)
+        if status == "STARTING":
+            return EstadoConexao(SituacaoConexao.INICIANDO)
+        # FAILED: o QR code venceu sem ser lido, ou o celular desconectou.
+        return EstadoConexao(SituacaoConexao.DESCONECTADO)
+
+    def reconectar(self) -> None:
+        try:
+            self._chamar("POST", f"/api/sessions/{self._sessao}/restart")
+        except SessaoInexistente:
+            self._chamar("POST", "/api/sessions", json={"name": self._sessao, "start": True})
+
+    def _qr_code(self) -> str | None:
+        """None quando a sessão saiu de SCAN_QR_CODE entre as duas chamadas."""
+        try:
+            qr = self._chamar(
+                "GET",
+                f"/api/{self._sessao}/auth/qr",
+                params={"format": "image"},
+                headers={"Accept": "application/json"},
+            )
+        except EnvioError:
+            return None
+        if not qr.get("data"):
+            return None
+        return f"data:{qr.get('mimetype', 'image/png')};base64,{qr['data']}"
+
     def _resolver_chat_id(self, destinatario: str) -> str:
         """O WhatsApp sabe se o número existe com ou sem o 9º dígito; nós não."""
         resposta = self._chamar(
@@ -82,10 +128,19 @@ class WahaSender:
             raise EnvioError(f"o número {destinatario} não tem WhatsApp")
         return str(resposta["chatId"])
 
-    def _chamar(self, metodo: str, caminho: str, **kwargs: Any) -> dict[str, Any]:
+    def _chamar(
+        self,
+        metodo: str,
+        caminho: str,
+        headers: dict[str, str] | None = None,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         try:
             resposta = self._cliente.request(
-                metodo, f"{self._url}{caminho}", headers=self._headers, **kwargs
+                metodo,
+                f"{self._url}{caminho}",
+                headers={**self._headers, **(headers or {})},
+                **kwargs,
             )
         except httpx.ConnectError as erro:
             raise EnvioError(
@@ -95,6 +150,8 @@ class WahaSender:
         except httpx.HTTPError as erro:
             raise EnvioError(f"falha de rede ao chamar o WAHA: {type(erro).__name__}") from erro
 
+        if resposta.status_code == 404 and caminho.startswith("/api/sessions/"):
+            raise SessaoInexistente(f"a sessão {self._sessao} não existe no WAHA")
         if resposta.is_error:
             # Sem o corpo da resposta, que pode conter credenciais (ADR-005).
             base = f"o WAHA recusou o envio (HTTP {resposta.status_code})"
@@ -106,6 +163,21 @@ class WahaSender:
         except ValueError as erro:
             raise EnvioError("o WAHA respondeu com um corpo que não é JSON") from erro
         return corpo if isinstance(corpo, dict) else {}
+
+
+class SessaoInexistente(EnvioError):
+    pass
+
+
+def _descrever_conta(sessao: dict[str, Any]) -> str | None:
+    me = sessao.get("me")
+    if not isinstance(me, dict):
+        return None
+    numero = str(me.get("id", "")).split("@")[0] or None
+    nome = me.get("pushName")
+    if nome and numero:
+        return f"{nome} ({numero})"
+    return nome or numero
 
 
 def _extrair_id(resposta: dict[str, Any]) -> str | None:
@@ -121,7 +193,8 @@ def _extrair_id(resposta: dict[str, Any]) -> str | None:
     return None
 
 
-def criar_sender(settings: Settings) -> WhatsAppSender:
+def criar_sender(settings: Settings) -> WahaSender | FakeSender:
+    """Os dois adapters implementam WhatsAppSender e ConexaoWhatsApp."""
     if settings.whatsapp_provider is WhatsAppProvider.WAHA:
         return WahaSender(
             url=settings.waha_url,
