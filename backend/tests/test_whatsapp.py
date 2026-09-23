@@ -137,6 +137,22 @@ class TestWahaSender:
         with pytest.raises(EnvioError, match=trecho):
             sender.enviar(DESTINO, "olá")
 
+    def test_401_sem_key_no_backend_diz_como_resolver(self):
+        """Sem WAHA_API_KEY, o WAHA gera uma chave aleatória e o backend não a conhece."""
+        sender, _ = sender_com(lambda r: httpx.Response(401), api_key=None)
+        with pytest.raises(EnvioError) as erro:
+            sender.enviar(DESTINO, "olá")
+        assert "WAHA_API_KEY" in str(erro.value)
+        assert "backend/.env" in str(erro.value)
+        assert "--force-recreate" in str(erro.value)
+
+    def test_401_com_key_diferente_diz_como_resolver(self):
+        sender, _ = sender_com(lambda r: httpx.Response(401))
+        with pytest.raises(EnvioError) as erro:
+            sender.enviar(DESTINO, "olá")
+        assert "--force-recreate" in str(erro.value)
+        assert API_KEY not in str(erro.value)
+
     def test_erro_nao_vaza_o_corpo_da_resposta(self):
         sender, _ = sender_com(lambda r: httpx.Response(400, text=f"detalhe com {API_KEY}"))
         with pytest.raises(EnvioError) as erro:
