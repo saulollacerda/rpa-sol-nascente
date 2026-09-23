@@ -40,7 +40,7 @@ Painel → Playwright navega no site do BCB → baixa os ZIPs → lê os CSVs �
 Pré-requisito: **Docker** com Docker Compose v2.
 
 ```bash
-git clone <url-do-repositório> rpa-sol-nascente && cd rpa-sol-nascente
+git clone https://github.com/saulollacerda/rpa-sol-nascente.git && cd rpa-sol-nascente
 
 cp backend/.env.example backend/.env
 # edite backend/.env: preencha WAHA_API_KEY (ex.: openssl rand -hex 32)
@@ -290,10 +290,12 @@ docker compose run --rm backend pytest                  # suíte padrão
 docker compose run --rm backend pytest -m integration   # contra o site real do BCB
 docker compose run --rm backend ruff check .            # lint
 
-# frontend (Vitest + Testing Library), a partir de frontend/
-npm install && npm test
-npm run build                                           # checagem de tipos + build
+# frontend (Vitest + Testing Library), sem precisar de Node na máquina
+docker compose run --rm --no-deps frontend sh -c "npm ci && npm test"
+docker compose run --rm --no-deps frontend sh -c "npm ci && npm run build"   # tipos + build
 ```
+
+Com Node 24 instalado, também dá para rodar direto, a partir de `frontend/`: `npm install && npm test`.
 
 | Camada | Como é testada |
 |---|---|
@@ -400,12 +402,14 @@ docker compose logs -f backend
 |---|---|
 | `no matching manifest for linux/arm64/v8` ao subir | Mac com Apple Silicon: crie o `.env` da raiz com `WAHA_TAG=arm` ([passo 3](#3-só-em-mac-com-apple-silicon)) |
 | Cartão WhatsApp **Desconectado** | o QR code venceu sem leitura, ou o celular removeu o dispositivo. Clique em **Gerar QR code** |
-| Cartão WhatsApp **Indisponível** | o container `waha` não subiu: `docker compose ps` e `docker compose logs waha` |
-| Envio falha com "API key do WAHA inválida" | a `WAHA_API_KEY` mudou depois de o container subir: `docker compose up -d --force-recreate waha backend` |
+| Cartão WhatsApp **Indisponível** com "o backend está sem WAHA_API_KEY" | a `WAHA_API_KEY` ficou vazia no `backend/.env` e o WAHA gerou uma chave própria. Preencha (`openssl rand -hex 32`) e rode `docker compose up -d --force-recreate waha backend` |
+| Cartão WhatsApp **Indisponível** com "API key do WAHA inválida" | a `WAHA_API_KEY` mudou depois de o container subir: `docker compose up -d --force-recreate waha backend` |
+| Cartão WhatsApp **Indisponível** com "WAHA não está acessível" | o container `waha` não subiu: `docker compose ps` e `docker compose logs waha` |
 | Envio falha com "o número … não tem WhatsApp" | o destinatário não tem conta no WhatsApp; confira DDD e número |
 | Painel demora ~10 s ao abrir | esperado na primeira carga: o robô está lendo o catálogo do BCB |
 | Execução em `FALHA_COLETA` | site do BCB fora do ar ou lento. A descrição do erro aparece no acompanhamento; tente de novo depois |
-| Quero ensaiar sem celular | `WHATSAPP_PROVIDER=fake` no `backend/.env` e `docker compose restart backend`: a mensagem vai só para o log e para o painel |
+| Quero ensaiar sem celular | `WHATSAPP_PROVIDER=fake` no `backend/.env` e `docker compose up -d backend`: a mensagem vai só para o log e para o painel |
+| Mudei o `backend/.env` e nada mudou | o `docker compose restart` **não relê** o `.env`. Use `docker compose up -d backend`, que recria o container |
 
 ---
 
@@ -416,6 +420,7 @@ O projeto foi feito para **demonstração**. O que mudaria para produção:
 - **WhatsApp Business Cloud API.** Em produção, o envio passaria pela API oficial da Meta, com número comercial verificado, token de System User, template aprovado ou janela de 24 horas, e webhook de status de entrega. Basta implementar mais um adapter do `WhatsAppSender`, sem tocar no domínio. Roteiro completo no [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção).
 - **Execução em fila.** Hoje a coleta roda em `BackgroundTasks` do FastAPI, no mesmo processo. Com vários usuários ou agendamento, o certo seria uma fila (Celery/RQ ou um job agendado) e um processo que retome execuções órfãs.
 - **Agendamento.** Disparar o relatório sozinho quando o BCB publica um trimestre novo, em vez de depender de um clique.
+- **Planilhas personalizadas para analistas.** Exportar em Excel ou CSV os dados da consulta, com filtro por praça (UF), administradora e segmento. O relatório do WhatsApp é um resumo para o gestor; o analista precisa da tabela completa para cruzar com as vendas da loja. Os dados já chegam normalizados pelo `parsing/` e ficam em cache por data-base, então a exportação não precisa de nova coleta: é uma rota na API e um botão no painel.
 - **Banco e armazenamento.** PostgreSQL no lugar do SQLite (a troca é de connection string) e expurgo do cache de ZIPs, que cresce sem limite.
 - **Segurança.** Autenticação no painel e na API, que hoje são abertos. Portas publicadas só em `127.0.0.1` ou atrás de um proxy com TLS. Segredos num cofre, no lugar do `.env`.
 - **Observabilidade.** Os logs já são JSON com `execucao_id`; faltam métricas e alertas para falhas de coleta, porque o layout do BCB pode mudar a qualquer momento.
