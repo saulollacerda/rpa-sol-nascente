@@ -1,0 +1,75 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      target: dev
+    image: radar-consorcio-backend:dev
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      # Dentro do container os caminhos são absolutos e o volume é montado
+      # em /app/data. Sobrescreve o default relativo do Settings.
+      DATA_DIR: /app/data
+      DATABASE_URL: sqlite:////app/data/execucoes.db
+      # Não há servidor gráfico no container — ver ADR-007.
+      PLAYWRIGHT_HEADLESS: "true"
+      # Endereço do WAHA na rede do compose — ver ADR-009.
+      WAHA_URL: http://waha:3000
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/tests:/app/tests
+      # Cache dos ZIPs (ADR-006) e banco SQLite precisam sobreviver ao
+      # container. Bind mount, para que os arquivos fiquem visíveis no host.
+      - ./backend/data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  frontend:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm ci --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "5173:5173"
+    environment:
+      # O Vite repassa /execucoes, /opcoes e /health ao backend (ADR-001).
+      VITE_API_ALVO: http://backend:8000
+    volumes:
+      - ./frontend:/app
+      # node_modules fica num volume: os binários do host (macOS) não servem no Linux.
+      - frontend_node_modules:/app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  # Envio por WhatsApp (ADR-009). Na primeira vez, escaneie o QR code em
+  # http://localhost:3000.
+  # A tag `latest` só existe para amd64. Em Mac com Apple Silicon (arm64), use
+  # WAHA_TAG=arm — no shell ou no .env da raiz, que o compose lê sozinho.
+  waha:
+    image: devlikeapro/waha:${WAHA_TAG:-latest}
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      # Engine em Go: dispensa o Chromium dentro do container.
+      WHATSAPP_DEFAULT_ENGINE: GOWS
+      # Cria e inicia a sessão que o backend usa (WAHA_SESSION), para o QR
+      # code já estar esperando no painel. Sem isso a sessão não existe e o
+      # envio falha com HTTP 422.
+      WHATSAPP_START_SESSION: default
+    volumes:
+      # A sessão sobrevive ao restart: o QR code é escaneado uma vez só.
+      - waha_sessions:/app/.sessions
+
+volumes:
+  frontend_node_modules:
+  waha_sessions:

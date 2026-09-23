@@ -1,0 +1,777 @@
+/* Radar de Consórcio — visual do site da Sol Nascente Motos: fundo branco, vermelho Honda,
+   Roboto, sem sombra. Verde só no status de sucesso: é informação, não decoração. */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  --fundo: #ffffff;
+  --superficie: #ffffff;
+  --superficie-2: #f5f5f6;
+  --borda: #eaebec;
+  --texto: #232429;
+  --texto-2: #505156;
+  --acento: #cc0000;
+  --acento-forte: #b30000;
+  --acento-suave: #fbeaea;
+  --sucesso: #1a7f45;
+  --sucesso-suave: #e3f3e9;
+  --erro: #b30000;
+  --erro-suave: #fbeaea;
+  --neutro: #505156;
+  --neutro-suave: #eaebec;
+  --andamento: #232429;
+  --andamento-suave: #eaebec;
+  --rodape-texto: #444141;
+  --rodape-barra: #d7d3d3;
+  --wpp-fundo: #efeae2;
+  --wpp-bolha: #d9fdd3;
+  --raio: 8px;
+  --fonte: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 15px/1.5 var(--fonte);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+/* Topo, com espaço reservado para o logo -------------------------------------- */
+
+.topo {
+  background: var(--superficie);
+  border-bottom: 1px solid var(--acento);
+}
+
+.topo__conteudo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mesma proporção do logo no site: 245 × 40. */
+.logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 245px;
+}
+
+.logo--vazio {
+  width: 245px;
+  height: 40px;
+  max-width: 100%;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--borda);
+  border-radius: 4px;
+  color: var(--texto-2);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Estrutura ----------------------------------------------------------------- */
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px 56px;
+  display: grid;
+  gap: 24px;
+}
+
+.titulo-pagina h1 {
+  font-size: 1.75rem;
+}
+
+.titulo-pagina p {
+  margin: 4px 0 0;
+  color: var(--texto-2);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: minmax(300px, 400px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Before the first report: the form and the WhatsApp card, side by side in the middle. */
+.grade--sozinha {
+  grid-template-columns: minmax(0, 480px) minmax(0, 340px);
+  justify-content: center;
+}
+
+/* Right column: WhatsApp connection on top, then the report being tracked. */
+.coluna {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+  min-width: 0;
+}
+
+.conexao {
+  display: grid;
+  gap: 12px;
+}
+
+.conexao__qr {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+}
+
+.conexao__passos {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--texto-2);
+  font-size: 0.9rem;
+  display: grid;
+  gap: 4px;
+}
+
+.conexao .botao-secundario {
+  justify-self: start;
+  margin-left: 0;
+}
+
+@media (max-width: 880px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cartao--entrando {
+  animation: entrar 0.25s ease-out;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateX(12px); }
+}
+
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .cartao {
+    padding: 16px;
+  }
+}
+
+.cartao > h2 {
+  font-size: 1.2rem;
+}
+
+.meta,
+small {
+  color: var(--texto-2);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Formulário ---------------------------------------------------------------- */
+
+.painel {
+  display: grid;
+  gap: 16px;
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.campo label,
+.campo legend {
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+.linha {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 12px;
+  align-items: start;
+}
+
+@media (max-width: 480px) {
+  .linha {
+    grid-template-columns: 1fr;
+  }
+}
+
+select,
+input {
+  font: inherit;
+  color: inherit;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 10px 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+select:focus-visible,
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.fichas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ficha {
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--texto-2);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.ficha[aria-pressed="true"] {
+  color: #fff;
+  background: var(--acento);
+  border-color: var(--acento);
+  font-weight: 500;
+}
+
+input[aria-invalid="true"],
+select[aria-invalid="true"] {
+  border-color: var(--erro);
+}
+
+.erro-campo {
+  color: var(--erro);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.botao-principal {
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--acento);
+  border: 0;
+  border-radius: 4px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.botao-principal:hover:not(:disabled) {
+  background: #b30000;
+}
+
+.botao-principal:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.botao-secundario {
+  font: inherit;
+  font-weight: 500;
+  margin-left: 8px;
+  color: var(--acento-forte);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+/* Avisos e selos -------------------------------------------------------------- */
+
+.aviso {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.aviso p {
+  margin: 4px 0 0;
+}
+
+.aviso--erro {
+  background: var(--erro-suave);
+  color: var(--erro);
+}
+
+.aviso--neutro {
+  background: var(--neutro-suave);
+  color: var(--texto);
+}
+
+.selo {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.selo--sucesso { background: var(--sucesso-suave); color: var(--sucesso); }
+.selo--erro { background: var(--erro-suave); color: var(--erro); }
+.selo--neutro { background: var(--neutro-suave); color: var(--neutro); }
+.selo--andamento { background: var(--andamento-suave); color: var(--andamento); }
+
+.carregando {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--texto-2);
+  font-size: 0.9rem;
+}
+
+.giro {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border: 2px solid var(--borda);
+  border-top-color: var(--acento);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+.vazio {
+  color: var(--texto-2);
+  margin: 0;
+}
+
+.vazio p {
+  margin: 0 0 4px;
+}
+
+/* Acompanhamento ---------------------------------------------------------------- */
+
+.acompanhamento {
+  display: grid;
+  gap: 16px;
+}
+
+.acompanhamento__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.acompanhamento__topo h2 {
+  font-size: 1.2rem;
+}
+
+.etapas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+
+@media (max-width: 560px) {
+  .etapas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 12px;
+  }
+}
+
+.etapa {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.etapa__marca {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 2px solid var(--borda);
+  background: var(--superficie);
+  color: var(--texto-2);
+}
+
+.etapa__rotulo {
+  font-size: 0.75rem;
+  color: var(--texto-2);
+  line-height: 1.25;
+}
+
+.etapa--feito .etapa__marca {
+  background: var(--sucesso);
+  border-color: var(--sucesso);
+  color: #fff;
+}
+
+.etapa--atual .etapa__marca {
+  border-color: var(--acento);
+  color: var(--acento-forte);
+}
+
+.etapa--atual .etapa__rotulo {
+  color: var(--texto);
+  font-weight: 500;
+}
+
+.etapa--falhou .etapa__marca {
+  background: var(--erro);
+  border-color: var(--erro);
+  color: #fff;
+}
+
+.etapa--falhou .etapa__rotulo {
+  color: var(--erro);
+  font-weight: 500;
+}
+
+.etapa--interrompido .etapa__marca {
+  border-style: dashed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .giro,
+  .cartao--entrando {
+    animation: none;
+  }
+}
+
+/* Prévia do WhatsApp ---------------------------------------------------------------- */
+
+.whatsapp {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.whatsapp figcaption {
+  font-size: 0.85rem;
+  color: var(--texto-2);
+}
+
+.whatsapp__conversa {
+  background: var(--wpp-fundo);
+  border-radius: var(--raio);
+  padding: 14px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.whatsapp__bolha {
+  margin: 0;
+  background: var(--wpp-bolha);
+  border-radius: 8px 8px 8px 2px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Dados encontrados ---------------------------------------------------------------- */
+
+.dados {
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid var(--borda);
+  padding-top: 16px;
+}
+
+.dados h3 {
+  font-size: 1rem;
+}
+
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.cartao-praca {
+  border: 1px solid var(--borda);
+  border-top: 3px solid var(--acento);
+  border-radius: 4px;
+  padding: 14px;
+  background: var(--superficie);
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.cartao-praca--nacional {
+  border-top-color: var(--texto);
+}
+
+.cartao-praca header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cartao-praca h4 {
+  font-size: 1rem;
+}
+
+.metricas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.metrica {
+  display: grid;
+  gap: 1px;
+}
+
+.metrica__rotulo {
+  font-size: 0.75rem;
+  color: var(--texto-2);
+}
+
+.metrica__valor {
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.metrica__detalhe {
+  font-size: 0.75rem;
+  color: var(--texto-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.concorrencia {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0 0;
+  border-top: 1px solid var(--borda);
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+}
+
+.concorrencia li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--texto-2);
+}
+
+.concorrencia li span:last-child {
+  font-variant-numeric: tabular-nums;
+  color: var(--texto);
+}
+
+/* Histórico ---------------------------------------------------------------- */
+
+.tabela-rolavel {
+  overflow-x: auto;
+}
+
+.historico {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.historico th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--texto-2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--borda);
+  white-space: nowrap;
+}
+
+.historico td {
+  padding: 10px;
+  border-bottom: 1px solid var(--borda);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.historico tr[aria-selected="true"] td {
+  background: var(--acento-suave);
+}
+
+.link {
+  font: inherit;
+  font-weight: 500;
+  color: var(--acento-forte);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Rodapé ---------------------------------------------------------------- */
+
+/* Ported from CRM-LEADS-SOLNASCENTE. Content lines up with the 1200px page column. */
+
+.rodape {
+  --rodape-margem: max(16px, calc((100% - 1200px) / 2 + 16px));
+  border-top: 1px solid var(--acento);
+  color: var(--rodape-texto);
+}
+
+.rodape p:not(.rodape__redes-titulo) {
+  margin: 0;
+}
+
+.rodape__principal {
+  display: grid;
+  gap: 48px;
+  padding: 48px var(--rodape-margem);
+}
+
+@media (min-width: 1024px) {
+  .rodape__principal {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+.rodape__redes-titulo {
+  margin-top: 32px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.rodape__redes {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.rodape__redes svg {
+  width: 24px;
+  height: 24px;
+}
+
+.rodape__colunas {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 640px) {
+  .rodape__colunas {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+  }
+}
+
+.rodape__coluna-titulo {
+  font-size: 15px;
+  color: var(--acento);
+}
+
+.rodape__lista {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  font-size: 13px;
+}
+
+.rodape__lista a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rodape__lista a:hover {
+  color: var(--acento);
+}
+
+.rodape__barra {
+  background: var(--rodape-barra);
+  padding: 16px var(--rodape-margem);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 1024px) {
+  .rodape__barra {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.rodape__lema {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.rodape__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
