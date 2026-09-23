@@ -1,57 +1,33 @@
-/* Radar de Consórcio — paleta vermelho, branco e preto, com modo claro e escuro.
-   Verde só no status de sucesso: é informação, não decoração. */
+/* Radar de Consórcio — visual do site da Sol Nascente Motos: fundo branco, vermelho Honda,
+   Roboto, sem sombra. Verde só no status de sucesso: é informação, não decoração. */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 :root {
-  --fundo: #f4f4f4;
+  --fundo: #ffffff;
   --superficie: #ffffff;
-  --superficie-2: #fafafa;
-  --borda: #e2e2e2;
-  --texto: #0d0d0d;
-  --texto-2: #5c5c5c;
-  --acento: #db4b4b;
-  --acento-forte: #b83a3a; /* hover e texto vermelho sobre branco: 5,7:1 */
-  --acento-suave: #fbe9e9;
+  --superficie-2: #f5f5f6;
+  --borda: #eaebec;
+  --texto: #232429;
+  --texto-2: #505156;
+  --acento: #cc0000;
+  --acento-forte: #b30000;
+  --acento-suave: #fbeaea;
   --sucesso: #1a7f45;
   --sucesso-suave: #e3f3e9;
-  --erro: #b3001a;
-  --erro-suave: #fbe3e6;
-  --neutro: #5c5c5c;
-  --neutro-suave: #ededed;
-  --andamento: #0d0d0d;
-  --andamento-suave: #e6e6e6;
+  --erro: #b30000;
+  --erro-suave: #fbeaea;
+  --neutro: #505156;
+  --neutro-suave: #eaebec;
+  --andamento: #232429;
+  --andamento-suave: #eaebec;
+  --rodape-texto: #444141;
+  --rodape-barra: #d7d3d3;
   --wpp-fundo: #efeae2;
   --wpp-bolha: #d9fdd3;
-  --sombra: 0 1px 2px rgb(0 0 0 / 6%), 0 4px 16px rgb(0 0 0 / 6%);
-  --raio: 14px;
-  --fonte: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --raio: 8px;
+  --fonte: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fundo: #0a0a0a;
-    --superficie: #141414;
-    --superficie-2: #1b1b1b;
-    --borda: #2e2e2e;
-    --texto: #fafafa;
-    --texto-2: #a3a3a3;
-    --acento: #db4b4b;
-    --acento-forte: #e87070;
-    --acento-suave: #3a1414;
-    --sucesso: #4cc27e;
-    --sucesso-suave: #12291b;
-    --erro: #ff6272;
-    --erro-suave: #3b0b12;
-    --neutro: #a3a3a3;
-    --neutro-suave: #242424;
-    --andamento: #fafafa;
-    --andamento-suave: #2a2a2a;
-    --wpp-fundo: #0b141a;
-    --wpp-bolha: #005c4b;
-    --sombra: 0 1px 2px rgb(0 0 0 / 50%), 0 4px 16px rgb(0 0 0 / 40%);
-    color-scheme: dark;
-  }
 }
 
 * {
@@ -69,52 +45,78 @@ body {
 h1, h2, h3, h4 {
   margin: 0;
   line-height: 1.25;
+  font-weight: 700;
 }
 
-.pagina {
-  max-width: 1240px;
+/* Topo, com espaço reservado para o logo -------------------------------------- */
+
+.topo {
+  background: var(--superficie);
+  border-bottom: 1px solid var(--acento);
+}
+
+.topo__conteudo {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
-  display: grid;
-  gap: 20px;
-}
-
-/* Cabeçalho --------------------------------------------------------------- */
-
-.cabecalho {
+  padding: 16px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
 }
 
-.cabecalho h1 {
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
+/* Mesma proporção do logo no site: 245 × 40. */
+.logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 245px;
 }
 
-.cabecalho p {
-  margin: 2px 0 0;
+.logo--vazio {
+  width: 245px;
+  height: 40px;
+  max-width: 100%;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--borda);
+  border-radius: 4px;
   color: var(--texto-2);
-}
-
-.marca {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background:
-    radial-gradient(circle at 50% 70%, var(--acento) 0 38%, transparent 39%),
-    linear-gradient(to bottom, var(--superficie) 0 70%, var(--texto) 70%);
-  border: 1px solid var(--borda);
-  box-shadow: var(--sombra);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* Estrutura ----------------------------------------------------------------- */
 
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px 56px;
+  display: grid;
+  gap: 24px;
+}
+
+.titulo-pagina h1 {
+  font-size: 1.75rem;
+}
+
+.titulo-pagina p {
+  margin: 4px 0 0;
+  color: var(--texto-2);
+}
+
 .grade {
   display: grid;
-  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(300px, 400px) minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
+}
+
+/* Before the first report, the form stands alone in the middle. */
+.grade--sozinha {
+  grid-template-columns: minmax(0, 480px);
+  justify-content: center;
 }
 
 @media (max-width: 880px) {
@@ -123,19 +125,32 @@ h1, h2, h3, h4 {
   }
 }
 
+.cartao--entrando {
+  animation: entrar 0.25s ease-out;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateX(12px); }
+}
+
 .cartao {
   background: var(--superficie);
   border: 1px solid var(--borda);
   border-radius: var(--raio);
-  box-shadow: var(--sombra);
-  padding: 20px;
+  padding: 24px;
   display: grid;
   gap: 16px;
   min-width: 0;
 }
 
+@media (max-width: 480px) {
+  .cartao {
+    padding: 16px;
+  }
+}
+
 .cartao > h2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .meta,
@@ -163,7 +178,7 @@ small {
 
 .campo label,
 .campo legend {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9rem;
   padding: 0;
   margin-bottom: 6px;
@@ -186,10 +201,10 @@ select,
 input {
   font: inherit;
   color: inherit;
-  background: var(--superficie-2);
+  background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 10px;
-  padding: 9px 11px;
+  border-radius: 4px;
+  padding: 10px 12px;
   width: 100%;
   min-width: 0;
 }
@@ -205,25 +220,29 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  padding: 2px;
 }
 
 .ficha {
   font: inherit;
   font-size: 0.82rem;
   color: var(--texto-2);
-  background: var(--superficie-2);
+  background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 999px;
-  padding: 4px 11px;
+  border-radius: 4px;
+  padding: 4px 10px;
   cursor: pointer;
 }
 
 .ficha[aria-pressed="true"] {
-  color: var(--acento-forte);
-  background: var(--acento-suave);
+  color: #fff;
+  background: var(--acento);
   border-color: var(--acento);
-  font-weight: 600;
+  font-weight: 500;
+}
+
+input[aria-invalid="true"],
+select[aria-invalid="true"] {
+  border-color: var(--erro);
 }
 
 .erro-campo {
@@ -234,18 +253,20 @@ button:focus-visible {
 
 .botao-principal {
   font: inherit;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: #fff;
   background: var(--acento);
   border: 0;
-  border-radius: 10px;
-  padding: 12px 16px;
+  border-radius: 4px;
+  padding: 14px 16px;
   cursor: pointer;
   transition: background 0.15s;
 }
 
 .botao-principal:hover:not(:disabled) {
-  background: var(--acento-forte);
+  background: #b30000;
 }
 
 .botao-principal:disabled {
@@ -255,11 +276,12 @@ button:focus-visible {
 
 .botao-secundario {
   font: inherit;
+  font-weight: 500;
   margin-left: 8px;
-  color: var(--texto);
-  background: var(--superficie);
-  border: 1px solid var(--borda);
-  border-radius: 8px;
+  color: var(--acento-forte);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 4px;
   padding: 4px 10px;
   cursor: pointer;
 }
@@ -269,7 +291,7 @@ button:focus-visible {
 .aviso {
   margin: 0;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 4px;
   font-size: 0.9rem;
 }
 
@@ -289,10 +311,10 @@ button:focus-visible {
 
 .selo {
   display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   padding: 3px 10px;
-  border-radius: 999px;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
@@ -336,7 +358,7 @@ button:focus-visible {
 
 .acompanhamento {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .acompanhamento__topo {
@@ -347,7 +369,7 @@ button:focus-visible {
 }
 
 .acompanhamento__topo h2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .etapas {
@@ -357,7 +379,6 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 4px;
-  counter-reset: etapa;
 }
 
 @media (max-width: 560px) {
@@ -372,16 +393,15 @@ button:focus-visible {
   justify-items: center;
   gap: 6px;
   text-align: center;
-  position: relative;
 }
 
 .etapa__marca {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   border: 2px solid var(--borda);
   background: var(--superficie);
@@ -402,13 +422,12 @@ button:focus-visible {
 
 .etapa--atual .etapa__marca {
   border-color: var(--acento);
-  box-shadow: 0 0 0 4px var(--acento-suave);
-  animation: pulsar 1.2s ease-in-out infinite;
+  color: var(--acento-forte);
 }
 
 .etapa--atual .etapa__rotulo {
   color: var(--texto);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .etapa--falhou .etapa__marca {
@@ -419,20 +438,16 @@ button:focus-visible {
 
 .etapa--falhou .etapa__rotulo {
   color: var(--erro);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .etapa--interrompido .etapa__marca {
   border-style: dashed;
 }
 
-@keyframes pulsar {
-  50% { box-shadow: 0 0 0 7px var(--acento-suave); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .etapa--atual .etapa__marca,
-  .giro {
+  .giro,
+  .cartao--entrando {
     animation: none;
   }
 }
@@ -452,7 +467,7 @@ button:focus-visible {
 
 .whatsapp__conversa {
   background: var(--wpp-fundo);
-  border-radius: 12px;
+  border-radius: var(--raio);
   padding: 14px;
   max-height: 420px;
   overflow-y: auto;
@@ -461,21 +476,20 @@ button:focus-visible {
 .whatsapp__bolha {
   margin: 0;
   background: var(--wpp-bolha);
-  border-radius: 10px 10px 10px 2px;
+  border-radius: 8px 8px 8px 2px;
   padding: 10px 12px;
   white-space: pre-wrap;
   font-size: 0.88rem;
   line-height: 1.45;
   max-width: 100%;
   overflow-wrap: anywhere;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
 }
 
 /* Dados encontrados ---------------------------------------------------------------- */
 
 .dados {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   border-top: 1px solid var(--borda);
   padding-top: 16px;
 }
@@ -492,16 +506,17 @@ button:focus-visible {
 
 .cartao-praca {
   border: 1px solid var(--borda);
-  border-radius: 12px;
+  border-top: 3px solid var(--acento);
+  border-radius: 4px;
   padding: 14px;
-  background: var(--superficie-2);
+  background: var(--superficie);
   display: grid;
   gap: 12px;
   align-content: start;
 }
 
 .cartao-praca--nacional {
-  border-style: dashed;
+  border-top-color: var(--texto);
 }
 
 .cartao-praca header {
@@ -533,8 +548,8 @@ button:focus-visible {
 
 .metrica__valor {
   font-size: 1.2rem;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
 }
 
 .metrica__detalhe {
@@ -580,7 +595,7 @@ button:focus-visible {
 .historico th {
   text-align: left;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--texto-2);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -602,7 +617,7 @@ button:focus-visible {
 
 .link {
   font: inherit;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--acento-forte);
   background: none;
   border: 0;
@@ -614,8 +629,111 @@ button:focus-visible {
   text-decoration: underline;
 }
 
+/* Rodapé ---------------------------------------------------------------- */
+
+/* Ported from CRM-LEADS-SOLNASCENTE. Content lines up with the 1200px page column. */
+
 .rodape {
-  color: var(--texto-2);
-  font-size: 0.8rem;
-  text-align: center;
+  --rodape-margem: max(16px, calc((100% - 1200px) / 2 + 16px));
+  border-top: 1px solid var(--acento);
+  color: var(--rodape-texto);
+}
+
+.rodape p:not(.rodape__redes-titulo) {
+  margin: 0;
+}
+
+.rodape__principal {
+  display: grid;
+  gap: 48px;
+  padding: 48px var(--rodape-margem);
+}
+
+@media (min-width: 1024px) {
+  .rodape__principal {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+.rodape__redes-titulo {
+  margin-top: 32px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.rodape__redes {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.rodape__redes svg {
+  width: 24px;
+  height: 24px;
+}
+
+.rodape__colunas {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 640px) {
+  .rodape__colunas {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+  }
+}
+
+.rodape__coluna-titulo {
+  font-size: 15px;
+  color: var(--acento);
+}
+
+.rodape__lista {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  font-size: 13px;
+}
+
+.rodape__lista a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rodape__lista a:hover {
+  color: var(--acento);
+}
+
+.rodape__barra {
+  background: var(--rodape-barra);
+  padding: 16px var(--rodape-margem);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 1024px) {
+  .rodape__barra {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.rodape__lema {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.rodape__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
 }
