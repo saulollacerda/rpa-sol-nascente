@@ -5,10 +5,12 @@ import {
   administradorasDoSegmento,
   alternarUf,
   estadoInicial,
+  MAX_CONCORRENTES,
   montarSolicitacao,
   validar,
   type Erros,
   type Formulario,
+  validarTelefone,
 } from "../dominio/formulario";
 
 interface Props {
@@ -26,20 +28,36 @@ export function PainelConsulta({ opcoes, enviando, onEnviar }: Props) {
     [opcoes.administradoras, form.segmento],
   );
 
-  const atualizar = (parcial: Partial<Formulario>) => setForm((f) => ({ ...f, ...parcial }));
+  // Without a default number on the server, an empty field has nowhere to send to.
+  const destinatarioObrigatorio = !opcoes.padrao.tem_destinatario_padrao;
 
-  const mudarSegmento = (segmento: number) =>
-    setForm((f) => {
-      const continua = administradorasDoSegmento(opcoes.administradoras, segmento).some(
-        (a) => a.cnpj === f.cnpj,
-      );
-      // Administradora que não atua no novo segmento deixa de fazer sentido.
-      return { ...f, segmento, cnpj: continua ? f.cnpj : "" };
-    });
+  // Once a field shows an error, it is re-checked on every change so the error clears on fix.
+  const atualizar = (parcial: Partial<Formulario>) => {
+    const novo = { ...form, ...parcial };
+    setForm(novo);
+    const comErro = Object.keys(erros) as (keyof Formulario)[];
+    if (comErro.length === 0) return;
+    const encontrados = validar(novo, destinatarioObrigatorio);
+    setErros(Object.fromEntries(comErro.map((campo) => [campo, encontrados[campo]])));
+  };
+
+  const conferirTelefone = (destinatario: string) =>
+    setErros((e) => ({
+      ...e,
+      destinatario: validarTelefone(destinatario, destinatarioObrigatorio),
+    }));
+
+  const mudarSegmento = (segmento: number) => {
+    const continua = administradorasDoSegmento(opcoes.administradoras, segmento).some(
+      (a) => a.cnpj === form.cnpj,
+    );
+    // Administradora que não atua no novo segmento deixa de fazer sentido.
+    atualizar({ segmento, cnpj: continua ? form.cnpj : "" });
+  };
 
   const enviar = (evento: FormEvent) => {
     evento.preventDefault();
-    const encontrados = validar(form);
+    const encontrados = validar(form, destinatarioObrigatorio);
     setErros(encontrados);
     if (Object.keys(encontrados).length === 0) onEnviar(montarSolicitacao(form));
   };
@@ -51,8 +69,10 @@ export function PainelConsulta({ opcoes, enviando, onEnviar }: Props) {
         <select
           id="data-base"
           value={form.dataBase}
+          aria-invalid={Boolean(erros.dataBase)}
           onChange={(e) => atualizar({ dataBase: e.target.value })}
         >
+          <option value="">Escolha a data-base</option>
           {opcoes.data_bases.map((d) => (
             <option key={d} value={d}>
               {rotuloDataBase(d)}
@@ -67,15 +87,18 @@ export function PainelConsulta({ opcoes, enviando, onEnviar }: Props) {
         <label htmlFor="segmento">Segmento</label>
         <select
           id="segmento"
-          value={form.segmento}
+          value={form.segmento || ""}
+          aria-invalid={Boolean(erros.segmento)}
           onChange={(e) => mudarSegmento(Number(e.target.value))}
         >
+          <option value="">Escolha o segmento</option>
           {opcoes.segmentos.map((s) => (
             <option key={s.codigo} value={s.codigo}>
               {s.codigo} · {s.nome}
             </option>
           ))}
         </select>
+        {erros.segmento && <p className="erro-campo">{erros.segmento}</p>}
       </div>
 
       <div className="campo">
@@ -83,6 +106,7 @@ export function PainelConsulta({ opcoes, enviando, onEnviar }: Props) {
         <select
           id="administradora"
           value={form.cnpj}
+          aria-invalid={Boolean(erros.cnpj)}
           onChange={(e) => atualizar({ cnpj: e.target.value })}
         >
           <option value="">Escolha a administradora</option>
@@ -121,11 +145,12 @@ export function PainelConsulta({ opcoes, enviando, onEnviar }: Props) {
             id="top"
             type="number"
             min={0}
-            max={10}
+            max={MAX_CONCORRENTES}
+            step={1}
             value={form.topConcorrentes}
             onChange={(e) => atualizar({ topConcorrentes: Number(e.target.value) })}
           />
-          <small>No ranking de cada praça.</small>
+          <small>As maiores em adesões nas UFs.</small>
           {erros.topConcorrentes && <p className="erro-campo">{erros.topConcorrentes}</p>}
         </div>
 
@@ -135,12 +160,18 @@ export function PainelConsulta({ opcoes, enviando, onEnviar }: Props) {
             id="destinatario"
             type="tel"
             inputMode="tel"
-            placeholder="+55 86 99999-0000"
+            placeholder="Insira seu número de telefone"
+            maxLength={20}
             value={form.destinatario}
+            aria-invalid={Boolean(erros.destinatario)}
             onChange={(e) => atualizar({ destinatario: e.target.value })}
+            onBlur={(e) => conferirTelefone(e.target.value)}
           />
-          <small>Em branco: usa o número configurado no servidor.</small>
-          {erros.destinatario && <p className="erro-campo">{erros.destinatario}</p>}
+          {erros.destinatario && (
+            <p className="erro-campo" role="alert">
+              {erros.destinatario}
+            </p>
+          )}
         </div>
       </div>
 

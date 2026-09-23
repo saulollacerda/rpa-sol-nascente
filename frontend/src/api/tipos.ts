@@ -116,5 +116,7 @@ export interface Opcoes {
     ufs: string[];
     cnpj_administradora: string;
     top_concorrentes: number;
+    /** false: o servidor não tem WHATSAPP_DESTINATARIO e o campo é obrigatório. */
+    tem_destinatario_padrao: boolean;
   };
 }

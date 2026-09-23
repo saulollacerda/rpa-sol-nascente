@@ -1,5 +1,6 @@
 """Contratos de entrada e saída da API."""
 
+import re
 from datetime import datetime
 from typing import Any
 
@@ -16,9 +17,9 @@ class SolicitacaoIn(BaseModel):
 
     data_base: str = Field(pattern=r"^\d{6}$", examples=["202607"])
     segmento: int = Field(4, ge=1, le=6)
-    ufs: list[str] = Field(default_factory=lambda: ["PI", "MA"], min_length=1)
+    ufs: list[str] = Field(default_factory=lambda: ["PI", "MA"])
     cnpj_administradora: str = Field(HONDA, pattern=r"^\d{1,8}$")
-    top_concorrentes: int = Field(3, ge=0, le=10)
+    top_concorrentes: int = Field(3, ge=0, le=3)
     destinatario: str | None = Field(None, examples=["+55 86 99999-0000"])
 
     @field_validator("data_base")
@@ -31,6 +32,8 @@ class SolicitacaoIn(BaseModel):
     @field_validator("ufs")
     @classmethod
     def ufs_validas(cls, valor: list[str]) -> list[str]:
+        if not valor:
+            raise ValueError("escolha ao menos uma praça")
         normalizadas = [u.strip().upper() for u in valor]
         invalidas = sorted(set(normalizadas) - set(UFS))
         if invalidas:
@@ -40,12 +43,18 @@ class SolicitacaoIn(BaseModel):
     @field_validator("destinatario")
     @classmethod
     def telefone_valido(cls, valor: str | None) -> str | None:
+        """Celular: DDD + 9 + 8 dígitos, DDI 55 opcional. Mesma regra do painel."""
         if valor is None:
             return None
+        if not re.fullmatch(r"[\d\s()+.-]+", valor.strip()):
+            raise ValueError("telefone aceita só números, espaços e ( ) -")
         digitos = "".join(c for c in valor if c.isdigit())
-        if not 10 <= len(digitos) <= 15:
-            raise ValueError("telefone deve ter de 10 a 15 dígitos, com DDI")
-        return digitos
+        if len(digitos) == 13 and digitos.startswith("55"):
+            digitos = digitos[2:]
+        if not re.fullmatch(r"[1-9]{2}9\d{8}", digitos):
+            raise ValueError("telefone deve ter DDD + 9 + 8 dígitos, ex.: 86999990000")
+        # WhatsApp needs the country code.
+        return "55" + digitos
 
 
 class ExecucaoOut(BaseModel):

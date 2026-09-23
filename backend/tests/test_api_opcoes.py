@@ -3,7 +3,8 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from app.api.dependencias import get_opcoes
+from app.api.dependencias import get_opcoes, get_settings
+from app.config import Settings
 from app.domain.erros import ColetaError
 from app.domain.opcoes import Administradora, Opcoes
 from app.main import app
@@ -32,6 +33,7 @@ class FonteDeOpcoes:
 def cliente():
     fonte = FonteDeOpcoes()
     app.dependency_overrides[get_opcoes] = lambda: fonte
+    app.dependency_overrides[get_settings] = lambda: Settings(whatsapp_destinatario="5586777770000")
     yield TestClient(app), fonte
     app.dependency_overrides.clear()
 
@@ -64,7 +66,15 @@ def test_padroes_da_sol_nascente(cliente):
         "ufs": ["PI", "MA"],
         "cnpj_administradora": "45441789",
         "top_concorrentes": 3,
+        "tem_destinatario_padrao": True,
     }
+
+
+def test_avisa_o_painel_quando_nao_ha_numero_padrao(cliente):
+    """Sem número no .env, o painel exige o campo antes de enviar."""
+    http, _ = cliente
+    app.dependency_overrides[get_settings] = lambda: Settings(whatsapp_destinatario=None)
+    assert http.get("/opcoes").json()["padrao"]["tem_destinatario_padrao"] is False
 
 
 def test_site_fora_do_ar_responde_503_com_o_motivo(cliente):

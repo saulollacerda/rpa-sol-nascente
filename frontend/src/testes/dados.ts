@@ -24,6 +24,7 @@ export const OPCOES: Opcoes = {
     ufs: ["PI", "MA"],
     cnpj_administradora: "45441789",
     top_concorrentes: 3,
+    tem_destinatario_padrao: true,
   },
 };
 
