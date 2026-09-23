@@ -10,14 +10,15 @@ A motivação é prática. Decisões de arquitetura são difíceis de reconstrui
 |---|---|---|
 | [001](ADR-001-stack-e-arquitetura.md) | Stack e arquitetura | Python + FastAPI no back, React + Vite no front, organizado em camadas com domínio puro |
 | [002](ADR-002-fonte-bcb-e-estrategia-de-rpa.md) | Fonte BCB e estratégia de RPA | Playwright contra a página Angular — nunca contra o ASP legado, que está defasado |
-| [003](ADR-003-integracao-whatsapp.md) | Integração com WhatsApp | Cloud API oficial da Meta, com adapter fake ao lado para teste e demonstração |
+| [003](ADR-003-integracao-whatsapp.md) | Integração com WhatsApp | ~~Cloud API oficial da Meta~~ — substituído pelo 009 |
 | [004](ADR-004-persistencia-e-idempotencia.md) | Persistência e idempotência | SQLite, hash SHA-256 dos parâmetros sob unique constraint, máquina de estados |
 | [005](ADR-005-configuracao-e-segredos.md) | Configuração e segredos | `pydantic-settings` com `.env`, nenhum token no código, falha na inicialização |
 | [006](ADR-006-estrategia-de-cache-e-revalidacao.md) | Estratégia de cache e revalidação | Cache em três camadas; revalidação por `ETag`; repetições sem abrir o browser |
 | [007](ADR-007-empacotamento-com-docker.md) | Empacotamento com Docker | Imagem oficial do Playwright; alvos `dev` e `prod`; `data/` em bind mount |
 | [008](ADR-008-catalogo-pela-rede-da-pagina.md) | Catálogo pela rede da página | O robô navega e escuta o JSON que a própria página pede; nenhum endpoint no código |
+| [009](ADR-009-waha-para-demonstracao.md) | WAHA para a demonstração | Envio real pelo WAHA (não oficial, só para demo); Cloud API da Meta documentada como caminho para produção |
 
-Todos os ADRs acima estão com status **Aceito**.
+Todos os ADRs acima estão com status **Aceito**, exceto o 003, substituído pelo 009.
 
 ## Formato
 

@@ -40,18 +40,19 @@ def test_excecao_vira_campo_proprio():
 
 
 def test_mascara_bearer_token():
-    assert mascarar("Authorization: Bearer EAAGabc123") == "Authorization: Bearer ***"
+    assert mascarar("Authorization: Bearer abc123") == "Authorization: Bearer ***"
 
 
-def test_mascara_token_da_meta_solto():
-    assert "EAAGabc123xyz" not in mascarar("token=EAAGabc123xyz no texto")
+def test_mascara_header_de_api_key():
+    assert mascarar("X-Api-Key: segredo123") == "X-Api-Key: ***"
 
 
 def test_mascara_dentro_da_linha_formatada():
-    """O risco real não é imprimir o token de propósito — é um log.debug da config inteira."""
-    linha = formatar("config: %s", "whatsapp_token='EAAGsegredo999'")
-    assert "EAAGsegredo999" not in json.dumps(linha)
+    """O risco real não é imprimir a key de propósito — é um log.debug da config inteira."""
+    linha = formatar("config: %s", "waha_api_key='segredo999' waha_session='default'")
+    assert "segredo999" not in json.dumps(linha)
+    assert "waha_session='default'" in json.dumps(linha)
 
 
 def test_texto_comum_fica_intacto():
-    assert mascarar("EAAG não é token quando curto") == "EAAG não é token quando curto"
+    assert mascarar("a api key do WAHA é opcional") == "a api key do WAHA é opcional"

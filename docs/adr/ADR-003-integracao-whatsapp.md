@@ -1,6 +1,8 @@
 # ADR-003 — Integração com WhatsApp
 
-**Status:** Aceito · 2026-09-22
+**Status:** Substituído por [ADR-009](ADR-009-waha-para-demonstracao.md) · 2026-09-23
+
+> O código não usa mais a Cloud API. Este documento fica como histórico do raciocínio; a Cloud API sobrevive como sugestão em [Caminho para produção](ADR-009-waha-para-demonstracao.md#caminho-para-produção).
 
 ## Contexto
 

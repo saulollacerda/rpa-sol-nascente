@@ -1,6 +1,6 @@
 """Portas do domínio: o que ele precisa do mundo externo, sem saber quem fornece.
 
-As implementações ficam em infra/ (ver ADR-001 e ADR-003). Os testes do
+As implementações ficam em infra/ (ver ADR-001 e ADR-009). Os testes do
 serviço usam implementações falsas destas mesmas interfaces.
 """
 
@@ -39,7 +39,7 @@ class ResultadoEnvio:
 
 
 class WhatsAppSender(Protocol):
-    """Entrega de mensagens. Implementações: CloudApiSender e FakeSender (ADR-003)."""
+    """Entrega de mensagens. Implementações: WahaSender e FakeSender (ADR-009)."""
 
     def enviar(self, destinatario: str, mensagem: str) -> ResultadoEnvio:
         """Levanta EnvioError quando a entrega falha."""

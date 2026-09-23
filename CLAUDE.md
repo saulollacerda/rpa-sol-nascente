@@ -39,7 +39,7 @@ backend/Dockerfile
 
 `domain/` é puro. Não importa Playwright, SQLAlchemy, `httpx` nem nada que toque I/O. Cálculo de share, consolidação por UF e composição da mensagem precisam ser testáveis sem rede e sem banco. Se uma função de domínio precisa de dados externos, eles chegam como argumento.
 
-Integrações externas entram por `Protocol` definido no domínio e implementado em `infra/` — é assim que `WhatsAppSender` tem adapter real e fake ([ADR-003](docs/adr/ADR-003-integracao-whatsapp.md)).
+Integrações externas entram por `Protocol` definido no domínio e implementado em `infra/` — é assim que `WhatsAppSender` tem adapter real (WAHA) e fake ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)).
 
 ## Padrões
 
@@ -164,7 +164,7 @@ Em TDD, o commit natural é o ciclo fechado: teste + implementação que o faz p
 Da raiz do projeto. Não exige Python, uv nem Playwright instalados — ver [ADR-007](docs/adr/ADR-007-empacotamento-com-docker.md).
 
 ```bash
-docker compose up                              # painel em http://localhost:5173, API em :8000
+docker compose up                              # painel em :5173, API em :8000, WAHA em :3000
 docker compose run --rm backend pytest         # suíte
 docker compose run --rm backend pytest -m integration   # contra o site real do BCB
 docker compose run --rm backend ruff check .   # lint
@@ -174,6 +174,17 @@ docker compose build                           # rebuild após mudar dependênci
 O Chromium já vem na imagem: **não rode `playwright install` dentro do container.**
 
 Dentro do container não há servidor gráfico, então `PLAYWRIGHT_HEADLESS` é sempre `true`. Para ver a automação navegando numa janela, rode no host.
+
+### WhatsApp (WAHA)
+
+**O padrão é enviar de verdade** (`WHATSAPP_PROVIDER=waha`). O WAHA sobe junto com o `docker compose up`. Ele não é oficial e existe só para a demonstração, então use um chip dedicado ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)). O caminho de produção pela Cloud API da Meta está documentado no ADR, **não no código**.
+
+Em Mac com Apple Silicon, a imagem `latest` do WAHA não existe para arm64: `WAHA_TAG=arm` no `.env` da **raiz** (não o do backend), que o compose lê para montar o nome da imagem.
+
+1. No `backend/.env`, defina a `WAHA_API_KEY`: qualquer segredo (`openssl rand -hex 32`), lido pelo container e pelo backend.
+2. Na primeira vez, escaneie o QR code com o celular do chip (WhatsApp → Dispositivos conectados). A sessão `default` já sobe sozinha (`WHATSAPP_START_SESSION`); no painel em `:3000`, informe a mesma `WAHA_API_KEY` para ele conseguir falar com a API.
+
+Para ensaiar sem celular, use `WHATSAPP_PROVIDER=fake`: a mensagem vai só para o log.
 
 ### Frontend
 

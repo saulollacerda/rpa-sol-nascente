@@ -1,7 +1,7 @@
 """Logging estruturado em JSON — padrão do CLAUDE.md.
 
 Toda linha de uma execução carrega o execucao_id (via LoggerAdapter no
-serviço). Tokens são mascarados na formatação, e não em cada chamada: o risco
+serviço). Tokens e keys são mascarados na formatação, e não em cada chamada: o risco
 real é um log.debug da configuração inteira, não imprimir o token de propósito.
 """
 
@@ -13,7 +13,8 @@ from datetime import UTC, datetime
 
 PADROES_SENSIVEIS = (
     (re.compile(r"(Bearer\s+)\S+"), r"\1***"),
-    (re.compile(r"\bEAA[A-Za-z0-9]{6,}"), "***"),  # tokens de acesso da Meta
+    (re.compile(r"(X-Api-Key:\s*)\S+", re.IGNORECASE), r"\1***"),
+    (re.compile(r"(api_key=)'?[^'\s]+'?"), r"\1***"),
 )
 
 

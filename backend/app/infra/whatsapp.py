@@ -1,13 +1,13 @@
-"""Adapters de envio por WhatsApp — ver ADR-003.
+"""Adapters de envio por WhatsApp — ver ADR-009.
 
-CloudApiSender envia mensagem de texto pela Graph API da Meta. Texto, e não
-template: parâmetros de template não aceitam quebra de linha, e o relatório
-tem várias. A contrapartida é a janela de 24 horas — o destinatário precisa
-ter escrito para o número da empresa no último dia.
+WahaSender envia pelo WAHA (WhatsApp HTTP API), que conecta um número comum
+por QR code. Não é oficial: serve à demonstração, não à produção. O caminho
+de produção está descrito no ADR-009.
 """
 
 import itertools
 import logging
+from typing import Any
 
 import httpx
 
@@ -17,20 +17,20 @@ from app.domain.portas import ResultadoEnvio, WhatsAppSender
 
 logger = logging.getLogger(__name__)
 
-LIMITE_DE_CARACTERES = 4096  # corpo de mensagem de texto na Cloud API
 TIMEOUT_SEGUNDOS = 20
 
-# Códigos da Meta traduzidos para o que o gestor precisa fazer.
+# Status do WAHA traduzidos para o que o gestor precisa fazer.
 ERROS_CONHECIDOS = {
-    131047: "fora da janela de 24 horas: o destinatário precisa ter enviado uma mensagem "
-    "ao número da empresa nas últimas 24 horas",
-    131030: "destinatário fora da lista de números de teste cadastrados no app da Meta",
-    190: "token de acesso inválido ou expirado",
+    401: "API key do WAHA inválida",
+    404: "sessão do WAHA não está conectada; escaneie o QR code no painel do WAHA "
+    "(http://localhost:3000)",
+    422: "sessão do WAHA não está conectada; escaneie o QR code no painel do WAHA "
+    "(http://localhost:3000)",
 }
 
 
 class FakeSender:
-    """Registra em memória e no log, sem tocar a rede. Padrão da demonstração."""
+    """Registra em memória e no log, sem tocar a rede. Para testes e para ensaiar sem celular."""
 
     def __init__(self, falhar_com: str | None = None) -> None:
         self.enviadas: list[tuple[str, str]] = []
@@ -46,70 +46,86 @@ class FakeSender:
         return ResultadoEnvio(id_mensagem=id_mensagem)
 
 
-class CloudApiSender:
+class WahaSender:
     def __init__(
         self,
-        token: str,
-        phone_number_id: str,
-        versao_api: str,
+        url: str,
+        api_key: str | None,
+        sessao: str,
         cliente: httpx.Client | None = None,
     ) -> None:
-        self._token = token
-        self._url = f"https://graph.facebook.com/{versao_api}/{phone_number_id}/messages"
+        self._url = url.rstrip("/")
+        self._sessao = sessao
+        self._headers = {"X-Api-Key": api_key} if api_key else {}
         self._cliente = cliente or httpx.Client(timeout=TIMEOUT_SEGUNDOS)
 
     def __repr__(self) -> str:
-        return f"CloudApiSender(url={self._url!r}, token=***)"
+        return f"WahaSender(url={self._url!r}, sessao={self._sessao!r}, api_key=***)"
 
     def enviar(self, destinatario: str, mensagem: str) -> ResultadoEnvio:
-        if len(mensagem) > LIMITE_DE_CARACTERES:
-            raise EnvioError(
-                f"mensagem com {len(mensagem)} caracteres excede o limite de "
-                f"{LIMITE_DE_CARACTERES} da Cloud API"
-            )
+        chat_id = self._resolver_chat_id(destinatario)
+        corpo = {"session": self._sessao, "chatId": chat_id, "text": mensagem}
+        resposta = self._chamar("POST", "/api/sendText", json=corpo)
+        id_mensagem = _extrair_id(resposta)
+        if not id_mensagem:
+            raise EnvioError("o WAHA respondeu sem o id da mensagem")
+        return ResultadoEnvio(id_mensagem=id_mensagem)
 
-        corpo = {
-            "messaging_product": "whatsapp",
-            "recipient_type": "individual",
-            "to": destinatario,
-            "type": "text",
-            "text": {"preview_url": False, "body": mensagem},
-        }
+    def _resolver_chat_id(self, destinatario: str) -> str:
+        """O WhatsApp sabe se o número existe com ou sem o 9º dígito; nós não."""
+        resposta = self._chamar(
+            "GET",
+            "/api/contacts/check-exists",
+            params={"phone": destinatario, "session": self._sessao},
+        )
+        if not resposta.get("numberExists") or not resposta.get("chatId"):
+            raise EnvioError(f"o número {destinatario} não tem WhatsApp")
+        return str(resposta["chatId"])
+
+    def _chamar(self, metodo: str, caminho: str, **kwargs: Any) -> dict[str, Any]:
         try:
-            resposta = self._cliente.post(
-                self._url, json=corpo, headers={"Authorization": f"Bearer {self._token}"}
+            resposta = self._cliente.request(
+                metodo, f"{self._url}{caminho}", headers=self._headers, **kwargs
             )
-        except httpx.HTTPError as erro:
+        except httpx.ConnectError as erro:
             raise EnvioError(
-                f"falha de rede ao chamar a API do WhatsApp: {type(erro).__name__}"
+                f"WAHA não está acessível em {self._url}; "
+                "confira se o container subiu com `docker compose up`"
             ) from erro
+        except httpx.HTTPError as erro:
+            raise EnvioError(f"falha de rede ao chamar o WAHA: {type(erro).__name__}") from erro
 
         if resposta.is_error:
-            raise EnvioError(_explicar(resposta))
+            # Sem o corpo da resposta, que pode conter credenciais (ADR-005).
+            base = f"o WAHA recusou o envio (HTTP {resposta.status_code})"
+            explicacao = ERROS_CONHECIDOS.get(resposta.status_code)
+            raise EnvioError(f"{base}: {explicacao}" if explicacao else base)
 
         try:
-            return ResultadoEnvio(id_mensagem=resposta.json()["messages"][0]["id"])
-        except (ValueError, KeyError, IndexError, TypeError) as erro:
-            raise EnvioError("a API do WhatsApp respondeu sem o id da mensagem") from erro
+            corpo = resposta.json()
+        except ValueError as erro:
+            raise EnvioError("o WAHA respondeu com um corpo que não é JSON") from erro
+        return corpo if isinstance(corpo, dict) else {}
 
 
-def _explicar(resposta: httpx.Response) -> str:
-    """Mensagem de erro sem o corpo da resposta, que pode conter credenciais (ADR-005)."""
-    try:
-        codigo = resposta.json()["error"]["code"]
-    except (ValueError, KeyError, TypeError):
-        codigo = None
-    base = f"a API do WhatsApp recusou o envio (HTTP {resposta.status_code}"
-    base += f", código {codigo})" if codigo is not None else ")"
-    explicacao = ERROS_CONHECIDOS.get(codigo) if codigo is not None else None
-    return f"{base}: {explicacao}" if explicacao else base
+def _extrair_id(resposta: dict[str, Any]) -> str | None:
+    """O formato do id muda conforme a engine do WAHA (WEBJS, NOWEB, GOWS)."""
+    id_ = resposta.get("id")
+    if isinstance(id_, str):
+        return id_
+    if isinstance(id_, dict) and isinstance(id_.get("_serialized"), str):
+        return id_["_serialized"]
+    chave = resposta.get("key")
+    if isinstance(chave, dict) and isinstance(chave.get("id"), str):
+        return chave["id"]
+    return None
 
 
 def criar_sender(settings: Settings) -> WhatsAppSender:
-    if settings.whatsapp_provider is WhatsAppProvider.CLOUD_API:
-        return CloudApiSender(
-            token=settings.whatsapp_token or "",
-            phone_number_id=settings.whatsapp_phone_number_id or "",
-            versao_api=settings.whatsapp_api_version,
+    if settings.whatsapp_provider is WhatsAppProvider.WAHA:
+        return WahaSender(
+            url=settings.waha_url,
+            api_key=settings.waha_api_key,
+            sessao=settings.waha_session,
         )
     return FakeSender()
