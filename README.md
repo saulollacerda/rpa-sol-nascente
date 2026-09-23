@@ -37,7 +37,7 @@ Painel → Playwright navega no site do BCB → baixa os ZIPs → lê os CSVs �
 
 ## Início rápido
 
-Pré-requisitos: **Docker** com Docker Compose v2, e um **celular com WhatsApp** para conectar o número que envia. Use um chip dedicado ([por quê](#whatsapp-por-que-um-chip-dedicado)).
+Pré-requisito: **Docker** com Docker Compose v2.
 
 ```bash
 git clone <url-do-repositório> rpa-sol-nascente && cd rpa-sol-nascente
@@ -113,7 +113,7 @@ A primeira vez leva alguns minutos, porque as imagens são baixadas. Sobem três
 
 1. Abra **http://localhost:5173**.
 2. Ao lado de **Nova consulta**, o cartão **WhatsApp** mostra um QR code.
-3. No celular do chip: **WhatsApp → Dispositivos conectados → Conectar dispositivo**, e aponte a câmera para o código.
+3. No celular: **WhatsApp → Dispositivos conectados → Conectar dispositivo**, e aponte a câmera para o código.
 4. O QR code some e o cartão passa a mostrar **Conectado**.
 
 O QR code vence em cerca de um minuto. Se vencer, o cartão mostra **Desconectado** e o botão **Gerar QR code**. A conexão fica salva num volume Docker, então só é preciso escanear uma vez.
@@ -364,7 +364,7 @@ docs/                     PRD, ADRs e registro de decisões técnicas
 | API | Python + FastAPI | o ecossistema de dados e de RPA está em Python; documentação automática |
 | Persistência | SQLite + SQLAlchemy | um usuário e dezenas de registros; migrar para Postgres é trocar a URL |
 | Painel | React + TypeScript (Vite) | estado de acompanhamento em tempo real; sem biblioteca de componentes |
-| WhatsApp | WAHA | envio real sem burocracia, só para demonstração ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)) |
+| WhatsApp | WAHA | envio real, com o número conectado por QR code no próprio painel ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)) |
 | Empacotamento | Docker Compose | a avaliação roda sem instalar Python, Node nem Chromium |
 
 ---
@@ -413,7 +413,7 @@ docker compose logs -f backend
 
 O projeto foi feito para **demonstração**. O que mudaria para produção:
 
-- **WhatsApp oficial.** O WAHA não é oficial: automatizar o WhatsApp fora da API da Meta viola os termos de uso, e o número pode ser banido. Em produção, o caminho é a WhatsApp Business Cloud API, com número comercial verificado, token de System User, template aprovado ou janela de 24 horas, e webhook de status de entrega. Basta implementar mais um adapter do `WhatsAppSender`, sem tocar no domínio. Roteiro completo no [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção).
+- **WhatsApp Business Cloud API.** Em produção, o envio passaria pela API oficial da Meta, com número comercial verificado, token de System User, template aprovado ou janela de 24 horas, e webhook de status de entrega. Basta implementar mais um adapter do `WhatsAppSender`, sem tocar no domínio. Roteiro completo no [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção).
 - **Execução em fila.** Hoje a coleta roda em `BackgroundTasks` do FastAPI, no mesmo processo. Com vários usuários ou agendamento, o certo seria uma fila (Celery/RQ ou um job agendado) e um processo que retome execuções órfãs.
 - **Agendamento.** Disparar o relatório sozinho quando o BCB publica um trimestre novo, em vez de depender de um clique.
 - **Banco e armazenamento.** PostgreSQL no lugar do SQLite (a troca é de connection string) e expurgo do cache de ZIPs, que cresce sem limite.
@@ -430,7 +430,3 @@ O projeto foi feito para **demonstração**. O que mudaria para produção:
 | [`docs/adr/`](docs/adr/README.md) | decisões de arquitetura: stack, fonte e RPA, persistência, segredos, cache, Docker, catálogo, WhatsApp e reenvio |
 | [`docs/DECISOES-TECNICAS.md`](docs/DECISOES-TECNICAS.md) | registro das escolhas menores, cada uma com a alternativa rejeitada e o motivo |
 | [`CLAUDE.md`](CLAUDE.md) | padrões de código, estratégia de testes e armadilhas já verificadas da fonte BCB |
-
-### WhatsApp: por que um chip dedicado
-
-O WAHA conecta um número de WhatsApp comum, como o WhatsApp Web. Tudo roda na sua máquina, sem servidor de terceiros, e o projeto só usa duas operações: verificar se o número existe e enviar texto. Ainda assim, enquanto conectado, o WAHA teria acesso às conversas daquele número, e automação não oficial pode levar a banimento. Por isso: **use um chip só para isso, nunca o seu número pessoal nem o da concessionária.**
