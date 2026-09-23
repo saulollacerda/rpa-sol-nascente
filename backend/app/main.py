@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from app.api.dependencias import get_settings
 from app.api.execucoes import router as execucoes
 from app.api.opcoes import router as opcoes
+from app.api.whatsapp import router as whatsapp
 from app.domain.servico import ServicoExecucao
 from app.infra.cache import CacheComValidade
 from app.infra.db import RepositorioSQL, criar_engine, criar_tabelas
@@ -28,9 +29,9 @@ async def ciclo_de_vida(app: FastAPI) -> AsyncIterator[None]:
     criar_tabelas(engine)
     fonte = FonteBCB(settings.bcb_base_url, settings.data_dir, settings.playwright_headless)
     relogio = lambda: datetime.now(UTC)  # noqa: E731
-    app.state.servico = ServicoExecucao(
-        RepositorioSQL(engine), fonte, criar_sender(settings), relogio=relogio
-    )
+    sender = criar_sender(settings)
+    app.state.servico = ServicoExecucao(RepositorioSQL(engine), fonte, sender, relogio=relogio)
+    app.state.conexao = sender
     app.state.opcoes = CacheComValidade(
         fonte.opcoes, timedelta(hours=settings.catalogo_ttl_horas), relogio
     )
@@ -40,6 +41,7 @@ async def ciclo_de_vida(app: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(title="Radar de Consórcio de Motos", version=VERSAO, lifespan=ciclo_de_vida)
 app.include_router(execucoes)
 app.include_router(opcoes)
+app.include_router(whatsapp)
 
 
 @app.get("/health")
