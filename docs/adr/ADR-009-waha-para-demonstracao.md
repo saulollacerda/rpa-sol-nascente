@@ -12,21 +12,21 @@ O projeto **não vai para produção**: ele existe para ser demonstrado. Tudo o 
 
 O envio real passa a ser feito pelo **WAHA** (WhatsApp HTTP API, imagem `devlikeapro/waha`, versão Core gratuita). O WAHA conecta um número comum de WhatsApp por QR code e expõe uma API REST. O código não tem mais nenhuma referência à API da Meta.
 
-`WhatsAppSender` continua sendo o `Protocol` do domínio, agora com duas implementações escolhidas por `WHATSAPP_PROVIDER`:
+`WhatsAppSender` continua sendo o `Protocol` do domínio, agora com duas implementações escolhidas por `WHATSAPP_PROVIDER`. **O padrão é enviar de verdade:** o produto é o relatório chegando no celular.
 
-- **`WahaSender`** (`waha`):
+- **`WahaSender`** (`waha`, padrão):
   1. Consulta `GET /api/contacts/check-exists` para descobrir o `chatId` real. Números brasileiros antigos existem no WhatsApp **sem o 9º dígito**, e só o WhatsApp sabe qual é o caso.
   2. Envia com `POST /api/sendText`.
   3. Traduz os erros para o que o gestor precisa fazer: WAHA fora do ar, API key inválida, sessão sem QR code escaneado, número sem WhatsApp.
-- **`FakeSender`** (`fake`, padrão): sem rede, com o mesmo papel descrito no ADR-003.
+- **`FakeSender`** (`fake`): sem rede. Usado pela suíte de testes e para ensaiar a apresentação sem celular.
 
-O WAHA roda como serviço do `docker-compose.yml` sob o profile `waha`, com a engine `GOWS` (sem Chromium) e a sessão num volume, para o QR code ser escaneado uma vez só.
+O WAHA roda como serviço do `docker-compose.yml` e sobe junto com o resto no `docker compose up`. Usa a engine `GOWS` (sem Chromium) e guarda a sessão num volume, para o QR code ser escaneado uma vez só.
 
 ### Variáveis
 
 | Variável | Segredo | Descrição |
 |---|---|---|
-| `WHATSAPP_PROVIDER` | não | `fake` (padrão) ou `waha` |
+| `WHATSAPP_PROVIDER` | não | `waha` (padrão) ou `fake` |
 | `WHATSAPP_DESTINATARIO` | dado pessoal | telefone padrão, com DDI e DDD |
 | `WAHA_URL` | não | padrão `http://localhost:3000`; no compose, `http://waha:3000` |
 | `WAHA_API_KEY` | **sim** | enviada no header `X-Api-Key`; opcional se o WAHA subiu sem key |

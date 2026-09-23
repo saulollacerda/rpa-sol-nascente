@@ -164,7 +164,7 @@ Em TDD, o commit natural é o ciclo fechado: teste + implementação que o faz p
 Da raiz do projeto. Não exige Python, uv nem Playwright instalados — ver [ADR-007](docs/adr/ADR-007-empacotamento-com-docker.md).
 
 ```bash
-docker compose up                              # painel em http://localhost:5173, API em :8000
+docker compose up                              # painel em :5173, API em :8000, WAHA em :3000
 docker compose run --rm backend pytest         # suíte
 docker compose run --rm backend pytest -m integration   # contra o site real do BCB
 docker compose run --rm backend ruff check .   # lint
@@ -177,17 +177,14 @@ Dentro do container não há servidor gráfico, então `PLAYWRIGHT_HEADLESS` é 
 
 ### WhatsApp (WAHA)
 
-O envio real usa o WAHA, que não é oficial e existe só para a demonstração. Use um chip dedicado ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)). O caminho de produção pela Cloud API da Meta está documentado no ADR, **não no código**.
-
-```bash
-docker compose --profile waha up    # sobe também o WAHA em http://localhost:3000
-```
+**O padrão é enviar de verdade** (`WHATSAPP_PROVIDER=waha`). O WAHA sobe junto com o `docker compose up`. Ele não é oficial e existe só para a demonstração, então use um chip dedicado ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)). O caminho de produção pela Cloud API da Meta está documentado no ADR, **não no código**.
 
 Em Mac com Apple Silicon, a imagem `latest` do WAHA não existe para arm64: `WAHA_TAG=arm` no `.env` da **raiz** (não o do backend), que o compose lê para montar o nome da imagem.
 
-1. No painel do WAHA, inicie a sessão `default` e escaneie o QR code com o celular do chip.
-2. No `backend/.env`: `WHATSAPP_PROVIDER=waha` e a mesma `WAHA_API_KEY` usada pelo container.
-3. Reinicie o backend.
+1. No `backend/.env`, defina a `WAHA_API_KEY`: qualquer segredo (`openssl rand -hex 32`), lido pelo container e pelo backend.
+2. Na primeira vez, inicie a sessão `default` no painel do WAHA e escaneie o QR code com o celular do chip.
+
+Para ensaiar sem celular, use `WHATSAPP_PROVIDER=fake`: a mensagem vai só para o log.
 
 ### Frontend
 

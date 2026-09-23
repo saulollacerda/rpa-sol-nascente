@@ -30,7 +30,7 @@ ERROS_CONHECIDOS = {
 
 
 class FakeSender:
-    """Registra em memória e no log, sem tocar a rede. Padrão da demonstração."""
+    """Registra em memória e no log, sem tocar a rede. Para testes e para ensaiar sem celular."""
 
     def __init__(self, falhar_com: str | None = None) -> None:
         self.enviadas: list[tuple[str, str]] = []
@@ -90,7 +90,7 @@ class WahaSender:
         except httpx.ConnectError as erro:
             raise EnvioError(
                 f"WAHA não está acessível em {self._url}; "
-                "suba com `docker compose --profile waha up`"
+                "confira se o container subiu com `docker compose up`"
             ) from erro
         except httpx.HTTPError as erro:
             raise EnvioError(f"falha de rede ao chamar o WAHA: {type(erro).__name__}") from erro

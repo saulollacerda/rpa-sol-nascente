@@ -1,15 +1,25 @@
 """Configuração — regras definidas no ADR-005 e no ADR-009."""
 
+import pytest
+
 from app.config import Settings, WhatsAppProvider
 
 
-def test_usa_adapter_fake_por_padrao():
-    """A demonstração não pode depender de um número conectado."""
-    assert Settings().whatsapp_provider is WhatsAppProvider.FAKE
+@pytest.fixture
+def sem_env_local(monkeypatch):
+    """Defaults de verdade: nem o backend/.env da máquina nem variáveis do shell."""
+    for nome in ("WHATSAPP_PROVIDER", "WAHA_URL", "WAHA_API_KEY", "WAHA_SESSION"):
+        monkeypatch.delenv(nome, raising=False)
+    return lambda **campos: Settings(_env_file=None, **campos)
 
 
-def test_waha_funciona_com_os_defaults():
-    settings = Settings(whatsapp_provider="waha")
+def test_envia_de_verdade_por_padrao(sem_env_local):
+    """O produto é o relatório chegando no celular; o fake é opt-in."""
+    assert sem_env_local().whatsapp_provider is WhatsAppProvider.WAHA
+
+
+def test_waha_funciona_com_os_defaults(sem_env_local):
+    settings = sem_env_local()
     assert settings.whatsapp_provider is WhatsAppProvider.WAHA
     assert settings.waha_url == "http://localhost:3000"
     assert settings.waha_session == "default"

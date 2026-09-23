@@ -14,7 +14,7 @@ class WhatsAppProvider(StrEnum):
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    whatsapp_provider: WhatsAppProvider = WhatsAppProvider.FAKE
+    whatsapp_provider: WhatsAppProvider = WhatsAppProvider.WAHA
     whatsapp_destinatario: str | None = None
 
     # WAHA — ver ADR-009. A key é opcional: depende de como o container subiu.

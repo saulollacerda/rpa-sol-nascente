@@ -48,14 +48,12 @@ services:
       backend:
         condition: service_healthy
 
-  # Envio real por WhatsApp, só para demonstração (ADR-009). Não sobe por padrão:
-  #   docker compose --profile waha up
-  # e escaneie o QR code em http://localhost:3000.
+  # Envio por WhatsApp (ADR-009). Na primeira vez, escaneie o QR code em
+  # http://localhost:3000.
   # A tag `latest` só existe para amd64. Em Mac com Apple Silicon (arm64), use
   # WAHA_TAG=arm — no shell ou no .env da raiz, que o compose lê sozinho.
   waha:
     image: devlikeapro/waha:${WAHA_TAG:-latest}
-    profiles: [waha]
     ports:
       - "3000:3000"
     env_file:
