@@ -62,6 +62,10 @@ services:
     environment:
       # Engine em Go: dispensa o Chromium dentro do container.
       WHATSAPP_DEFAULT_ENGINE: GOWS
+      # Cria e inicia a sessão que o backend usa (WAHA_SESSION), para o QR
+      # code já estar esperando no painel. Sem isso a sessão não existe e o
+      # envio falha com HTTP 422.
+      WHATSAPP_START_SESSION: default
     volumes:
       # A sessão sobrevive ao restart: o QR code é escaneado uma vez só.
       - waha_sessions:/app/.sessions
