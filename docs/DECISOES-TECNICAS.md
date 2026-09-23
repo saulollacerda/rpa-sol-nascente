@@ -19,20 +19,21 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [9](#9-sqlite-em-vez-de-postgresql) | SQLite em vez de PostgreSQL | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | [10](#10-hash-de-parâmetros-em-vez-de-comparação-campo-a-campo) | Hash de parâmetros para idempotência | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | [11](#11-cache-dos-zips-baixados) | Cache dos ZIPs baixados | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
-| [12](#12-cloud-api-da-meta-em-vez-de-twilio-ou-baileys) | Cloud API da Meta para WhatsApp | [003](adr/ADR-003-integracao-whatsapp.md) |
-| [13](#13-adapter-fake-de-whatsapp-ao-lado-do-real) | Adapter fake ao lado do real | [003](adr/ADR-003-integracao-whatsapp.md) |
+| [12](#12-cloud-api-da-meta-em-vez-de-twilio-ou-baileys) | ~~Cloud API da Meta para WhatsApp~~ (substituída pela 26) | [003](adr/ADR-003-integracao-whatsapp.md) |
+| [13](#13-adapter-fake-de-whatsapp-ao-lado-do-real) | Adapter fake ao lado do real | [009](adr/ADR-009-waha-para-demonstracao.md) |
 | [14](#14-baixar-os-dois-datasets-consolidado-e-uf) | Baixar os dois datasets | [002](adr/ADR-002-fonte-bcb-e-estrategia-de-rpa.md) |
 | [15](#15-pydantic-settings-em-vez-de-osenviron) | pydantic-settings em vez de `os.environ` | [005](adr/ADR-005-configuracao-e-segredos.md) |
 | [16](#16-domínio-puro-sem-io) | Domínio puro, sem I/O | [001](adr/ADR-001-stack-e-arquitetura.md) |
 | [17](#17-desenvolvimento-guiado-por-testes-tdd) | Desenvolvimento guiado por testes (TDD) | — |
 | [18](#18-cachear-o-catálogo-e-não-só-o-arquivo) | Cachear o catálogo, e não só o arquivo | [006](adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
 | [19](#19-escutar-a-rede-da-página-em-vez-de-chamar-a-api) | Escutar a rede da página em vez de chamar a API | [008](adr/ADR-008-catalogo-pela-rede-da-pagina.md) |
-| [20](#20-mensagem-de-texto-em-vez-de-template) | Mensagem de texto em vez de template | [003](adr/ADR-003-integracao-whatsapp.md) |
+| [20](#20-mensagem-de-texto-em-vez-de-template) | ~~Mensagem de texto em vez de template~~ (substituída pela 26) | [003](adr/ADR-003-integracao-whatsapp.md) |
 | [21](#21-praças-do-trimestre-mais-recente-até-a-data-base) | Praças do trimestre mais recente até a data-base | — |
 | [22](#22-processar-nunca-deixa-exceção-escapar) | `processar` nunca deixa exceção escapar | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | [23](#23-polling-em-vez-de-websocket) | Polling em vez de WebSocket | — |
 | [24](#24-frontend-sem-biblioteca-de-componentes) | Frontend sem biblioteca de componentes | [001](adr/ADR-001-stack-e-arquitetura.md) |
 | [25](#25-regras-do-template-do-relatório) | Regras do template do relatório | — |
+| [26](#26-waha-em-vez-da-cloud-api) | WAHA em vez da Cloud API | [009](adr/ADR-009-waha-para-demonstracao.md) |
 
 ---
 
@@ -167,6 +168,8 @@ Serve a três propósitos ao mesmo tempo: torna a demonstração rápida na segu
 
 ## 12. Cloud API da Meta em vez de Twilio ou Baileys
 
+> **Substituída pela [26](#26-waha-em-vez-da-cloud-api).** Mantida como histórico.
+
 **Alternativas rejeitadas:** Twilio WhatsApp Sandbox e whatsapp-web.js / Baileys.
 
 Twilio seria mais rápido de configurar, mas introduz um intermediário pago no caminho. A pergunta "como isso vira produção?" se responde melhor apontando para o canal oficial do que para um revendedor.
@@ -177,7 +180,7 @@ Baileys e whatsapp-web.js automatizam a sessão do WhatsApp Web via QR code, com
 
 ## 13. Adapter fake de WhatsApp ao lado do real
 
-`WhatsAppSender` é um `Protocol` com duas implementações: `CloudApiSender` e `FakeSender`, escolhidas por `WHATSAPP_PROVIDER`.
+`WhatsAppSender` é um `Protocol` com duas implementações: `WahaSender` e `FakeSender`, escolhidas por `WHATSAPP_PROVIDER` (originalmente `CloudApiSender`, ver [26](#26-waha-em-vez-da-cloud-api)).
 
 O fake não é atalho, é desenho. Resolve três coisas: permite testar o fluxo completo sem rede nem consumo de cota; garante que a apresentação ao vivo não quebre por token expirado ou rate limit; e força a fronteira de abstração a ser real, porque duas implementações concretas provam que o domínio não vazou detalhe de infraestrutura.
 
@@ -300,6 +303,8 @@ A saída foi navegar normalmente e **escutar** as respostas que a própria pági
 
 ## 20. Mensagem de texto em vez de template
 
+> **Substituída pela [26](#26-waha-em-vez-da-cloud-api).** Com o WAHA não há template nem janela de 24 horas; a questão volta se o projeto for para produção.
+
 **Alternativa rejeitada:** *template message*, como o ADR-003 previa.
 
 Template é o formato que a Meta exige para a empresa iniciar uma conversa a qualquer momento. Mas os parâmetros de um template **não aceitam quebra de linha**, e o relatório é um texto de dezenas de linhas. Achatá-lo numa linha só destruiria a leitura no celular, que é justamente o produto.
@@ -361,3 +366,15 @@ O relatório segue o template do analista (`domain/mensagem.py`). As regras que 
 - **Contemplação no mês.** Calculada sobre as cotas ainda não contempladas, porque é a chance mensal de quem espera a carta. Sobre o total de cotas ativas, o número ficaria diluído pelas cotas que já foram contempladas.
 
 > **Em uma frase:** o template define o que mostrar; as réguas definem o que merece alerta, e foram calibradas para reproduzir o exemplo do próprio analista.
+
+## 26. WAHA em vez da Cloud API
+
+**Alternativa rejeitada:** manter a Cloud API da Meta (entradas [12](#12-cloud-api-da-meta-em-vez-de-twilio-ou-baileys) e [20](#20-mensagem-de-texto-em-vez-de-template)).
+
+A Cloud API foi escolhida pensando em produção, mas o projeto é de demonstração. O que ela exige a mais protegia um uso que não vai acontecer: app no Meta Business, lista de números de teste, janela de 24 horas. E cada exigência era um jeito de a apresentação falhar.
+
+O WAHA conecta um número comum por QR code e expõe uma API REST. O adapter consulta o `chatId` real antes de enviar, porque números brasileiros antigos existem sem o 9º dígito. A troca mexeu em um arquivo de `infra/` e na configuração; domínio, serviço e API ficaram intactos, como a [13](#13-adapter-fake-de-whatsapp-ao-lado-do-real) prometia.
+
+O custo é o que a entrada 12 apontava: o WAHA não é oficial, e o número pode ser banido. Aceitável numa demo com chip dedicado. Para produção, o [ADR-009](adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção) descreve a volta à Cloud API.
+
+> **Em uma frase:** escolhi o canal que torna a demonstração confiável e deixei documentado o canal que tornaria o produto sustentável.

@@ -1,6 +1,8 @@
 # ADR-005 — Configuração e segredos
 
-**Status:** Aceito · 2026-09-22
+**Status:** Aceito · 2026-09-22 · parte de WhatsApp substituída pelo [ADR-009](ADR-009-waha-para-demonstracao.md) em 2026-09-23
+
+> As variáveis `WHATSAPP_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID` e `WHATSAPP_API_VERSION` e a validação do token na inicialização saíram junto com a Cloud API. A tabela vigente das variáveis de WhatsApp está no ADR-009; as demais regras deste ADR seguem valendo.
 
 ## Contexto
 

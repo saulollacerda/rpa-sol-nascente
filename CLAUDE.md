@@ -39,7 +39,7 @@ backend/Dockerfile
 
 `domain/` é puro. Não importa Playwright, SQLAlchemy, `httpx` nem nada que toque I/O. Cálculo de share, consolidação por UF e composição da mensagem precisam ser testáveis sem rede e sem banco. Se uma função de domínio precisa de dados externos, eles chegam como argumento.
 
-Integrações externas entram por `Protocol` definido no domínio e implementado em `infra/` — é assim que `WhatsAppSender` tem adapter real e fake ([ADR-003](docs/adr/ADR-003-integracao-whatsapp.md)).
+Integrações externas entram por `Protocol` definido no domínio e implementado em `infra/` — é assim que `WhatsAppSender` tem adapter real (WAHA) e fake ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)).
 
 ## Padrões
 
@@ -174,6 +174,18 @@ docker compose build                           # rebuild após mudar dependênci
 O Chromium já vem na imagem: **não rode `playwright install` dentro do container.**
 
 Dentro do container não há servidor gráfico, então `PLAYWRIGHT_HEADLESS` é sempre `true`. Para ver a automação navegando numa janela, rode no host.
+
+### WhatsApp (WAHA)
+
+O envio real usa o WAHA, que não é oficial e existe só para a demonstração. Use um chip dedicado ([ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md)). O caminho de produção pela Cloud API da Meta está documentado no ADR, **não no código**.
+
+```bash
+docker compose --profile waha up    # sobe também o WAHA em http://localhost:3000
+```
+
+1. No painel do WAHA, inicie a sessão `default` e escaneie o QR code com o celular do chip.
+2. No `backend/.env`: `WHATSAPP_PROVIDER=waha` e a mesma `WAHA_API_KEY` usada pelo container.
+3. Reinicie o backend.
 
 ### Frontend
 
