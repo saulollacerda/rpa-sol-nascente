@@ -14,49 +14,73 @@ export type Status =
 
 export type Decisao = "CRIAR" | "REUSAR" | "RETENTAR";
 
-export interface Concorrente {
-  nome_administradora: string;
-  cnpj_raiz: string;
+export interface Participacao {
   ativos: number;
-  share: number;
+  adesoes: number;
+  share_carteira: number;
+  share_adesoes: number;
 }
 
-export interface Praca {
+export interface Recorte {
+  ativos: number;
+  adesoes: number;
+  contemplados_lance: number;
+  contemplados_sorteio: number;
+  excluidos: number;
+  administradoras: number;
+}
+
+export interface PosicaoUF {
   uf: string;
-  data_base: string;
-  nome_administradora: string;
-  ativos_praca: number;
-  administradoras_na_praca: number;
   ativos: number;
-  share: number;
-  adesoes_no_trimestre: number;
-  contemplados_lance_no_trimestre: number;
-  contemplados_sorteio_no_trimestre: number;
-  concorrentes: Concorrente[];
+  adesoes: number;
+  alvo: Participacao;
 }
 
-export interface Nacional {
+/** O BCB não divulga por UF: dados do país inteiro. */
+export interface IndicadoresNacionais {
   data_base: string;
-  nome_administradora: string;
-  cotas_ativas: number;
-  cotas_ativas_mercado: number;
-  administradoras_no_segmento: number;
-  share: number;
   taxa_administracao: number;
-  grupos_ativos: number;
-  concorrentes: Concorrente[];
+  inadimplencia: number;
+  contemplacao_mes: number;
+  vendas_mes: number;
+  credito_pendente: number;
+}
+
+export interface PerfilAdministradora {
+  cnpj_raiz: string;
+  nome_administradora: string;
+  recorte: Participacao;
+  por_uf: { uf: string; share_carteira: number; share_adesoes: number }[];
+  nacional: IndicadoresNacionais | null;
+}
+
+export interface Alerta {
+  tipo: "ganho" | "perda" | "inadimplencia";
+  nome_administradora: string;
+  movimentos: { uf: string | null; antes: number; depois: number }[];
+  inadimplencia: number | null;
+}
+
+export interface Relatorio {
+  segmento: number;
+  /** Vazio: o recorte é o Brasil inteiro. */
+  ufs: string[];
+  data_base_uf: string | null;
+  data_base_nacional: string | null;
+  /** null: não há arquivo por UF até a data-base. */
+  recorte: Recorte | null;
+  posicoes_uf: PosicaoUF[];
+  /** A escolhida vem primeiro. */
+  administradoras: PerfilAdministradora[];
+  alertas: Alerta[];
 }
 
 export interface DadosEncontrados {
   data_base_consolidado: string;
   data_base_uf: string | null;
-  relatorio: {
-    segmento: number;
-    pracas: Praca[];
-    nacional: Nacional | null;
-    ufs_sem_resultado: string[];
-    recorte_uf_indisponivel: boolean;
-  };
+  /** Execuções anteriores ao template atual guardam outro formato. */
+  relatorio: Relatorio | Record<string, unknown>;
 }
 
 export interface Parametros {

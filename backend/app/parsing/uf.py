@@ -36,4 +36,10 @@ def _converter(linha: dict[str, str]) -> RegistroUF:
             linha.get("Quantidade_de_consorciados_ativos_contemplados_por_sorteio_no_trimestre")
         ),
         adesoes_no_trimestre=para_inteiro(linha.get("Quantidade_de_adesões_no_trimestre")),
+        excluidos_contemplados=para_inteiro(
+            linha.get("Quantidade_de_consorciados_excluídos_contemplados")
+        ),
+        excluidos_nao_contemplados=para_inteiro(
+            linha.get("Quantidade_de_consorciados_excluídos_não_contemplados")
+        ),
     )

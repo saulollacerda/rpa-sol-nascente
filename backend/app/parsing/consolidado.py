@@ -33,4 +33,13 @@ def _converter(linha: dict[str, str]) -> RegistroConsolidado:
         cotas_ativas_nao_contempladas_inadimplentes=para_inteiro(
             linha.get("Quantidade_de_cotas_ativas_não_contempladas_inadimplentes")
         ),
+        cotas_comercializadas_no_mes=para_inteiro(
+            linha.get("Quantidade_de_cotas_comercializadas_no_mês")
+        ),
+        cotas_contempladas_no_mes=para_inteiro(
+            linha.get("Quantidade_de_cotas_ativas_contempladas_no_mês")
+        ),
+        cotas_credito_pendente=para_inteiro(
+            linha.get("Quantidade_de_cotas_ativas_com_crédito_pendente_de_utilização")
+        ),
     )

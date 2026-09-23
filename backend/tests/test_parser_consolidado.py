@@ -65,3 +65,11 @@ def test_soma_inadimplentes_contemplados_e_nao_contemplados(motos):
         + honda.cotas_ativas_nao_contempladas_inadimplentes
     )
     assert honda.cotas_inadimplentes > 0
+
+
+def test_movimento_do_mes_para_o_relatorio(motos):
+    """Vendas, contemplações e crédito pendente: métricas 🇧🇷 do template."""
+    honda = next(r for r in motos if "HONDA" in r.nome_administradora)
+    assert honda.cotas_comercializadas_no_mes == 105_315
+    assert honda.cotas_contempladas_no_mes == 47_476
+    assert honda.cotas_credito_pendente == 142_436

@@ -78,6 +78,19 @@ class TestChaveDeIdempotencia:
         assert len(chave) == 64 and all(c in "0123456789abcdef" for c in chave)
 
 
+class TestVersaoDaChave:
+    def test_pedido_anterior_ao_template_atual_nao_e_reaproveitado(self):
+        """Mesmos parâmetros, mensagem diferente: a execução antiga não serve mais."""
+        import hashlib
+        import json
+
+        p = params()
+        chave_v1 = hashlib.sha256(
+            json.dumps({"v": 1, **p.como_dict()}, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+        assert chave_idempotencia(p) != chave_v1
+
+
 class TestTransicoes:
     @pytest.mark.parametrize(
         ("de", "para"),

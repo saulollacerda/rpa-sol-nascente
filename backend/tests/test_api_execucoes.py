@@ -53,7 +53,7 @@ class TestSolicitar:
         execucao_id = resposta.json()["execucao"]["id"]
         final = cliente.get(f"/execucoes/{execucao_id}").json()
         assert final["status"] == "ENVIADO"
-        assert "PIAUÍ" in final["mensagem_gerada"]
+        assert "- *PI*:" in final["mensagem_gerada"]
 
     def test_repetir_o_pedido_nao_reenvia(self, cliente, sender):
         cliente.post("/execucoes", json=CORPO)

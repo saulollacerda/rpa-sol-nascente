@@ -1,118 +1,169 @@
-"""Montagem do relatório e composição da mensagem — PRD, seções 6 e 7."""
+"""Montagem do relatório e composição da mensagem no template do WhatsApp.
 
-from datetime import datetime
+O cenário SP, MG e PR reproduz o exemplo preenchido do template: os números
+por UF vêm da fixture de Junho/2026; os nacionais (🇧🇷), da de Julho/2026.
+"""
 
 import pytest
 
-from app.domain.mensagem import compor_mensagem
+from app.domain.analise import CNPJ_HONDA
+from app.domain.mensagem import MAX_LINHAS, compor_mensagem
 from app.domain.relatorio import montar_relatorio
 
-HONDA = "45441789"
 MOTOS = 4
-GERADO_EM = datetime(2026, 9, 22, 15, 12)
+YAMAHA = "47458153"
+SUDESTE_SUL = ["PR", "MG", "SP"]
 
 
 @pytest.fixture(scope="module")
 def relatorio(registros_consolidado, registros_uf):
-    return montar_relatorio(registros_consolidado, registros_uf, MOTOS, ["PI", "MA"], HONDA)
+    return montar_relatorio(registros_consolidado, registros_uf, MOTOS, SUDESTE_SUL, CNPJ_HONDA, 2)
 
 
 @pytest.fixture(scope="module")
-def mensagem(relatorio):
-    return compor_mensagem(relatorio, GERADO_EM)
+def linhas(relatorio):
+    return compor_mensagem(relatorio).splitlines()
+
+
+def montar(registros_consolidado, registros_uf, ufs, cnpj=CNPJ_HONDA, top=3):
+    return montar_relatorio(registros_consolidado, registros_uf, MOTOS, ufs, cnpj, top)
 
 
 class TestMontagem:
-    def test_uma_praca_por_uf_na_ordem_pedida(self, relatorio):
-        assert [p.uf for p in relatorio.pracas] == ["PI", "MA"]
+    def test_ufs_ordenadas_pelo_tamanho_do_mercado(self, relatorio):
+        assert relatorio.ufs == ("SP", "MG", "PR")
+        assert [p.uf for p in relatorio.posicoes_uf] == ["SP", "MG", "PR"]
 
-    def test_contemplados_somados_entre_pracas(self, relatorio):
-        assert relatorio.contemplados_no_trimestre == 10_305 + 13_402
+    def test_escolhida_e_maiores_concorrentes_em_adesoes(self, relatorio):
+        nomes = [a.nome_administradora for a in relatorio.administradoras]
+        assert nomes == [
+            "ADM CONS NAC HONDA LTDA",
+            "SPERTA ADM CONSORCIO NAC LTDA",
+            "YAMAHA ADM CONS LTDA",
+        ]
 
-    def test_inclui_o_contexto_nacional(self, relatorio):
-        assert relatorio.nacional.cotas_ativas == 2_565_256
+    def test_honda_entra_mesmo_quando_a_escolhida_e_outra(
+        self, registros_consolidado, registros_uf
+    ):
+        rel = montar(registros_consolidado, registros_uf, SUDESTE_SUL, YAMAHA, 1)
+        assert [a.cnpj_raiz for a in rel.administradoras][:2] == [YAMAHA, CNPJ_HONDA]
+        assert len(rel.administradoras) == 3
+
+    def test_data_bases_de_cada_dataset(self, relatorio):
+        assert (relatorio.data_base_uf, relatorio.data_base_nacional) == ("202606", "202607")
 
     def test_tem_resultado(self, relatorio):
         assert relatorio.tem_resultado
 
-    def test_uf_onde_a_administradora_nao_opera(self, registros_consolidado, registros_uf):
-        """A UF entra na lista de ausências em vez de derrubar o relatório."""
-        rel = montar_relatorio(registros_consolidado, registros_uf, MOTOS, ["PI", "XX"], HONDA)
-        assert [p.uf for p in rel.pracas] == ["PI"]
-        assert rel.ufs_sem_resultado == ("XX",)
+    def test_sem_uf_o_recorte_e_o_brasil(self, registros_consolidado, registros_uf):
+        rel = montar(registros_consolidado, registros_uf, [])
+        assert rel.posicoes_uf == ()
+        assert rel.recorte.administradoras == 69  # no trimestral por UF; o mensal lista 125
 
     def test_sem_arquivo_de_uf(self, registros_consolidado):
-        """PRD §7: mês não trimestral — emite só o bloco nacional e avisa."""
-        rel = montar_relatorio(registros_consolidado, None, MOTOS, ["PI"], HONDA)
-        assert rel.pracas == ()
-        assert rel.recorte_uf_indisponivel
+        """Data-base anterior ao primeiro trimestral: só os dados nacionais."""
+        rel = montar_relatorio(registros_consolidado, None, MOTOS, ["PI"], CNPJ_HONDA)
+        assert rel.recorte is None
+        assert [a.cnpj_raiz for a in rel.administradoras] == [CNPJ_HONDA]
         assert rel.tem_resultado
 
     def test_administradora_inexistente_nao_tem_resultado(
         self, registros_consolidado, registros_uf
     ):
         """Desfecho SEM_RESULTADO: não há o que enviar."""
-        rel = montar_relatorio(registros_consolidado, registros_uf, MOTOS, ["PI"], "99999999")
+        rel = montar(registros_consolidado, registros_uf, ["PI"], "99999999", 0)
         assert not rel.tem_resultado
 
 
 class TestMensagem:
-    def test_cabecalho_informa_segmento(self, mensagem):
-        assert "RADAR DE CONSÓRCIO" in mensagem
-        assert "motocicletas e motonetas" in mensagem
+    def test_cabecalho(self, linhas):
+        assert linhas[:4] == [
+            "🏍️ *CONSÓRCIO MOTOS – SEGMENTO 4*",
+            "📅 Jun/2026 | Fonte: BCB",
+            "🔎 UFs: *SP, MG, PR*",
+            "🏢 Adms: *Honda, Sperta, Yamaha*",
+        ]
 
-    def test_informa_a_data_base_de_cada_bloco(self, mensagem):
-        """Consolidado e UF têm periodicidades diferentes — não assumir uma só."""
-        assert "Junho/2026" in mensagem
-        assert "Julho/2026" in mensagem
+    def test_bloco_das_ufs_selecionadas(self, linhas):
+        inicio = linhas.index("📍 *UFs SELECIONADAS: SP, MG, PR* _(2º trimestre/2026)_")
+        assert linhas[inicio + 1 : inicio + 6] == [
+            "- Consorciados ativos: *722.444*",
+            "- Adesões: *70.535*",
+            "- Contemplações: 33.651 (72,4% por lance)",
+            "- Taxa de exclusão: 49,0%",
+            "- Administradoras atuando: 67",
+        ]
+
+    def test_uma_linha_por_uf(self, linhas):
+        assert "- *SP*: 317.669 ativos | 30.317 adesões | Honda 49,9% → 54,0%" in linhas
+        assert "- *MG*: 298.149 ativos | 32.359 adesões | Honda 63,8% → 75,1%" in linhas
+        assert "- *PR*: 106.626 ativos | 7.859 adesões | Honda 51,6% → 63,0%" in linhas
+
+    def test_bloco_da_honda(self, linhas):
+        inicio = linhas.index("*Honda*")
+        assert linhas[inicio + 1 : inicio + 5] == [
+            "  Nas UFs: share 55,9% carteira / 64,7% adesões (45.619 adesões)",
+            "  SP 49,9% → 54,0% | MG 63,8% → 75,1% | PR 51,6% → 63,0%",
+            "  🇧🇷 Taxa 23,2% | Inad. 10,6% | Contemp./mês 4,3%",
+            "  🇧🇷 Vendas mês 105.315 | Crédito pendente 142.436",
+        ]
+
+    def test_alertas(self, linhas):
+        inicio = linhas.index("⚠️ *ALERTAS*")
+        assert (
+            linhas[inicio + 1] == "- 📈 Honda ganhando share em MG (+11,3 p.p.) e PR (+11,4 p.p.)"
+        )
+        assert "- 🔴 Yamaha com inadimplência de 18,5%" in linhas[inicio:]
+
+    def test_rodape_explica_a_bandeira(self, linhas):
+        assert linhas[-1] == "_🇧🇷 = dado nacional de Jul/2026, o BCB não divulga por UF_"
+
+    def test_perda_numa_uf_mostra_antes_e_depois(self, registros_consolidado, registros_uf):
+        sicredi = "07808907"
+        texto = compor_mensagem(
+            montar(registros_consolidado, registros_uf, SUDESTE_SUL, sicredi, 0)
+        )
+        assert "- 📉 Sicredi perdendo share no PR (10,2% → 6,0%)" in texto
+
+    def test_sem_uf_vira_brasil(self, registros_consolidado, registros_uf):
+        texto = compor_mensagem(montar(registros_consolidado, registros_uf, [], top=1))
+        assert "🔎 UFs: *Brasil*" in texto
+        assert "📍 *BRASIL* _(2º trimestre/2026)_" in texto
+        assert "  No Brasil: share " in texto
+        assert "- *" not in texto.split("🏢 *ADMINISTRADORAS*")[0].split("_(2º trimestre/2026)_")[1]
+
+    def test_uma_uf_usa_o_nome_do_estado(self, registros_consolidado, registros_uf):
+        texto = compor_mensagem(montar(registros_consolidado, registros_uf, ["PI"]))
+        assert "📍 *PIAUÍ* _(2º trimestre/2026)_" in texto
+        assert "  No PI: share 95,7% carteira" in texto
+        assert "- *PI*:" not in texto  # repetiria o bloco de cima
+
+    def test_mais_de_5_ufs_mostra_extremos(self, registros_consolidado, registros_uf):
+        ufs = ["PI", "MA", "CE", "BA", "PE", "PB", "RN", "AL"]
+        texto = compor_mensagem(montar(registros_consolidado, registros_uf, ufs))
+        assert sum(linha.startswith("- *") for linha in texto.splitlines()) == 6
+        assert "- _+2 UFs no total_" in texto
+
+    def test_detalhe_por_uf_so_com_ate_3_administradoras(self, registros_consolidado, registros_uf):
+        texto = compor_mensagem(montar(registros_consolidado, registros_uf, ["PI", "MA"], top=3))
+        assert "  PI " not in texto and "  MA " not in texto
 
     @pytest.mark.parametrize(
-        "trecho",
-        ["PIAUÍ", "155.648", "148.962", "95,7%", "19.340", "10.305", "9.354", "951"],
+        "ufs", [["PI", "MA"], SUDESTE_SUL, [], ["PI", "MA", "CE", "BA", "PE", "PB"]]
     )
-    def test_bloco_do_piaui(self, mensagem, trecho):
-        assert trecho in mensagem
-
-    @pytest.mark.parametrize("trecho", ["MARANHÃO", "249.533", "228.238", "91,5%", "13.402"])
-    def test_bloco_do_maranhao(self, mensagem, trecho):
-        assert trecho in mensagem
-
-    def test_concorrencia_da_praca(self, mensagem):
-        assert "BB CONSÓRCIOS 1,8%" in mensagem
-
-    def test_oportunidade_soma_as_pracas(self, mensagem):
-        assert "23.707" in mensagem
-        assert "2 praças" in mensagem
-
-    def test_contexto_nacional(self, mensagem):
-        assert "77,3%" in mensagem
-        assert "23,2%" in mensagem
-
-    def test_rodape_com_fonte_e_horario(self, mensagem):
-        assert "Banco Central do Brasil" in mensagem
-        assert "22/09/2026 15:12" in mensagem
-
-    def test_sem_tabelas_que_quebram_no_whatsapp(self, mensagem):
-        assert "|" not in mensagem
-
-    def test_uma_praca_so_usa_singular(self, registros_consolidado, registros_uf):
-        rel = montar_relatorio(registros_consolidado, registros_uf, MOTOS, ["PI"], HONDA)
-        texto = compor_mensagem(rel, GERADO_EM)
-        assert "na praça" in texto
-        assert "praças" not in texto.split("OPORTUNIDADE")[1]
+    def test_cabe_no_limite_de_linhas(self, registros_consolidado, registros_uf, ufs):
+        texto = compor_mensagem(montar(registros_consolidado, registros_uf, ufs))
+        assert len(texto.splitlines()) <= MAX_LINHAS
 
     def test_avisa_quando_falta_o_recorte_por_uf(self, registros_consolidado):
-        rel = montar_relatorio(registros_consolidado, None, MOTOS, ["PI"], HONDA)
-        texto = compor_mensagem(rel, GERADO_EM)
+        rel = montar_relatorio(registros_consolidado, None, MOTOS, ["PI"], CNPJ_HONDA)
+        texto = compor_mensagem(rel)
         assert "recorte por UF" in texto
-        assert "PIAUÍ" not in texto
-
-    def test_avisa_uf_sem_atuacao(self, registros_consolidado, registros_uf):
-        rel = montar_relatorio(registros_consolidado, registros_uf, MOTOS, ["PI", "XX"], HONDA)
-        assert "sem atuação" in compor_mensagem(rel, GERADO_EM)
+        assert "📍" not in texto
+        assert "🇧🇷 Taxa 23,2%" in texto
 
     def test_recusa_compor_sem_resultado(self, registros_consolidado, registros_uf):
         """Nunca enviar mensagem vazia: o chamador deve checar tem_resultado."""
-        rel = montar_relatorio(registros_consolidado, registros_uf, MOTOS, ["PI"], "99999999")
+        rel = montar(registros_consolidado, registros_uf, ["PI"], "99999999", 0)
         with pytest.raises(ValueError, match="sem resultado"):
-            compor_mensagem(rel, GERADO_EM)
+            compor_mensagem(rel)

@@ -3,10 +3,15 @@
 import pytest
 
 from app.domain.formatacao import (
+    com_preposicao,
     formatar_compacto,
     formatar_data_base,
     formatar_inteiro,
+    formatar_mes_curto,
     formatar_percentual,
+    formatar_pontos,
+    formatar_trimestre,
+    nome_curto,
     nome_da_uf,
 )
 
@@ -64,3 +69,52 @@ def test_cobre_as_27_ufs():
 
 def test_uf_desconhecida_volta_a_sigla():
     assert nome_da_uf("XX") == "XX"
+
+
+class TestTemplateDoRelatorio:
+    @pytest.mark.parametrize(
+        ("completo", "curto"),
+        [
+            ("ADM CONS NAC HONDA LTDA", "Honda"),
+            ("YAMAHA ADM CONS LTDA", "Yamaha"),
+            ("ADM CONS SICREDI LTDA", "Sicredi"),
+            ("ÂNCORA ADM CONS S.A.", "Âncora"),
+            ("SPERTA ADM CONSORCIO NAC LTDA", "Sperta"),
+            ("TRADIÇÃO ADM CONS. LTDA.", "Tradição"),
+            ("CONS. NACIONAL VOLKSWAGEN LTDA.", "Volkswagen"),
+            ("ITAÚ ADM DE CONSÓRCIOS LTDA", "Itaú"),
+            ("BB CONSÓRCIOS", "BB"),
+            ("ADM CONS RCI BRASIL LTDA", "RCI Brasil"),
+            ("SUZUKI MOTOS ADM. CONS. LTDA", "Suzuki Motos"),
+            ("SANTA FÉ ADM CONS LTDA", "Santa Fé"),
+            ("APEC ADM CONSORCIO S/A", "Apec"),
+        ],
+    )
+    def test_nome_curto_da_administradora(self, completo, curto):
+        assert nome_curto(completo) == curto
+
+    def test_nome_so_de_ruido_volta_como_veio(self):
+        assert nome_curto("CONSÓRCIO NACIONAL") == "CONSÓRCIO NACIONAL"
+
+    @pytest.mark.parametrize(
+        ("data_base", "trimestre"),
+        [
+            ("202603", "1º trimestre/2026"),
+            ("202606", "2º trimestre/2026"),
+            ("202612", "4º trimestre/2026"),
+        ],
+    )
+    def test_trimestre_da_data_base(self, data_base, trimestre):
+        assert formatar_trimestre(data_base) == trimestre
+
+    def test_mes_abreviado(self):
+        assert formatar_mes_curto("202606") == "Jun/2026"
+        assert formatar_mes_curto("2026") == "2026"
+
+    def test_pontos_percentuais_com_sinal(self):
+        assert formatar_pontos(11.34) == "+11,3 p.p."
+        assert formatar_pontos(-4.2) == "-4,2 p.p."
+
+    @pytest.mark.parametrize(("sigla", "com"), [("PR", "no PR"), ("MG", "em MG"), ("BA", "na BA")])
+    def test_preposicao_da_uf(self, sigla, com):
+        assert com_preposicao(sigla) == com

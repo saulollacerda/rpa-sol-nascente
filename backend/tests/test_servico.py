@@ -67,7 +67,7 @@ class TestCaminhoFeliz:
         [(destino, texto)] = sender.enviadas
         assert destino == "5586999990000"
         assert texto == execucao.mensagem_gerada
-        assert "PIAUÍ" in texto and "MARANHÃO" in texto
+        assert "- *PI*:" in texto and "- *MA*:" in texto
 
     def test_registra_id_do_provedor_e_horario(self, servico):
         execucao = executar(servico)
@@ -79,8 +79,8 @@ class TestCaminhoFeliz:
         dados = executar(servico).dados_encontrados
         assert dados["data_base_consolidado"] == "202607"
         assert dados["data_base_uf"] == "202606"
-        pi = next(p for p in dados["relatorio"]["pracas"] if p["uf"] == "PI")
-        assert pi["ativos"] == 148_962
+        pi = next(p for p in dados["relatorio"]["posicoes_uf"] if p["uf"] == "PI")
+        assert pi["alvo"]["ativos"] == 148_962
 
 
 class TestIdempotencia:

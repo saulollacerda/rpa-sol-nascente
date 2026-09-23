@@ -6,10 +6,11 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
+from app.domain.analise import CNPJ_HONDA, MAX_ADMINISTRADORAS
 from app.domain.execucao import Execucao
 from app.domain.formatacao import UFS
 
-HONDA = "45441789"
+HONDA = CNPJ_HONDA
 
 
 class SolicitacaoIn(BaseModel):
@@ -19,7 +20,7 @@ class SolicitacaoIn(BaseModel):
     segmento: int = Field(4, ge=1, le=6)
     ufs: list[str] = Field(default_factory=lambda: ["PI", "MA"])
     cnpj_administradora: str = Field(HONDA, pattern=r"^\d{1,8}$")
-    top_concorrentes: int = Field(3, ge=0, le=3)
+    top_concorrentes: int = Field(3, ge=0, le=MAX_ADMINISTRADORAS - 1)
     destinatario: str | None = Field(None, examples=["+55 86 99999-0000"])
 
     @field_validator("data_base")
