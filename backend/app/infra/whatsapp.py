@@ -21,12 +21,20 @@ TIMEOUT_SEGUNDOS = 20
 
 # Status do WAHA traduzidos para o que o gestor precisa fazer.
 ERROS_CONHECIDOS = {
-    401: "API key do WAHA inválida",
+    401: "API key do WAHA inválida: a WAHA_API_KEY do backend/.env não é a do container; "
+    "rode `docker compose up -d --force-recreate waha backend`",
     404: "sessão do WAHA não está conectada; escaneie o QR code no painel do WAHA "
     "(http://localhost:3000)",
     422: "sessão do WAHA não está conectada; escaneie o QR code no painel do WAHA "
     "(http://localhost:3000)",
 }
+
+
+# Sem key, o WAHA gera uma aleatória ao subir, e o backend não tem como conhecê-la.
+SEM_API_KEY = (
+    "o backend está sem WAHA_API_KEY; preencha no backend/.env e rode "
+    "`docker compose up -d --force-recreate waha backend`"
+)
 
 
 class FakeSender:
@@ -156,6 +164,8 @@ class WahaSender:
             # Sem o corpo da resposta, que pode conter credenciais (ADR-005).
             base = f"o WAHA recusou o envio (HTTP {resposta.status_code})"
             explicacao = ERROS_CONHECIDOS.get(resposta.status_code)
+            if resposta.status_code == 401 and not self._headers:
+                explicacao = SEM_API_KEY
             raise EnvioError(f"{base}: {explicacao}" if explicacao else base)
 
         try:
