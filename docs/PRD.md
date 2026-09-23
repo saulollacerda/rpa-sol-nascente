@@ -133,7 +133,7 @@ Mapeados contra a lista de *"Requisitos importantes"* do enunciado:
 | Armazenamento do histórico | tabela `execucoes` com parâmetros, resultado, mensagem e status | [ADR-004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | Evitar processamento/envio duplicado | `parametros_hash` SHA-256 com unique constraint + cache de artefatos | [ADR-004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | Credenciais fora do código | `pydantic-settings` + `.env` versionado apenas como `.env.example` | [ADR-005](adr/ADR-005-configuracao-e-segredos.md) |
-| README com instruções | a produzir junto com o scaffold | — |
+| README com instruções | instalação, configuração, uso, testes e solução de problemas | [README](../README.md) |
 
 Cenários de falha que a solução precisa cobrir, conforme o enunciado: consulta sem resultado, informações incompletas, indisponibilidade temporária da fonte, falha durante a navegação e tentativa de processamento duplicado.
 
