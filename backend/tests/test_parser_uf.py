@@ -68,3 +68,11 @@ def test_separa_contemplacao_por_lance_e_sorteio(motos):
     honda_pi = next(r for r in motos if r.uf == "PI" and "HONDA" in r.nome_administradora)
     assert honda_pi.contemplados_lance_no_trimestre == 9_354
     assert honda_pi.contemplados_sorteio_no_trimestre == 951
+
+
+def test_le_os_excluidos(motos):
+    """Base da taxa de exclusão do template."""
+    honda_pi = next(r for r in motos if r.uf == "PI" and "HONDA" in r.nome_administradora)
+    assert honda_pi.excluidos_contemplados == 22_695
+    assert honda_pi.excluidos_nao_contemplados == 82_088
+    assert honda_pi.excluidos == 104_783

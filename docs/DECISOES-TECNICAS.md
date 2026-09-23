@@ -32,6 +32,7 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [22](#22-processar-nunca-deixa-exceção-escapar) | `processar` nunca deixa exceção escapar | [004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | [23](#23-polling-em-vez-de-websocket) | Polling em vez de WebSocket | — |
 | [24](#24-frontend-sem-biblioteca-de-componentes) | Frontend sem biblioteca de componentes | [001](adr/ADR-001-stack-e-arquitetura.md) |
+| [25](#25-regras-do-template-do-relatório) | Regras do template do relatório | — |
 
 ---
 
@@ -339,8 +340,24 @@ A lógica do polling ficou numa função pura (`acompanhar`), testada com relóg
 
 **Alternativa rejeitada:** Material UI, Chakra, Tailwind ou similares.
 
-O painel tem um formulário, um acompanhamento e uma tabela. As únicas dependências de produção são `react` e `react-dom`; o visual é CSS próprio, organizado em variáveis de cor que trocam entre modo claro e escuro. Uma biblioteca de componentes traria centenas de kilobytes e um vocabulário visual genérico para resolver um problema pequeno.
+O painel tem um formulário, um acompanhamento e uma tabela. As únicas dependências de produção são `react` e `react-dom`; o visual é CSS próprio, organizado em variáveis de cor. Uma biblioteca de componentes traria centenas de kilobytes e um vocabulário visual genérico para resolver um problema pequeno.
 
 Os testes de componente procuram elementos pelo papel de acessibilidade (`role="status"`, `aria-pressed`, `aria-label`) e não por classe CSS. Isso obriga a marcação a ser acessível e deixa os testes imunes a mudanças de estilo — como a troca de paleta feita no meio do desenvolvimento, que não quebrou nenhum teste.
 
 > **Em uma frase:** três telas não justificam uma biblioteca inteira, e testar pelo que o usuário vê manteve os testes estáveis quando o visual mudou.
+
+## 25. Regras do template do relatório
+
+**Alternativa rejeitada:** um bloco por praça com o ranking de concorrentes pela carteira, e share calculado sobre o Brasil.
+
+O relatório segue o template do analista (`domain/mensagem.py`). As regras que não estavam escritas nele foram decididas aqui:
+
+- **Share dentro do recorte.** O share é calculado sobre o total das UFs escolhidas, não sobre o país. A Honda tem 55,9% em SP+MG+PR, contra 77% no Brasil, e é o número de SP+MG+PR que importa para quem vende lá.
+- **Carteira → adesões.** A seta compara o share da carteira ativa com o share das vendas do trimestre. Adesões acima da carteira significam que a administradora está ganhando espaço.
+- **Concorrentes por adesões.** O painel escolhe uma administradora e o relatório traz as maiores concorrentes em adesões no recorte. Adesões mostram quem está vendendo agora; a carteira mostra quem vendeu no passado. A Honda entra sempre como referência. O teto é de 4 administradoras, para a mensagem não passar de 50 linhas.
+- **🇧🇷 nos dados nacionais.** Taxa, inadimplência, contemplação no mês, vendas e crédito pendente só existem no dataset consolidado, que é nacional. Sem a marca, o leitor tomaria esses números pelos das UFs escolhidas.
+- **Quando um movimento de share vira alerta.** Precisa passar das duas réguas ao mesmo tempo: pelo menos 1 p.p. e pelo menos 15% do share de partida. A primeira descarta o ruído de quem tem 0,5% de mercado. A segunda descarta +4 p.p. sobre 50%, que é oscilação normal de trimestre. Com essas réguas, o exemplo preenchido do template sai idêntico.
+- **Quando a inadimplência vira alerta.** A partir de 15% das cotas ativas.
+- **Contemplação no mês.** Calculada sobre as cotas ainda não contempladas, porque é a chance mensal de quem espera a carta. Sobre o total de cotas ativas, o número ficaria diluído pelas cotas que já foram contempladas.
+
+> **Em uma frase:** o template define o que mostrar; as réguas definem o que merece alerta, e foram calibradas para reproduzir o exemplo do próprio analista.

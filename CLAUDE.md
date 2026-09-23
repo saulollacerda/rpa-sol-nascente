@@ -186,7 +186,7 @@ npm test           # Vitest
 npm run build      # checagem de tipos + build de produção
 ```
 
-Paleta: vermelho `#DB4B4B`, branco e preto, com modo claro e escuro automático. Verde só no status de sucesso.
+Visual segue o site da Sol Nascente Motos: vermelho Honda `#CC0000`, branco e grafite `#232429`, fonte Roboto, sem sombras, sempre em modo claro. Verde só no status de sucesso. Logo em `frontend/public/logo.png` (espaço de 245 × 40).
 
 ### Direto no host
 

@@ -27,9 +27,8 @@ def solicitar(
     """202 quando a execução é criada ou retentada; 200 quando já existia (ADR-004)."""
     destinatario = corpo.destinatario or settings.whatsapp_destinatario
     if not destinatario:
-        raise HTTPException(
-            422, "destinatário não informado e WHATSAPP_DESTINATARIO não configurado"
-        )
+        # Operator-facing: the missing WHATSAPP_DESTINATARIO is a deploy detail.
+        raise HTTPException(422, "Informe o número de WhatsApp que vai receber o relatório.")
 
     solicitacao = servico.solicitar(
         ParametrosConsulta(

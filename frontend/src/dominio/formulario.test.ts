@@ -5,6 +5,7 @@ import {
   estadoInicial,
   montarSolicitacao,
   validar,
+  validarTelefone,
 } from "./formulario";
 import type { Opcoes } from "../api/tipos";
 
@@ -14,6 +15,7 @@ const PADRAO: Opcoes["padrao"] = {
   ufs: ["PI", "MA"],
   cnpj_administradora: "45441789",
   top_concorrentes: 3,
+  tem_destinatario_padrao: true,
 };
 
 describe("formulário do painel", () => {
@@ -49,12 +51,46 @@ describe("formulário do painel", () => {
   });
 
   it.each([
+    [{ topConcorrentes: 4 }, "topConcorrentes"],
     [{ ufs: [] }, "ufs"],
+    [{ segmento: 0 }, "segmento"],
     [{ dataBase: "" }, "dataBase"],
     [{ destinatario: "123" }, "destinatario"],
     [{ cnpj: "" }, "cnpj"],
   ])("recusa %o", (alteracao, campo) => {
     expect(validar({ ...estadoInicial(PADRAO), ...alteracao })).toHaveProperty(campo);
+  });
+
+  it("recusa concorrentes fracionado", () => {
+    expect(validar({ ...estadoInicial(PADRAO), topConcorrentes: 1.5 })).toHaveProperty(
+      "topConcorrentes",
+    );
+  });
+
+  describe("telefone do destinatário", () => {
+    it("sem número padrão no servidor, o campo é obrigatório", () => {
+      expect(validarTelefone("", true)).toBe(
+        "Informe o número de WhatsApp que vai receber o relatório.",
+      );
+      expect(validar(estadoInicial(PADRAO), true)).toHaveProperty("destinatario");
+    });
+
+    it.each(["", "86999990000", "(86) 99999-0000", "86 99999 0000", "+55 86 99999-0000"])(
+      "aceita %j",
+      (valor) => {
+        expect(validarTelefone(valor)).toBeUndefined();
+      },
+    );
+
+    it.each([
+      ["86 9889A-6964", /só números/i],
+      ["8698892696", /incompleto/i],
+      ["869999900000", /dígitos demais/i],
+      ["06999990000", /DDD/],
+      ["86899990000", /começa com 9/],
+    ])("recusa %j", (valor, mensagem) => {
+      expect(validarTelefone(valor)).toMatch(mensagem);
+    });
   });
 
   it("alterna uma UF", () => {

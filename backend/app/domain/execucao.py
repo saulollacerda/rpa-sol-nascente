@@ -9,7 +9,9 @@ from typing import Any
 
 from app.domain.erros import TransicaoInvalida
 
-VERSAO_DA_CHAVE = 1  # muda se o conjunto de campos da chave mudar
+# Changes when the key fields change, or when the same parameters start producing
+# a different report (v2: WhatsApp template) — otherwise the old one is reused.
+VERSAO_DA_CHAVE = 2
 
 
 class StatusExecucao(StrEnum):

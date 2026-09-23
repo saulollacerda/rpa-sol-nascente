@@ -105,7 +105,7 @@ class ServicoExecucao:
             if not relatorio.tem_resultado:
                 log.info("sem resultado para os parâmetros; nada a enviar")
                 return self._avancar(execucao_id, S.SEM_RESULTADO, dados_encontrados=encontrados)
-            mensagem = compor_mensagem(relatorio, self._agora())
+            mensagem = compor_mensagem(relatorio)
         except Exception as erro:  # noqa: BLE001
             return self._falhar(execucao_id, S.FALHA_PROCESSAMENTO, erro, log)
 

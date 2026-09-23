@@ -5,8 +5,9 @@ from typing import Annotated, Protocol
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.api.dependencias import get_opcoes
+from app.api.dependencias import get_opcoes, get_settings
 from app.api.schemas import HONDA
+from app.config import Settings
 from app.domain.erros import ColetaError, ParsingError
 from app.domain.formatacao import UFS
 from app.domain.modelos import SEGMENTOS
@@ -43,6 +44,8 @@ class PadraoOut(BaseModel):
     ufs: list[str]
     cnpj_administradora: str
     top_concorrentes: int
+    # Sem número no .env, o painel exige o campo em vez de descobrir no envio.
+    tem_destinatario_padrao: bool
 
 
 class OpcoesOut(BaseModel):
@@ -55,7 +58,10 @@ class OpcoesOut(BaseModel):
 
 
 @router.get("", response_model=OpcoesOut)
-def opcoes(fonte: Annotated[FonteDeOpcoes, Depends(get_opcoes)]) -> OpcoesOut:
+def opcoes(
+    fonte: Annotated[FonteDeOpcoes, Depends(get_opcoes)],
+    settings: Annotated[Settings, Depends(get_settings)],
+) -> OpcoesOut:
     """A primeira chamada abre o site do BCB (~10s); as seguintes vêm do cache (ADR-006)."""
     try:
         o = fonte.obter()
@@ -77,5 +83,6 @@ def opcoes(fonte: Annotated[FonteDeOpcoes, Depends(get_opcoes)]) -> OpcoesOut:
             ufs=UFS_DA_SOL_NASCENTE,
             cnpj_administradora=HONDA,
             top_concorrentes=3,
+            tem_destinatario_padrao=bool(settings.whatsapp_destinatario),
         ),
     )

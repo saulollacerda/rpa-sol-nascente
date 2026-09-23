@@ -26,6 +26,9 @@ class RegistroConsolidado:
     cotas_ativas_nao_contempladas: int
     cotas_ativas_contempladas_inadimplentes: int
     cotas_ativas_nao_contempladas_inadimplentes: int
+    cotas_comercializadas_no_mes: int = 0
+    cotas_contempladas_no_mes: int = 0
+    cotas_credito_pendente: int = 0
 
     @property
     def cotas_ativas(self) -> int:
@@ -54,6 +57,8 @@ class RegistroUF:
     contemplados_lance_no_trimestre: int
     contemplados_sorteio_no_trimestre: int
     adesoes_no_trimestre: int
+    excluidos_contemplados: int = 0
+    excluidos_nao_contemplados: int = 0
 
     @property
     def consorciados_ativos(self) -> int:
@@ -62,3 +67,7 @@ class RegistroUF:
     @property
     def contemplados_no_trimestre(self) -> int:
         return self.contemplados_lance_no_trimestre + self.contemplados_sorteio_no_trimestre
+
+    @property
+    def excluidos(self) -> int:
+        return self.excluidos_contemplados + self.excluidos_nao_contemplados

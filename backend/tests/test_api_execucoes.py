@@ -53,7 +53,7 @@ class TestSolicitar:
         execucao_id = resposta.json()["execucao"]["id"]
         final = cliente.get(f"/execucoes/{execucao_id}").json()
         assert final["status"] == "ENVIADO"
-        assert "PIAUÍ" in final["mensagem_gerada"]
+        assert "- *PI*:" in final["mensagem_gerada"]
 
     def test_repetir_o_pedido_nao_reenvia(self, cliente, sender):
         cliente.post("/execucoes", json=CORPO)
@@ -68,11 +68,19 @@ class TestSolicitar:
         [(destino, _)] = sender.enviadas
         assert destino == "5586777770000"
 
+    @pytest.mark.parametrize("digitado", ["86999990000", "(86) 99999-0000", "+55 86 99999-0000"])
+    def test_destinatario_so_com_ddd_ganha_o_ddi_55(self, cliente, sender, digitado):
+        cliente.post("/execucoes", json={**CORPO, "destinatario": digitado})
+        [(destino, _)] = sender.enviadas
+        assert destino == "5586999990000"
+
     def test_sem_destinatario_e_sem_default(self, cliente):
         app.dependency_overrides[get_settings] = lambda: Settings(whatsapp_destinatario=None)
         resposta = cliente.post("/execucoes", json={"data_base": "202607"})
         assert resposta.status_code == 422
-        assert "destinatário" in resposta.json()["detail"]
+        assert resposta.json()["detail"] == (
+            "Informe o número de WhatsApp que vai receber o relatório."
+        )
 
     def test_falha_de_coleta_fica_registrada(self, cliente, fonte):
         fonte.falhar_com = "site do BCB indisponível"
@@ -94,16 +102,27 @@ class TestSolicitar:
 
 
 class TestValidacao:
+    def test_sem_praca_explica_o_que_falta(self, cliente):
+        resposta = cliente.post("/execucoes", json={**CORPO, "ufs": []})
+        assert resposta.status_code == 422
+        assert "escolha ao menos uma praça" in resposta.text
+
     @pytest.mark.parametrize(
         "invalido",
         [
             {"data_base": "2026-07"},
             {"data_base": "202613"},
             {"ufs": ["XX"]},
-            {"ufs": []},
             {"segmento": 9},
             {"top_concorrentes": -1},
+            {"top_concorrentes": 4},  # com a escolhida, passaria de 4 administradoras
             {"destinatario": "123"},
+            {"destinatario": "86 9999-0000"},
+            {"destinatario": "86 99999-00000"},
+            {"destinatario": "+55 86 9999A-0000"},
+            {"destinatario": "+55 06 99999-0000"},
+            {"destinatario": "+55 86 89999-0000"},
+            {"destinatario": "+55 86 9999-0000"},
             {"cnpj_administradora": "abc"},
         ],
     )
