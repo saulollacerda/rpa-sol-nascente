@@ -5,7 +5,7 @@
 **Cliente:** Sol Nascente Motos — concessionária Honda, praças **Piauí e Maranhão**.
 
 **Status:** MVP / desafio técnico
-**Última atualização:** 2026-09-22
+**Última atualização:** 2026-09-23
 
 ---
 
@@ -76,41 +76,57 @@ As opções de data-base **não são hardcoded**: são lidas do formulário do B
 
 ## 6. Relatório gerado
 
-Exemplo real, com os números apurados da fonte (consolidado Julho/2026, UF Junho/2026):
+Exemplo real, enviado pelo sistema para a consulta padrão (data-base Junho/2026, Piauí e Maranhão, Honda e as 3 maiores concorrentes em adesões):
 
 ```
-📊 RADAR DE CONSÓRCIO DE MOTOS
-Segmento 4 (motocicletas e motonetas)
-Praças: data-base Junho/2026 · Nacional: Julho/2026
+🏍️ *CONSÓRCIO MOTOS – SEGMENTO 4*
+📅 Jun/2026 | Fonte: BCB
+🔎 UFs: *MA, PI*
+🏢 Adms: *Honda, Yamaha, Tradição, Âncora*
 
-🏍️ SUAS PRAÇAS
+📍 *UFs SELECIONADAS* _(trimestre)_
+- Consorciados ativos: *405.181*
+- Adesões: *49.675*
+- Contemplações: 24.636 (89,9% por lance)
+- Taxa de exclusão: 41,6%
+- Administradoras atuando: 46
 
-PIAUÍ — 155.648 consorciados ativos · 40 administradoras
-  Consórcio Nacional Honda
-    Ativos ............... 148.962  (95,7% da praça)
-    Adesões no trimestre .. 19.340
-    Contemplados .......... 10.305  (9.354 lance · 951 sorteio)
-  Concorrência: BB 1,8% · Yamaha 0,9% · Âncora 0,5%
+- *MA*: 249.533 ativos | 29.664 adesões | Honda 91,5% → 91,9%
+- *PI*: 155.648 ativos | 20.011 adesões | Honda 95,7% → 96,6%
 
-MARANHÃO — 249.533 consorciados ativos · 45 administradoras
-  Consórcio Nacional Honda
-    Ativos ............... 228.238  (91,5% da praça)
-    Adesões no trimestre .. 27.261
-    Contemplados .......... 13.402  (12.032 lance · 1.370 sorteio)
-  Concorrência: Yamaha 3,3% · BB 1,9% · Suzuki Motos 0,7%
+🏢 *ADMINISTRADORAS*
+*Honda*
+  Nas UFs: share 93,1% carteira / 93,8% adesões (46.601 adesões)
+  🇧🇷 Taxa 23,2% | Inad. 11,1% | Contemp./mês 4,2%
+  🇧🇷 Vendas mês 107.700 | Crédito pendente 114.655
 
-🎯 OPORTUNIDADE
-23.707 consumidores contemplados nas duas praças neste trimestre
-— carta de crédito disponível para aquisição de moto.
+*Yamaha*
+  Nas UFs: share 2,4% carteira / 1,8% adesões (898 adesões)
+  🇧🇷 Taxa 19,5% | Inad. 19,2% | Contemp./mês 2,5%
+  🇧🇷 Vendas mês 4.472 | Crédito pendente 4.447
 
-🇧🇷 CONTEXTO NACIONAL
-Honda lidera com 77,3% do mercado (2,57 mi de 3,32 mi de cotas ativas)
-Taxa de administração: 23,2% · 3.760 grupos ativos
-Seguidos por BB 4,4% · Yamaha 3,9% · Itaú 1,9%
+*Tradição*
+  Nas UFs: share 0,4% carteira / 1,5% adesões (748 adesões)
+  🇧🇷 Taxa 24,7% | Inad. 27,8% | Contemp./mês 0,8%
+  🇧🇷 Vendas mês 404 | Crédito pendente 47
 
-Fonte: Banco Central do Brasil · gerado em 22/09/2026 15:12
+*Âncora*
+  Nas UFs: share 0,4% carteira / 0,9% adesões (456 adesões)
+  🇧🇷 Taxa 14,3% | Inad. 11,6% | Contemp./mês 0,7%
+  🇧🇷 Vendas mês 2.917 | Crédito pendente 894
+
+⚠️ *ALERTAS*
+- 📉 Yamaha perdendo share no MA (3,3% → 2,3%)
+- 📈 Tradição ganhando share no MA (0,7% → 2,5%)
+- 🔴 Yamaha com inadimplência de 19,2%
+- 🔴 Tradição com inadimplência de 27,8%
+
+_🇧🇷 = dado nacional de Jun/2026, o BCB não divulga por UF_
 ```
-O formato é texto puro com emojis, otimizado para leitura no WhatsApp — sem tabelas, que quebram no app.
+
+O formato é texto com emojis e a formatação nativa do WhatsApp (`*negrito*`, `_itálico_`), otimizado para leitura no celular. Não há tabelas, que quebram no app. As regras de share, concorrentes e alertas estão na [entrada 25 das decisões técnicas](DECISOES-TECNICAS.md#25-regras-do-template-do-relatório).
+
+> **Revisão (2026-09-23):** o exemplo original trazia um bloco por praça com o ranking de concorrentes pela carteira. O relatório passou a seguir o template do analista: recorte somado das UFs, share de carteira comparado ao de adesões, concorrentes escolhidas pelas adesões e alertas de movimento de share e de inadimplência.
 
 ## 7. Regras de negócio
 
@@ -133,7 +149,7 @@ Mapeados contra a lista de *"Requisitos importantes"* do enunciado:
 | Armazenamento do histórico | tabela `execucoes` com parâmetros, resultado, mensagem e status | [ADR-004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | Evitar processamento/envio duplicado | `parametros_hash` SHA-256 com unique constraint + cache de artefatos | [ADR-004](adr/ADR-004-persistencia-e-idempotencia.md) |
 | Credenciais fora do código | `pydantic-settings` + `.env` versionado apenas como `.env.example` | [ADR-005](adr/ADR-005-configuracao-e-segredos.md) |
-| README com instruções | a produzir junto com o scaffold | — |
+| README com instruções | instalação, configuração, uso, testes e solução de problemas | [README](../README.md) |
 
 Cenários de falha que a solução precisa cobrir, conforme o enunciado: consulta sem resultado, informações incompletas, indisponibilidade temporária da fonte, falha durante a navegação e tentativa de processamento duplicado.
 
