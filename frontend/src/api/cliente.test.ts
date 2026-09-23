@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { ErroApi, mensagemDeErro, solicitar } from "./cliente";
+import { ErroApi, mensagemDeErro, obterConexao, reconectarWhatsApp, solicitar } from "./cliente";
 
 function responder(status: number, corpo: unknown) {
   const fetch = vi.fn().mockResolvedValue(
@@ -44,5 +44,22 @@ describe("solicitar", () => {
     await expect(solicitar({} as never)).rejects.toEqual(
       new ErroApi(422, "destinatário não informado"),
     );
+  });
+});
+
+describe("conexão do WhatsApp", () => {
+  it("lê o status em GET /whatsapp/conexao", async () => {
+    const fetch = responder(200, { situacao: "CONECTADO", conta: null, qr_code: null, mensagem: null });
+    const conexao = await obterConexao();
+    expect(fetch.mock.calls[0][0]).toBe("/whatsapp/conexao");
+    expect(conexao.situacao).toBe("CONECTADO");
+  });
+
+  it("pede um QR code novo em POST /whatsapp/conexao/reconectar", async () => {
+    const fetch = responder(202, null);
+    await reconectarWhatsApp();
+    const [url, init] = fetch.mock.calls[0];
+    expect(url).toBe("/whatsapp/conexao/reconectar");
+    expect(init.method).toBe("POST");
   });
 });

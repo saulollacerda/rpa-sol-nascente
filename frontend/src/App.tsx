@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ErroApi, listarExecucoes, obterExecucao, solicitar } from "./api/cliente";
 import type { Decisao, Execucao, Solicitacao } from "./api/tipos";
 import { AcompanhamentoExecucao } from "./componentes/AcompanhamentoExecucao";
+import { ConexaoWhatsApp } from "./componentes/ConexaoWhatsApp";
 import { DadosEncontrados } from "./componentes/DadosEncontrados";
 import { Historico } from "./componentes/Historico";
 import { Logo } from "./componentes/Logo";
@@ -9,10 +10,12 @@ import { PainelConsulta } from "./componentes/PainelConsulta";
 import { Rodape } from "./componentes/Rodape";
 import { acompanhar } from "./dominio/acompanhar";
 import { ehTerminal } from "./dominio/etapas";
+import { useConexao } from "./hooks/useConexao";
 import { useOpcoes } from "./hooks/useOpcoes";
 
 export function App() {
   const { opcoes, erro: erroOpcoes, carregando, recarregar } = useOpcoes();
+  const { conexao, reconectando, reconectar } = useConexao();
   const [atual, setAtual] = useState<Execucao | null>(null);
   const [decisao, setDecisao] = useState<Decisao>();
   const [enviando, setEnviando] = useState(false);
@@ -99,12 +102,22 @@ export function App() {
             )}
           </section>
 
-          {atual && (
-            <section className="cartao cartao--entrando" aria-label="Acompanhamento">
-              <AcompanhamentoExecucao execucao={atual} decisao={decisao} />
-              {atual.dados_encontrados && <DadosEncontrados dados={atual.dados_encontrados} />}
+          <div className="coluna">
+            <section className="cartao" aria-labelledby="titulo-whatsapp">
+              <ConexaoWhatsApp
+                conexao={conexao}
+                reconectando={reconectando}
+                onReconectar={reconectar}
+              />
             </section>
-          )}
+
+            {atual && (
+              <section className="cartao cartao--entrando" aria-label="Acompanhamento">
+                <AcompanhamentoExecucao execucao={atual} decisao={decisao} />
+                {atual.dados_encontrados && <DadosEncontrados dados={atual.dados_encontrados} />}
+              </section>
+            )}
+          </div>
         </main>
 
         <section className="cartao historico-cartao" aria-labelledby="titulo-historico">

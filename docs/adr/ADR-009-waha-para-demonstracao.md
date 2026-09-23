@@ -22,6 +22,8 @@ O envio real passa a ser feito pelo **WAHA** (WhatsApp HTTP API, imagem `devlike
 
 O WAHA roda como serviço do `docker-compose.yml` e sobe junto com o resto no `docker compose up`. Usa a engine `GOWS` (sem Chromium) e guarda a sessão num volume, para o QR code ser escaneado uma vez só.
 
+**A conexão é feita pelo próprio painel.** O domínio define uma segunda porta, `ConexaoWhatsApp` (`estado()` e `reconectar()`), que o `WahaSender` também implementa. A API a expõe em `GET /whatsapp/conexao` (situação, conta e QR code em data URI) e `POST /whatsapp/conexao/reconectar`. O painel consulta a cada 3 s enquanto não conecta e a cada 15 s depois, para notar uma desconexão. Quem demonstra não precisa abrir o painel do WAHA nem conhecer a API key dele.
+
 ### Variáveis
 
 | Variável | Segredo | Descrição |

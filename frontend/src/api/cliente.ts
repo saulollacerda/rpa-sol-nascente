@@ -1,4 +1,4 @@
-import type { Execucao, Opcoes, RespostaSolicitacao, Solicitacao } from "./tipos";
+import type { Conexao, Execucao, Opcoes, RespostaSolicitacao, Solicitacao } from "./tipos";
 
 export class ErroApi extends Error {
   constructor(
@@ -55,3 +55,8 @@ export const solicitar = (solicitacao: Solicitacao) =>
 export const obterExecucao = (id: number) => pedir<Execucao>(`/execucoes/${id}`);
 
 export const listarExecucoes = (limite = 20) => pedir<Execucao[]>(`/execucoes?limite=${limite}`);
+
+export const obterConexao = () => pedir<Conexao>("/whatsapp/conexao");
+
+export const reconectarWhatsApp = () =>
+  pedir<null>("/whatsapp/conexao/reconectar", { method: "POST" });
