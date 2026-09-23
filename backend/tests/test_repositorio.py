@@ -41,6 +41,19 @@ def avancar(repo, execucao_id, *passos):
         repo.atualizar(execucao_id, status, AGORA)
 
 
+def concluir(repo, execucao_id):
+    avancar(repo, execucao_id, S.COLETANDO, S.PROCESSANDO)
+    repo.atualizar(
+        execucao_id,
+        S.MENSAGEM_GERADA,
+        AGORA,
+        dados_encontrados={"n": 1},
+        mensagem_gerada="relatório",
+    )
+    avancar(repo, execucao_id, S.ENVIANDO)
+    repo.atualizar(execucao_id, S.ENVIADO, AGORA, enviado_em=AGORA, provider_message_id="id-1")
+
+
 class TestCriacao:
     def test_nasce_pendente_na_primeira_tentativa(self, repo):
         execucao = criar(repo)
@@ -53,8 +66,8 @@ class TestCriacao:
         execucao = criar(repo)
         assert repo.obter(execucao.id).parametros == params()
 
-    def test_chave_repetida_e_barrada_pelo_banco(self, repo):
-        """A unique constraint é o mecanismo anti-duplicidade do ADR-004."""
+    def test_chave_em_andamento_e_barrada_pelo_banco(self, repo):
+        """Índice único parcial (ADR-010): duas execuções da mesma chave em curso, nunca."""
         primeira = criar(repo)
         with pytest.raises(ExecucaoDuplicada) as erro:
             criar(repo)
@@ -66,11 +79,49 @@ class TestCriacao:
             criar(repo)
         assert criar(repo, ufs=("PI",)).id > 0
 
+    def test_chave_concluida_aceita_nova_execucao(self, repo):
+        """O reenvio é uma linha nova no histórico, com a mesma chave."""
+        primeira = criar(repo)
+        concluir(repo, primeira.id)
+        segunda = criar(repo)
+        assert segunda.id != primeira.id
+        assert segunda.chave == primeira.chave
+
+    def test_chave_com_falha_nao_bloqueia(self, repo):
+        primeira = criar(repo)
+        avancar(repo, primeira.id, S.COLETANDO, S.FALHA_COLETA)
+        assert criar(repo).id != primeira.id
+
+
+class TestReaproveitamento:
+    def test_nova_execucao_herda_dados_e_mensagem_da_origem(self, repo):
+        origem = criar(repo)
+        concluir(repo, origem.id)
+        origem = repo.obter(origem.id)
+
+        p = params()
+        nova = repo.criar(p, chave_idempotencia(p), AGORA, origem=origem)
+
+        assert nova.status is S.PENDENTE
+        assert nova.origem_id == origem.id
+        assert nova.dados_encontrados == {"n": 1}
+        assert nova.mensagem_gerada == "relatório"
+        assert nova.enviado_em is None and nova.provider_message_id is None
+
+    def test_execucao_comum_nao_tem_origem(self, repo):
+        assert criar(repo).origem_id is None
+
 
 class TestConsulta:
     def test_buscar_por_chave(self, repo):
         execucao = criar(repo)
         assert repo.buscar_por_chave(execucao.chave).id == execucao.id
+
+    def test_buscar_por_chave_devolve_a_mais_recente(self, repo):
+        primeira = criar(repo)
+        concluir(repo, primeira.id)
+        segunda = criar(repo)
+        assert repo.buscar_por_chave(primeira.chave).id == segunda.id
 
     def test_inexistentes(self, repo):
         assert repo.obter(999) is None
@@ -176,3 +227,34 @@ def test_banco_em_arquivo(tmp_path):
 
     outro = RepositorioSQL(criar_engine(url))
     assert outro.obter(execucao.id).parametros == params()
+
+
+def test_migra_o_banco_criado_com_a_chave_unica(tmp_path):
+    """Bancos anteriores ao ADR-010 têm unique em parametros_hash e não têm origem_id."""
+    import sqlite3
+
+    arquivo = tmp_path / "execucoes.db"
+    antigo = sqlite3.connect(arquivo)
+    antigo.executescript("""
+        CREATE TABLE execucoes (
+            id INTEGER PRIMARY KEY, parametros_hash VARCHAR(64), parametros JSON,
+            destinatario VARCHAR(20), status VARCHAR(24), tentativas INTEGER,
+            criado_em DATETIME, atualizado_em DATETIME, dados_encontrados JSON,
+            mensagem_gerada TEXT, enviado_em DATETIME, provider_message_id VARCHAR(128),
+            erro_tipo VARCHAR(64), erro_descricao TEXT
+        );
+        CREATE UNIQUE INDEX ix_execucoes_parametros_hash ON execucoes (parametros_hash);
+        CREATE INDEX ix_execucoes_status ON execucoes (status);
+        """)
+    antigo.close()
+
+    engine = criar_engine(f"sqlite:///{arquivo}")
+    criar_tabelas(engine)
+    criar_tabelas(engine)  # idempotente: roda a cada subida da API
+    repo = RepositorioSQL(engine)
+
+    primeira = criar(repo)
+    concluir(repo, primeira.id)
+    assert criar(repo).id != primeira.id
+    with pytest.raises(ExecucaoDuplicada):
+        criar(repo)

@@ -55,12 +55,22 @@ class TestSolicitar:
         assert final["status"] == "ENVIADO"
         assert "- *PI*:" in final["mensagem_gerada"]
 
-    def test_repetir_o_pedido_nao_reenvia(self, cliente, sender):
-        cliente.post("/execucoes", json=CORPO)
+    def test_repetir_o_pedido_reenvia_com_os_mesmos_dados(self, cliente, sender, fonte):
+        primeira = cliente.post("/execucoes", json=CORPO).json()["execucao"]
         de_novo = cliente.post("/execucoes", json={**CORPO, "ufs": ["MA", "PI"]})
-        assert de_novo.status_code == 200
-        assert de_novo.json()["decisao"] == "REUSAR"
-        assert len(sender.enviadas) == 1
+        assert de_novo.status_code == 202
+        assert de_novo.json()["decisao"] == "REENVIAR"
+
+        final = cliente.get(f"/execucoes/{de_novo.json()['execucao']['id']}").json()
+        assert final["status"] == "ENVIADO"
+        assert final["origem_id"] == primeira["id"]
+        assert len(sender.enviadas) == 2
+        assert fonte.chamadas == 1
+
+    def test_historico_mostra_cada_envio(self, cliente):
+        cliente.post("/execucoes", json=CORPO)
+        cliente.post("/execucoes", json=CORPO)
+        assert [e["status"] for e in cliente.get("/execucoes").json()] == ["ENVIADO", "ENVIADO"]
 
     def test_defaults_do_painel(self, cliente, sender):
         """Segmento 4, PI e MA, Honda e destinatário do .env — PRD, seção 5."""

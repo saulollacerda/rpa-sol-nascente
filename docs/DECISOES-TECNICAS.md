@@ -34,6 +34,7 @@ Cada entrada traz a alternativa rejeitada, o motivo real e uma frase curta de de
 | [24](#24-frontend-sem-biblioteca-de-componentes) | Frontend sem biblioteca de componentes | [001](adr/ADR-001-stack-e-arquitetura.md) |
 | [25](#25-regras-do-template-do-relatório) | Regras do template do relatório | — |
 | [26](#26-waha-em-vez-da-cloud-api) | WAHA em vez da Cloud API | [009](adr/ADR-009-waha-para-demonstracao.md) |
+| [27](#27-reenviar-sem-coletar-de-novo) | Reenviar sem coletar de novo | [010](adr/ADR-010-reenvio-com-dados-reaproveitados.md) |
 
 ---
 
@@ -378,3 +379,13 @@ O WAHA conecta um número comum por QR code e expõe uma API REST. O adapter con
 O custo é o que a entrada 12 apontava: o WAHA não é oficial, e o número pode ser banido. Aceitável numa demo com chip dedicado. Para produção, o [ADR-009](adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção) descreve a volta à Cloud API.
 
 > **Em uma frase:** escolhi o canal que torna a demonstração confiável e deixei documentado o canal que tornaria o produto sustentável.
+
+## 27. Reenviar sem coletar de novo
+
+**Alternativa rejeitada:** tratar a consulta enviada como concluída para sempre, que era a regra do ADR-004.
+
+O botão se chama **Gerar e enviar relatório**. Quando o gestor clicava numa consulta já feita, nada chegava no WhatsApp, e isso parecia defeito. O ADR-004 misturava duas coisas: não reprocessar, que é caro, e não reenviar, que só é problema quando acontece por acidente.
+
+Agora, cada clique numa consulta já enviada cria uma execução nova que herda os dados e a mensagem da anterior e vai direto ao envio, sem abrir o site do BCB. O clique duplo continua barrado, agora por um índice único **parcial** no banco, que só vale enquanto a execução está em andamento. Cada envio é uma linha no histórico, com o seu horário e o id da mensagem.
+
+> **Em uma frase:** o que o desafio pede para evitar é o processamento repetido e o envio acidental. O envio pedido é o produto funcionando.

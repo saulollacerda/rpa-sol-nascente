@@ -117,6 +117,7 @@ export function execucao(sobrescrever: Partial<Execucao> = {}): Execucao {
     provider_message_id: "fake-1",
     erro_tipo: null,
     erro_descricao: null,
+    origem_id: null,
     ...sobrescrever,
   };
 }

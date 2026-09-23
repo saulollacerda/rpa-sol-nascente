@@ -17,6 +17,7 @@ A motivação é prática. Decisões de arquitetura são difíceis de reconstrui
 | [007](ADR-007-empacotamento-com-docker.md) | Empacotamento com Docker | Imagem oficial do Playwright; alvos `dev` e `prod`; `data/` em bind mount |
 | [008](ADR-008-catalogo-pela-rede-da-pagina.md) | Catálogo pela rede da página | O robô navega e escuta o JSON que a própria página pede; nenhum endpoint no código |
 | [009](ADR-009-waha-para-demonstracao.md) | WAHA para a demonstração | Envio real pelo WAHA (não oficial, só para demo); Cloud API da Meta documentada como caminho para produção |
+| [010](ADR-010-reenvio-com-dados-reaproveitados.md) | Reenvio com dados reaproveitados | Cada clique envia; a consulta já feita não é coletada de novo; o banco só barra duplicata em andamento |
 
 Todos os ADRs acima estão com status **Aceito**, exceto o 003, substituído pelo 009.
 

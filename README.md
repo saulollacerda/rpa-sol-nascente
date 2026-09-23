@@ -186,9 +186,20 @@ PENDENTE → COLETANDO → PROCESSANDO → MENSAGEM_GERADA → ENVIANDO → ENVI
          FALHA_COLETA  FALHA_PROCESSAMENTO               FALHA_ENVIO
                             │
                             └──→ SEM_RESULTADO   (desfecho válido: nada a enviar)
+
+PENDENTE ──────────────────────→ MENSAGEM_GERADA → ENVIANDO → ENVIADO
+         (reenvio: dados reaproveitados, sem coleta)
 ```
 
-Uma execução que falhou pode ser repetida: basta clicar de novo em **Gerar e enviar relatório** com os mesmos parâmetros. A mesma execução volta para `PENDENTE` e soma uma tentativa. Uma execução concluída (`ENVIADO` ou `SEM_RESULTADO`) **não se repete**: o painel avisa que o relatório já foi enviado.
+**Cada clique em Gerar e enviar relatório envia**, mas a coleta não se repete ([ADR-010](docs/adr/ADR-010-reenvio-com-dados-reaproveitados.md)):
+
+| Última execução com os mesmos parâmetros | O que acontece |
+|---|---|
+| nenhuma | coleta no BCB, gera a mensagem e envia |
+| `ENVIADO` | nova execução que **reaproveita os dados e a mensagem** e só envia, sem abrir o site do BCB |
+| em andamento | nada de novo: o clique duplo não duplica |
+| falha | a mesma execução é retentada; numa falha de envio, só reenvia |
+| `SEM_RESULTADO` | nada a enviar |
 
 ### Exemplo de relatório
 
@@ -251,7 +262,7 @@ Documentação interativa (Swagger) em **http://localhost:8000/docs**.
 | Método | Rota | Descrição |
 |---|---|---|
 | `GET` | `/opcoes` | data-bases publicadas, administradoras, segmentos, UFs e padrões do painel |
-| `POST` | `/execucoes` | dispara uma consulta. **202** quando cria ou retenta; **200** quando reaproveita uma execução concluída |
+| `POST` | `/execucoes` | dispara uma consulta. **202** quando cria, reenvia ou retenta; **200** quando já há uma igual em andamento ou sem resultado |
 | `GET` | `/execucoes/{id}` | status e resultado de uma execução |
 | `GET` | `/execucoes?limite=20` | histórico, da mais recente para a mais antiga |
 | `GET` | `/whatsapp/conexao` | situação da conexão (`CONECTADO`, `AGUARDANDO_QR`, `INICIANDO`, `DESCONECTADO`, `INDISPONIVEL`) e QR code |
@@ -370,7 +381,7 @@ docs/                     PRD, ADRs e registro de decisões técnicas
 | **Indisponibilidade e falha na navegação** | timeouts do Playwright e erros de download viram `ColetaError` → `FALHA_COLETA` com a descrição, sem vazar exceção de biblioteca | [DT-22](docs/DECISOES-TECNICAS.md#22-processar-nunca-deixa-exceção-escapar) |
 | **Mensagem personalizada** | gerada a partir dos números apurados: praças, share, concorrentes e alertas | [DT-25](docs/DECISOES-TECNICAS.md#25-regras-do-template-do-relatório) |
 | **Integração com WhatsApp** | WAHA, com adapter trocável por variável de ambiente; QR code e status no painel | [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md) |
-| **Processamento ou envio duplicado** | hash SHA-256 dos parâmetros com **unique constraint** no banco: concluída não repete, em andamento não duplica, falha pode ser retentada. Os ZIPs ficam em cache com revalidação por `ETag` | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md), [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
+| **Processamento ou envio duplicado** | hash SHA-256 dos parâmetros com **índice único parcial** no banco: duas execuções iguais em andamento são impossíveis (clique duplo). Consulta já feita é reenviada reaproveitando os dados, sem nova coleta. Os ZIPs ficam em cache com revalidação por `ETag` | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md), [ADR-010](docs/adr/ADR-010-reenvio-com-dados-reaproveitados.md), [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
 | **Histórico e rastreabilidade** | parâmetros, dados encontrados, data e hora, destinatário, mensagem, status, id da mensagem no WhatsApp, tipo e descrição do erro | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md) |
 | **Erros e logs** | exceções de domínio (`ColetaError`, `ParsingError`, `EnvioError`); log em JSON no stdout com `execucao_id` em toda linha | [ADR-001](docs/adr/ADR-001-stack-e-arquitetura.md) |
 | **Credenciais fora do código** | `.env` fora do git, só o `.env.example` é versionado. Chaves mascaradas no log, no `repr` dos adapters e nas mensagens de erro | [ADR-005](docs/adr/ADR-005-configuracao-e-segredos.md) |
@@ -416,7 +427,7 @@ O projeto foi feito para **demonstração**. O que mudaria para produção:
 | Documento | Conteúdo |
 |---|---|
 | [`docs/PRD.md`](docs/PRD.md) | problema, usuário, fonte de dados, parâmetros, relatório e regras de negócio |
-| [`docs/adr/`](docs/adr/README.md) | decisões de arquitetura: stack, fonte e RPA, persistência, segredos, cache, Docker, catálogo e WhatsApp |
+| [`docs/adr/`](docs/adr/README.md) | decisões de arquitetura: stack, fonte e RPA, persistência, segredos, cache, Docker, catálogo, WhatsApp e reenvio |
 | [`docs/DECISOES-TECNICAS.md`](docs/DECISOES-TECNICAS.md) | registro das escolhas menores, cada uma com a alternativa rejeitada e o motivo |
 | [`CLAUDE.md`](CLAUDE.md) | padrões de código, estratégia de testes e armadilhas já verificadas da fonte BCB |
 

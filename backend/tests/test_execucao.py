@@ -96,6 +96,7 @@ class TestTransicoes:
         ("de", "para"),
         [
             (S.PENDENTE, S.COLETANDO),
+            (S.PENDENTE, S.MENSAGEM_GERADA),  # dados reaproveitados: pula a coleta
             (S.COLETANDO, S.PROCESSANDO),
             (S.COLETANDO, S.FALHA_COLETA),
             (S.PROCESSANDO, S.MENSAGEM_GERADA),
@@ -132,10 +133,12 @@ class TestDecisaoDiantedeExecucaoAnterior:
     def test_sem_anterior_cria(self):
         assert decidir(None) is Decisao.CRIAR
 
-    @pytest.mark.parametrize("status", [S.ENVIADO, S.SEM_RESULTADO])
-    def test_concluida_nao_repete(self, status):
-        """ADR-004: o mesmo relatório não é reenviado."""
-        assert decidir(status) is Decisao.REUSAR
+    def test_enviada_e_reenviada_com_os_mesmos_dados(self):
+        """ADR-010: cada clique envia; a coleta é que não se repete."""
+        assert decidir(S.ENVIADO) is Decisao.REENVIAR
+
+    def test_sem_resultado_nao_tem_o_que_enviar(self):
+        assert decidir(S.SEM_RESULTADO) is Decisao.REUSAR
 
     @pytest.mark.parametrize(
         "status", [S.PENDENTE, S.COLETANDO, S.PROCESSANDO, S.MENSAGEM_GERADA, S.ENVIANDO]

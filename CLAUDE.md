@@ -226,7 +226,7 @@ curl localhost:8000/execucoes/1     # acompanha o status
 curl localhost:8000/execucoes       # histórico
 ```
 
-202 quando cria ou retenta; 200 quando a execução já existia (ADR-004).
+202 quando cria, reenvia ou retenta; 200 quando reaproveita uma execução em andamento ou sem resultado (ADR-004, ADR-010). Consulta já enviada é **reenviada** com os dados da anterior, sem nova coleta.
 
 Ainda não instalado, necessário antes de mexer em `rpa/` **fora do Docker**:
 

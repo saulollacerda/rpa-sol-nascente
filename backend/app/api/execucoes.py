@@ -24,7 +24,8 @@ def solicitar(
     servico: Servico,
     settings: Config,
 ) -> SolicitacaoOut:
-    """202 quando a execução é criada ou retentada; 200 quando já existia (ADR-004)."""
+    """202 quando cria, reenvia ou retenta; 200 quando reaproveita uma em andamento
+    ou sem resultado (ADR-004, ADR-010)."""
     destinatario = corpo.destinatario or settings.whatsapp_destinatario
     if not destinatario:
         # Operator-facing: the missing WHATSAPP_DESTINATARIO is a deploy detail.
