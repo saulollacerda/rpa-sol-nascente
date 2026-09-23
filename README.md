@@ -290,10 +290,12 @@ docker compose run --rm backend pytest                  # suíte padrão
 docker compose run --rm backend pytest -m integration   # contra o site real do BCB
 docker compose run --rm backend ruff check .            # lint
 
-# frontend (Vitest + Testing Library), a partir de frontend/
-npm install && npm test
-npm run build                                           # checagem de tipos + build
+# frontend (Vitest + Testing Library), sem precisar de Node na máquina
+docker compose run --rm --no-deps frontend sh -c "npm ci && npm test"
+docker compose run --rm --no-deps frontend sh -c "npm ci && npm run build"   # tipos + build
 ```
+
+Com Node 24 instalado, também dá para rodar direto, a partir de `frontend/`: `npm install && npm test`.
 
 | Camada | Como é testada |
 |---|---|
@@ -400,12 +402,14 @@ docker compose logs -f backend
 |---|---|
 | `no matching manifest for linux/arm64/v8` ao subir | Mac com Apple Silicon: crie o `.env` da raiz com `WAHA_TAG=arm` ([passo 3](#3-só-em-mac-com-apple-silicon)) |
 | Cartão WhatsApp **Desconectado** | o QR code venceu sem leitura, ou o celular removeu o dispositivo. Clique em **Gerar QR code** |
-| Cartão WhatsApp **Indisponível** | o container `waha` não subiu: `docker compose ps` e `docker compose logs waha` |
-| Envio falha com "API key do WAHA inválida" | a `WAHA_API_KEY` mudou depois de o container subir: `docker compose up -d --force-recreate waha backend` |
+| Cartão WhatsApp **Indisponível** com "o backend está sem WAHA_API_KEY" | a `WAHA_API_KEY` ficou vazia no `backend/.env` e o WAHA gerou uma chave própria. Preencha (`openssl rand -hex 32`) e rode `docker compose up -d --force-recreate waha backend` |
+| Cartão WhatsApp **Indisponível** com "API key do WAHA inválida" | a `WAHA_API_KEY` mudou depois de o container subir: `docker compose up -d --force-recreate waha backend` |
+| Cartão WhatsApp **Indisponível** com "WAHA não está acessível" | o container `waha` não subiu: `docker compose ps` e `docker compose logs waha` |
 | Envio falha com "o número … não tem WhatsApp" | o destinatário não tem conta no WhatsApp; confira DDD e número |
 | Painel demora ~10 s ao abrir | esperado na primeira carga: o robô está lendo o catálogo do BCB |
 | Execução em `FALHA_COLETA` | site do BCB fora do ar ou lento. A descrição do erro aparece no acompanhamento; tente de novo depois |
-| Quero ensaiar sem celular | `WHATSAPP_PROVIDER=fake` no `backend/.env` e `docker compose restart backend`: a mensagem vai só para o log e para o painel |
+| Quero ensaiar sem celular | `WHATSAPP_PROVIDER=fake` no `backend/.env` e `docker compose up -d backend`: a mensagem vai só para o log e para o painel |
+| Mudei o `backend/.env` e nada mudou | o `docker compose restart` **não relê** o `.env`. Use `docker compose up -d backend`, que recria o container |
 
 ---
 
