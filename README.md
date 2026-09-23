@@ -40,7 +40,7 @@ Painel → Playwright navega no site do BCB → baixa os ZIPs → lê os CSVs �
 Pré-requisito: **Docker** com Docker Compose v2.
 
 ```bash
-git clone <url-do-repositório> rpa-sol-nascente && cd rpa-sol-nascente
+git clone https://github.com/saulollacerda/rpa-sol-nascente.git && cd rpa-sol-nascente
 
 cp backend/.env.example backend/.env
 # edite backend/.env: preencha WAHA_API_KEY (ex.: openssl rand -hex 32)
