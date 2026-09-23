@@ -183,6 +183,8 @@ O envio real usa o WAHA, que não é oficial e existe só para a demonstração.
 docker compose --profile waha up    # sobe também o WAHA em http://localhost:3000
 ```
 
+Em Mac com Apple Silicon, a imagem `latest` do WAHA não existe para arm64: `WAHA_TAG=arm` no `.env` da **raiz** (não o do backend), que o compose lê para montar o nome da imagem.
+
 1. No painel do WAHA, inicie a sessão `default` e escaneie o QR code com o celular do chip.
 2. No `backend/.env`: `WHATSAPP_PROVIDER=waha` e a mesma `WAHA_API_KEY` usada pelo container.
 3. Reinicie o backend.
