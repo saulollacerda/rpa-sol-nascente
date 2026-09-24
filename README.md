@@ -153,7 +153,7 @@ Toda a configuração vem de variáveis de ambiente, lidas pelo `pydantic-settin
 | `WAHA_DASHBOARD_USERNAME` / `WAHA_DASHBOARD_PASSWORD` | `admin` / — | login do painel próprio do WAHA em `:3000` (opcional) |
 | `BCB_BASE_URL` | página de consórcios do BCB | parametrizada para os testes |
 | `DATABASE_URL` | `sqlite:///./data/execucoes.db` | histórico das execuções |
-| `DATA_DIR` | `data` | cache dos ZIPs baixados |
+| `DATA_DIR` | `data` | ZIPs baixados do BCB |
 | `CATALOGO_TTL_HORAS` | `6` | validade do cache da lista de data-bases |
 | `PLAYWRIGHT_HEADLESS` | `true` | `false` abre a janela do navegador (só fora do Docker) |
 | `LOG_LEVEL` | `INFO` | nível do log estruturado |
@@ -383,7 +383,7 @@ docs/                     PRD, ADRs e registro de decisões técnicas
 | **Indisponibilidade e falha na navegação** | timeouts do Playwright e erros de download viram `ColetaError` → `FALHA_COLETA` com a descrição, sem vazar exceção de biblioteca | [DT-22](docs/DECISOES-TECNICAS.md#22-processar-nunca-deixa-exceção-escapar) |
 | **Mensagem personalizada** | gerada a partir dos números apurados: praças, share, concorrentes e alertas | [DT-25](docs/DECISOES-TECNICAS.md#25-regras-do-template-do-relatório) |
 | **Integração com WhatsApp** | WAHA, com adapter trocável por variável de ambiente; QR code e status no painel | [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md) |
-| **Processamento ou envio duplicado** | hash SHA-256 dos parâmetros com **índice único parcial** no banco: duas execuções iguais em andamento são impossíveis (clique duplo). Consulta já feita é reenviada reaproveitando os dados, sem nova coleta. Os ZIPs ficam em cache com revalidação por `ETag` | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md), [ADR-010](docs/adr/ADR-010-reenvio-com-dados-reaproveitados.md), [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
+| **Processamento ou envio duplicado** | hash SHA-256 dos parâmetros com **índice único parcial** no banco: duas execuções iguais em andamento são impossíveis (clique duplo). Consulta já feita é reenviada reaproveitando os dados, sem nova coleta. A lista de data-bases publicadas fica em cache por 6 horas | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md), [ADR-010](docs/adr/ADR-010-reenvio-com-dados-reaproveitados.md), [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
 | **Histórico e rastreabilidade** | parâmetros, dados encontrados, data e hora, destinatário, mensagem, status, id da mensagem no WhatsApp, tipo e descrição do erro | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md) |
 | **Erros e logs** | exceções de domínio (`ColetaError`, `ParsingError`, `EnvioError`); log em JSON no stdout com `execucao_id` em toda linha | [ADR-001](docs/adr/ADR-001-stack-e-arquitetura.md) |
 | **Credenciais fora do código** | `.env` fora do git, só o `.env.example` é versionado. Chaves mascaradas no log, no `repr` dos adapters e nas mensagens de erro | [ADR-005](docs/adr/ADR-005-configuracao-e-segredos.md) |
@@ -420,8 +420,9 @@ O projeto foi feito para **demonstração**. O que mudaria para produção:
 - **WhatsApp Business Cloud API.** Em produção, o envio passaria pela API oficial da Meta, com número comercial verificado, token de System User, template aprovado ou janela de 24 horas, e webhook de status de entrega. Basta implementar mais um adapter do `WhatsAppSender`, sem tocar no domínio. Roteiro completo no [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção).
 - **Execução em fila.** Hoje a coleta roda em `BackgroundTasks` do FastAPI, no mesmo processo. Com vários usuários ou agendamento, o certo seria uma fila (Celery/RQ ou um job agendado) e um processo que retome execuções órfãs.
 - **Agendamento.** Disparar o relatório sozinho quando o BCB publica um trimestre novo, em vez de depender de um clique.
-- **Planilhas personalizadas para analistas.** Exportar em Excel ou CSV os dados da consulta, com filtro por praça (UF), administradora e segmento. O relatório do WhatsApp é um resumo para o gestor; o analista precisa da tabela completa para cruzar com as vendas da loja. Os dados já chegam normalizados pelo `parsing/` e ficam em cache por data-base, então a exportação não precisa de nova coleta: é uma rota na API e um botão no painel.
-- **Banco e armazenamento.** PostgreSQL no lugar do SQLite (a troca é de connection string) e expurgo do cache de ZIPs, que cresce sem limite.
+- **Planilhas personalizadas para analistas.** Exportar em Excel ou CSV os dados da consulta, com filtro por praça (UF), administradora e segmento. O relatório do WhatsApp é um resumo para o gestor; o analista precisa da tabela completa para cruzar com as vendas da loja. Os dados já chegam normalizados pelo `parsing/`, então a exportação é uma rota na API e um botão no painel; com o cache de ZIPs abaixo, ela também dispensaria nova coleta.
+- **Cache dos ZIPs.** Hoje só a lista de data-bases fica em cache. Cada consulta nova baixa os ZIPs de novo, mesmo que a data-base já tenha sido baixada antes. O [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) descreve o cache em disco com revalidação por `ETag`, que ainda não foi implementado.
+- **Banco e armazenamento.** PostgreSQL no lugar do SQLite (a troca é de connection string).
 - **Segurança.** Autenticação no painel e na API, que hoje são abertos. Portas publicadas só em `127.0.0.1` ou atrás de um proxy com TLS. Segredos num cofre, no lugar do `.env`.
 - **Observabilidade.** Os logs já são JSON com `execucao_id`; faltam métricas e alertas para falhas de coleta, porque o layout do BCB pode mudar a qualquer momento.
 
