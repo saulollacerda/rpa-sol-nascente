@@ -10,6 +10,7 @@ from app.api.dependencias import get_settings
 from app.api.execucoes import router as execucoes
 from app.api.opcoes import router as opcoes
 from app.api.whatsapp import router as whatsapp
+from app.domain.retentativa import PoliticaDeRetentativa
 from app.domain.servico import ServicoExecucao
 from app.infra.cache import CacheComValidade
 from app.infra.db import RepositorioSQL, criar_engine, criar_tabelas
@@ -30,7 +31,13 @@ async def ciclo_de_vida(app: FastAPI) -> AsyncIterator[None]:
     fonte = FonteBCB(settings.bcb_base_url, settings.data_dir, settings.playwright_headless)
     relogio = lambda: datetime.now(UTC)  # noqa: E731
     sender = criar_sender(settings)
-    app.state.servico = ServicoExecucao(RepositorioSQL(engine), fonte, sender, relogio=relogio)
+    retentativa = PoliticaDeRetentativa(
+        tentativas=settings.coleta_tentativas,
+        espera_inicial=settings.coleta_espera_inicial_segundos,
+    )
+    app.state.servico = ServicoExecucao(
+        RepositorioSQL(engine), fonte, sender, relogio=relogio, retentativa=retentativa
+    )
     app.state.servico.recuperar_interrompidas()
     app.state.conexao = sender
     app.state.opcoes = CacheComValidade(

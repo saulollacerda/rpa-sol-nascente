@@ -26,6 +26,17 @@ def test_waha_funciona_com_os_defaults(sem_env_local):
     assert settings.waha_api_key is None
 
 
+def test_coleta_tenta_tres_vezes_por_padrao(sem_env_local):
+    settings = sem_env_local()
+    assert settings.coleta_tentativas == 3
+    assert settings.coleta_espera_inicial_segundos == 5
+
+
+def test_coleta_precisa_de_ao_menos_uma_tentativa(sem_env_local):
+    with pytest.raises(ValueError):
+        sem_env_local(coleta_tentativas=0)
+
+
 def test_fabrica_escolhe_o_adapter_pelo_provider():
     from app.infra.whatsapp import FakeSender, WahaSender, criar_sender
 

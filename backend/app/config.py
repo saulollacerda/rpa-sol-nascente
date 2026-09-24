@@ -3,6 +3,7 @@
 from enum import StrEnum
 from pathlib import Path
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -26,6 +27,9 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./data/execucoes.db"
     data_dir: Path = Path("data")
     catalogo_ttl_horas: int = 6
+    # Retentativa da coleta quando o BCB está fora do ar ou lento: esperas de 5 s e 15 s.
+    coleta_tentativas: int = Field(default=3, ge=1)
+    coleta_espera_inicial_segundos: float = Field(default=5, ge=0)
 
     playwright_headless: bool = True
     log_level: str = "INFO"

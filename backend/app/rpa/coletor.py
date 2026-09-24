@@ -21,7 +21,7 @@ from playwright.sync_api import (
     Error as PlaywrightError,
 )
 
-from app.domain.erros import ColetaError
+from app.domain.erros import ColetaError, ColetaIndisponivel
 from app.rpa.catalogo import Catalogo, Dataset, ItemCatalogo, montar_catalogo
 
 TIMEOUT_PADRAO_MS = 60_000
@@ -83,7 +83,8 @@ class ColetorBCB:
         self._carregar()
         catalogo = montar_catalogo(self._respostas, self._url)
         if catalogo.vazio:
-            raise ColetaError(
+            # A página carregou sem pedir a lista: costuma ser a API interna fora do ar.
+            raise ColetaIndisponivel(
                 "catálogo não encontrado: a página não requisitou a lista de arquivos "
                 "no formato esperado (ver ADR-008)"
             )
@@ -109,7 +110,7 @@ class ColetorBCB:
                 botao.click()
             download = informacao.value
         except PlaywrightError as erro:
-            raise ColetaError(f"falha ao baixar {item.nome}: {_resumo(erro)}") from erro
+            raise ColetaIndisponivel(f"falha ao baixar {item.nome}: {_resumo(erro)}") from erro
 
         if download.suggested_filename != item.nome:
             raise ColetaError(
@@ -128,7 +129,7 @@ class ColetorBCB:
         try:
             pagina.goto(self._url, wait_until="networkidle")
         except PlaywrightError as erro:
-            raise ColetaError(
+            raise ColetaIndisponivel(
                 f"site do BCB indisponível ou lento demais: {_resumo(erro)}"
             ) from erro
         self._rejeitar_cookies(pagina)

@@ -14,6 +14,14 @@ class ColetaError(ErroDeDominio):
     """Falha ao obter os dados na fonte: site fora do ar, layout mudou, arquivo ausente."""
 
 
+class ColetaIndisponivel(ColetaError):
+    """Falha transitória: site fora do ar, lento ou download interrompido. Vale tentar de novo.
+
+    O resto da ColetaError é definitivo (data-base não publicada, layout mudou):
+    tentar de novo só atrasaria o mesmo erro.
+    """
+
+
 class ParsingError(ErroDeDominio):
     """Falha ao ler ou interpretar um arquivo da fonte."""
 
