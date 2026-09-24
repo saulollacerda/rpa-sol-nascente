@@ -1,6 +1,6 @@
 # ADR-006 — Estratégia de cache e revalidação
 
-**Status:** Aceito · 2026-09-22
+**Status:** Aceito · 2026-09-22 · implementação parcial: só a camada de catálogo existe; o cache dos ZIPs com `ETag` ainda não foi feito
 
 ## Contexto
 
