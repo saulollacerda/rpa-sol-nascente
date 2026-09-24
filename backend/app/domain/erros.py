@@ -26,6 +26,10 @@ class TransicaoInvalida(ErroDeDominio):
     """Mudança de status que a máquina de estados do ADR-004 não permite."""
 
 
+class ExecucaoInterrompida(ErroDeDominio):
+    """O processo parou com a execução em andamento: queda, restart ou deploy."""
+
+
 class ExecucaoDuplicada(ErroDeDominio):
     """Já existe execução com a mesma chave de idempotência."""
 

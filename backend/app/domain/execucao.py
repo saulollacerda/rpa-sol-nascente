@@ -36,10 +36,11 @@ EM_ANDAMENTO = frozenset(set(S) - FALHAS - CONCLUIDAS)
 
 TRANSICOES: dict[StatusExecucao, frozenset[StatusExecucao]] = {
     # PENDENTE → MENSAGEM_GERADA: data reused from an earlier execution (ADR-010).
-    S.PENDENTE: frozenset({S.COLETANDO, S.MENSAGEM_GERADA}),
+    # PENDENTE → FALHA_*: interrupted before it started (see falha_por_interrupcao).
+    S.PENDENTE: frozenset({S.COLETANDO, S.MENSAGEM_GERADA, S.FALHA_COLETA, S.FALHA_ENVIO}),
     S.COLETANDO: frozenset({S.PROCESSANDO, S.FALHA_COLETA}),
     S.PROCESSANDO: frozenset({S.MENSAGEM_GERADA, S.SEM_RESULTADO, S.FALHA_PROCESSAMENTO}),
-    S.MENSAGEM_GERADA: frozenset({S.ENVIANDO}),
+    S.MENSAGEM_GERADA: frozenset({S.ENVIANDO, S.FALHA_ENVIO}),
     S.ENVIANDO: frozenset({S.ENVIADO, S.FALHA_ENVIO}),
     S.ENVIADO: frozenset(),
     S.SEM_RESULTADO: frozenset(),
@@ -50,6 +51,20 @@ TRANSICOES: dict[StatusExecucao, frozenset[StatusExecucao]] = {
 def validar_transicao(de: StatusExecucao, para: StatusExecucao) -> None:
     if para not in TRANSICOES[de]:
         raise TransicaoInvalida(f"{de} → {para} não é permitido")
+
+
+def falha_por_interrupcao(status: StatusExecucao, tem_mensagem: bool) -> StatusExecucao:
+    """Falha que uma execução em andamento assume quando o processo cai no meio dela.
+
+    Com a mensagem já gerada, a falha é de envio: a retentativa só reenvia.
+    """
+    if status not in EM_ANDAMENTO:
+        raise ValueError(f"{status} não está em andamento")
+    if tem_mensagem or status in (S.MENSAGEM_GERADA, S.ENVIANDO):
+        return S.FALHA_ENVIO
+    if status is S.PROCESSANDO:
+        return S.FALHA_PROCESSAMENTO
+    return S.FALHA_COLETA
 
 
 class Decisao(StrEnum):
