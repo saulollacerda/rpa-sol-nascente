@@ -7,15 +7,16 @@ uma aberta durante todo aquele módulo.
 
 import pytest
 
-from app.rpa.coletor import ColetaError, ColetorBCB
+from app.domain.erros import ColetaIndisponivel
+from app.rpa.coletor import ColetorBCB
 
 pytestmark = pytest.mark.integration
 
 
-def test_site_inacessivel_vira_coleta_error():
-    """Exceção do Playwright não pode vazar: vira erro de domínio com contexto."""
+def test_site_inacessivel_vira_coleta_indisponivel():
+    """Exceção do Playwright não pode vazar: vira erro de domínio, marcado como transitório."""
     with ColetorBCB("http://127.0.0.1:9/inexistente", timeout_ms=5_000) as coletor:
-        with pytest.raises(ColetaError, match="indisponível"):
+        with pytest.raises(ColetaIndisponivel, match="indisponível"):
             coletor.ler_catalogo()
 
 

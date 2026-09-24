@@ -218,6 +218,20 @@ class TestRetentativa:
             repo.retentar(execucao.id, AGORA)
 
 
+def test_lista_so_as_execucoes_em_andamento(repo):
+    pendente = criar(repo, data_base="202601")
+    coletando = criar(repo, data_base="202602")
+    avancar(repo, coletando.id, S.COLETANDO)
+    enviada = criar(repo, data_base="202603")
+    concluir(repo, enviada.id)
+    falha = criar(repo, data_base="202604")
+    avancar(repo, falha.id, S.COLETANDO, S.FALHA_COLETA)
+
+    ids = [e.id for e in repo.listar_em_andamento()]
+
+    assert ids == [pendente.id, coletando.id]
+
+
 def test_banco_em_arquivo(tmp_path):
     """O caminho real: arquivo em disco, que sobrevive ao processo."""
     url = f"sqlite:///{tmp_path / 'execucoes.db'}"

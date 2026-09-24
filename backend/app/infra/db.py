@@ -166,6 +166,15 @@ class RepositorioSQL:
             consulta = select(ExecucaoRow).order_by(ExecucaoRow.id.desc()).limit(limite)
             return [_para_dominio(row) for row in sessao.scalars(consulta)]
 
+    def listar_em_andamento(self) -> list[Execucao]:
+        with self._sessoes() as sessao:
+            consulta = (
+                select(ExecucaoRow)
+                .where(ExecucaoRow.status.in_([s.value for s in EM_ANDAMENTO]))
+                .order_by(ExecucaoRow.id)
+            )
+            return [_para_dominio(row) for row in sessao.scalars(consulta)]
+
     def atualizar(
         self, execucao_id: int, status: StatusExecucao, agora: datetime, **campos: Any
     ) -> Execucao:

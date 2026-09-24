@@ -120,7 +120,7 @@ A coleta leva dezenas de segundos, então a requisição não pode ser síncrona
 
 Celery resolveria melhor, mas exigiria Redis e um processo a mais — infraestrutura desproporcional ao volume real (um usuário, execuções manuais) e mais uma peça para subir na apresentação.
 
-**Limitação assumida:** roda no mesmo processo do servidor, então uma queda deixa a execução órfã em estado intermediário. A máquina de estados do [ADR-004](adr/ADR-004-persistencia-e-idempotencia.md) permite detectar essas execuções.
+**Limitação assumida:** roda no mesmo processo do servidor, então uma queda deixa a execução órfã em estado intermediário. Como a fila e o servidor são o mesmo processo, na subida nada está de fato rodando: `ServicoExecucao.recuperar_interrompidas` marca como falha tudo o que ficou em andamento (`erro_tipo` `ExecucaoInterrompida`). Sem isso, o índice único parcial do [ADR-010](adr/ADR-010-reenvio-com-dados-reaproveitados.md) travaria a chave: todo pedido igual devolveria a execução parada. A falha segue a etapa: com a mensagem já gerada, vira `FALHA_ENVIO` e a retentativa só reenvia. Se a queda foi durante o envio, a descrição avisa que a mensagem pode ter chegado. A retomada automática fica para a fila de produção. Com mais de um worker do uvicorn, essa recuperação marcaria como falha execuções vivas de outro worker; hoje há um só.
 
 > **Em uma frase:** fila durável é o certo em produção, mas aqui seria infraestrutura sem demanda — e a máquina de estados já deixa o caminho aberto.
 
@@ -389,3 +389,15 @@ O botão se chama **Gerar e enviar relatório**. Quando o gestor clicava numa co
 Agora, cada clique numa consulta já enviada cria uma execução nova que herda os dados e a mensagem da anterior e vai direto ao envio, sem abrir o site do BCB. O clique duplo continua barrado, agora por um índice único **parcial** no banco, que só vale enquanto a execução está em andamento. Cada envio é uma linha no histórico, com o seu horário e o id da mensagem.
 
 > **Em uma frase:** o que o desafio pede para evitar é o processamento repetido e o envio acidental. O envio pedido é o produto funcionando.
+
+## 28. Retentar só a falha transitória da coleta
+
+**Alternativa rejeitada:** retentar qualquer `ColetaError`, ou deixar a retentativa por conta do gestor.
+
+O enunciado cita a indisponibilidade temporária. O site do BCB às vezes demora ou recusa a conexão, e um único timeout virava `FALHA_COLETA` na hora. Agora a coleta tenta 3 vezes, com espera de 5 s e depois 15 s.
+
+Nem toda falha de coleta é passageira. `ColetaIndisponivel`, subclasse de `ColetaError`, marca as que valem nova tentativa: página que não carrega, catálogo que não chegou, download interrompido. Data-base não publicada, opção ausente no dropdown ou arquivo com nome inesperado continuam `ColetaError`, porque tentar de novo só atrasaria o mesmo erro.
+
+A retentativa fica no `ServicoExecucao`, e não no `FonteBCB`. Assim cada tentativa falha entra no log com o `execucao_id`, e o teste troca o `time.sleep` por uma lista que registra as esperas, sem esperar de verdade. A execução fica em `COLETANDO` durante as tentativas, e a descrição final informa quantas foram feitas. As esperas são fixas, sem variação aleatória: com um único usuário, não há vários clientes batendo no site ao mesmo tempo.
+
+> **Em uma frase:** esperar alguns segundos resolve a instabilidade do site; repetir um erro definitivo, não.

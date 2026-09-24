@@ -36,6 +36,10 @@ class RepositorioExecucoes(Protocol):
 
     def listar(self, limite: int) -> list[Execucao]: ...
 
+    def listar_em_andamento(self) -> list[Execucao]:
+        """Da mais antiga para a mais recente."""
+        ...
+
     def atualizar(
         self, execucao_id: int, status: StatusExecucao, agora: datetime, **campos: Any
     ) -> Execucao:
