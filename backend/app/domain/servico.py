@@ -10,7 +10,7 @@ from dataclasses import asdict, dataclass
 from datetime import datetime
 from typing import Any
 
-from app.domain.erros import ErroDeDominio, ExecucaoDuplicada
+from app.domain.erros import ErroDeDominio, ExecucaoDuplicada, ExecucaoInterrompida
 from app.domain.execucao import (
     Decisao,
     Execucao,
@@ -18,6 +18,7 @@ from app.domain.execucao import (
     StatusExecucao,
     chave_idempotencia,
     decidir,
+    falha_por_interrupcao,
 )
 from app.domain.mensagem import compor_mensagem
 from app.domain.portas import DadosColetados, FonteDeDados, RepositorioExecucoes, WhatsAppSender
@@ -81,6 +82,32 @@ class ServicoExecucao:
 
     def listar(self, limite: int) -> list[Execucao]:
         return self._repo.listar(limite)
+
+    def recuperar_interrompidas(self) -> int:
+        """Marca como falha o que ficou em andamento quando o processo parou.
+
+        Roda na subida da API, antes de qualquer pedido: nesse momento nada está
+        de fato em processamento, porque o BackgroundTasks vive no mesmo processo.
+        Sem isso, o índice único parcial (ADR-010) deixaria a chave travada: todo
+        pedido igual devolveria a execução parada. Como falha, ela é retentável.
+        """
+        interrompidas = self._repo.listar_em_andamento()
+        for execucao in interrompidas:
+            tem_mensagem = execucao.mensagem_gerada is not None
+            falha = falha_por_interrupcao(execucao.status, tem_mensagem)
+            descricao = f"execução interrompida em {execucao.status}: o servidor parou no meio dela"
+            if execucao.status is S.ENVIANDO:
+                descricao += "; a mensagem pode ter sido entregue"
+            logging.LoggerAdapter(logger, {"execucao_id": execucao.id}).warning(
+                "%s → %s", descricao, falha
+            )
+            self._avancar(
+                execucao.id,
+                falha,
+                erro_tipo=ExecucaoInterrompida.__name__,
+                erro_descricao=descricao,
+            )
+        return len(interrompidas)
 
     def processar(self, execucao_id: int) -> Execucao:
         execucao = self._repo.obter(execucao_id)

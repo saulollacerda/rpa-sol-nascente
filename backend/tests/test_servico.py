@@ -8,7 +8,12 @@ from datetime import UTC, datetime
 
 import pytest
 
-from app.domain.execucao import Decisao, ParametrosConsulta, StatusExecucao
+from app.domain.execucao import (
+    Decisao,
+    ParametrosConsulta,
+    StatusExecucao,
+    chave_idempotencia,
+)
 from app.domain.servico import ServicoExecucao
 from app.infra.db import RepositorioSQL, criar_engine, criar_tabelas
 from app.infra.whatsapp import FakeSender
@@ -195,3 +200,83 @@ class TestSemResultado:
         execucao = executar(servico)
         assert execucao.status is S.ENVIADO
         assert "recorte por UF" in execucao.mensagem_gerada
+
+
+class TestRecuperacaoDeExecucoesInterrompidas:
+    """O processo caiu no meio da execução: ao subir, ela vira falha retentável."""
+
+    def interromper_em(self, repo, *passos):
+        p = params()
+        execucao = repo.criar(p, chave_idempotencia(p), AGORA)
+        for status in passos:
+            repo.atualizar(execucao.id, status, AGORA)
+        return execucao.id
+
+    def test_coleta_interrompida_vira_falha_de_coleta(self, repo, servico):
+        execucao_id = self.interromper_em(repo, S.COLETANDO)
+
+        assert servico.recuperar_interrompidas() == 1
+
+        execucao = repo.obter(execucao_id)
+        assert execucao.status is S.FALHA_COLETA
+        assert execucao.erro_tipo == "ExecucaoInterrompida"
+        assert "interrompida" in execucao.erro_descricao
+
+    def test_consulta_interrompida_deixa_de_bloquear_os_mesmos_parametros(
+        self, repo, servico, sender
+    ):
+        """Sem a recuperação, todo pedido igual devolveria a execução travada."""
+        execucao_id = self.interromper_em(repo, S.COLETANDO)
+        servico.recuperar_interrompidas()
+
+        solicitacao = servico.solicitar(params())
+
+        assert solicitacao.decisao is Decisao.RETENTAR
+        assert solicitacao.execucao.id == execucao_id
+        assert servico.processar(execucao_id).status is S.ENVIADO
+        assert len(sender.enviadas) == 1
+
+    def test_envio_interrompido_avisa_que_pode_ter_sido_entregue(self, repo, servico):
+        execucao_id = self.interromper_em(
+            repo, S.COLETANDO, S.PROCESSANDO, S.MENSAGEM_GERADA, S.ENVIANDO
+        )
+
+        servico.recuperar_interrompidas()
+
+        execucao = repo.obter(execucao_id)
+        assert execucao.status is S.FALHA_ENVIO
+        assert "pode ter sido entregue" in execucao.erro_descricao
+
+    def test_retentar_envio_interrompido_nao_coleta_de_novo(self, repo, servico, fonte, sender):
+        p = params()
+        execucao = repo.criar(p, chave_idempotencia(p), AGORA)
+        repo.atualizar(execucao.id, S.COLETANDO, AGORA)
+        repo.atualizar(execucao.id, S.PROCESSANDO, AGORA)
+        repo.atualizar(execucao.id, S.MENSAGEM_GERADA, AGORA, mensagem_gerada="relatório")
+        repo.atualizar(execucao.id, S.ENVIANDO, AGORA)
+        servico.recuperar_interrompidas()
+
+        solicitacao = servico.solicitar(p)
+        reenviada = servico.processar(solicitacao.execucao.id)
+
+        assert reenviada.status is S.ENVIADO
+        assert sender.enviadas == [(p.destinatario, "relatório")]
+        assert fonte.chamadas == 0
+
+    def test_reenvio_interrompido_antes_de_comecar_vira_falha_de_envio(self, repo, servico):
+        """ADR-010: o reenvio nasce PENDENTE já com a mensagem herdada."""
+        executar(servico)
+        reenvio = servico.solicitar(params())
+
+        servico.recuperar_interrompidas()
+
+        assert repo.obter(reenvio.execucao.id).status is S.FALHA_ENVIO
+
+    def test_nao_mexe_no_que_terminou(self, repo, servico):
+        enviada = executar(servico)
+        sem_resultado = executar(servico, cnpj_administradora="99999999")
+
+        assert servico.recuperar_interrompidas() == 0
+
+        assert repo.obter(enviada.id).status is S.ENVIADO
+        assert repo.obter(sem_resultado.id).status is S.SEM_RESULTADO

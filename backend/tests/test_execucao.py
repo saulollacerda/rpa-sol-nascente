@@ -13,6 +13,7 @@ from app.domain.execucao import (
     StatusExecucao,
     chave_idempotencia,
     decidir,
+    falha_por_interrupcao,
     validar_transicao,
 )
 from app.domain.periodos import data_base_uf_para
@@ -150,6 +151,31 @@ class TestDecisaoDiantedeExecucaoAnterior:
     @pytest.mark.parametrize("status", [S.FALHA_COLETA, S.FALHA_PROCESSAMENTO, S.FALHA_ENVIO])
     def test_falha_pode_ser_retentada(self, status):
         assert decidir(status) is Decisao.RETENTAR
+
+
+class TestInterrupcao:
+    """Execução que ficou em andamento quando o processo caiu — vira falha retentável."""
+
+    @pytest.mark.parametrize(
+        ("status", "tem_mensagem", "falha"),
+        [
+            (S.PENDENTE, False, S.FALHA_COLETA),
+            (S.COLETANDO, False, S.FALHA_COLETA),
+            (S.PROCESSANDO, False, S.FALHA_PROCESSAMENTO),
+            # Com a mensagem pronta, a retentativa só precisa reenviar.
+            (S.PENDENTE, True, S.FALHA_ENVIO),
+            (S.MENSAGEM_GERADA, True, S.FALHA_ENVIO),
+            (S.ENVIANDO, True, S.FALHA_ENVIO),
+        ],
+    )
+    def test_falha_correspondente_a_etapa(self, status, tem_mensagem, falha):
+        assert falha_por_interrupcao(status, tem_mensagem) is falha
+        validar_transicao(status, falha)
+
+    @pytest.mark.parametrize("status", [S.ENVIADO, S.SEM_RESULTADO, S.FALHA_COLETA])
+    def test_so_o_que_esta_em_andamento_e_interrompido(self, status):
+        with pytest.raises(ValueError):
+            falha_por_interrupcao(status, False)
 
 
 class TestDataBaseDoRecortePorUF:

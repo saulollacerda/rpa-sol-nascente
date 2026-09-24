@@ -31,6 +31,7 @@ async def ciclo_de_vida(app: FastAPI) -> AsyncIterator[None]:
     relogio = lambda: datetime.now(UTC)  # noqa: E731
     sender = criar_sender(settings)
     app.state.servico = ServicoExecucao(RepositorioSQL(engine), fonte, sender, relogio=relogio)
+    app.state.servico.recuperar_interrompidas()
     app.state.conexao = sender
     app.state.opcoes = CacheComValidade(
         fonte.opcoes, timedelta(hours=settings.catalogo_ttl_horas), relogio

@@ -120,7 +120,7 @@ A coleta leva dezenas de segundos, então a requisição não pode ser síncrona
 
 Celery resolveria melhor, mas exigiria Redis e um processo a mais — infraestrutura desproporcional ao volume real (um usuário, execuções manuais) e mais uma peça para subir na apresentação.
 
-**Limitação assumida:** roda no mesmo processo do servidor, então uma queda deixa a execução órfã em estado intermediário. A máquina de estados do [ADR-004](adr/ADR-004-persistencia-e-idempotencia.md) permite detectar essas execuções.
+**Limitação assumida:** roda no mesmo processo do servidor, então uma queda deixa a execução órfã em estado intermediário. Como a fila e o servidor são o mesmo processo, na subida nada está de fato rodando: `ServicoExecucao.recuperar_interrompidas` marca como falha tudo o que ficou em andamento (`erro_tipo` `ExecucaoInterrompida`). Sem isso, o índice único parcial do [ADR-010](adr/ADR-010-reenvio-com-dados-reaproveitados.md) travaria a chave: todo pedido igual devolveria a execução parada. A falha segue a etapa: com a mensagem já gerada, vira `FALHA_ENVIO` e a retentativa só reenvia. Se a queda foi durante o envio, a descrição avisa que a mensagem pode ter chegado. A retomada automática fica para a fila de produção. Com mais de um worker do uvicorn, essa recuperação marcaria como falha execuções vivas de outro worker; hoje há um só.
 
 > **Em uma frase:** fila durável é o certo em produção, mas aqui seria infraestrutura sem demanda — e a máquina de estados já deixa o caminho aberto.
 

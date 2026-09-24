@@ -201,6 +201,8 @@ PENDENTE ──────────────────────→ M
 | falha | a mesma execução é retentada; numa falha de envio, só reenvia |
 | `SEM_RESULTADO` | nada a enviar |
 
+Se o backend parar no meio de uma execução (queda, restart, `docker compose down`), ela é marcada como falha na próxima subida, com o tipo `ExecucaoInterrompida`. Assim a consulta não fica travada em andamento e o próximo clique a retenta. Se a parada foi durante o envio, a descrição avisa que a mensagem pode ter sido entregue.
+
 ### Exemplo de relatório
 
 Mensagem real, enviada pelo sistema para a consulta padrão: Honda, Piauí e Maranhão, Junho/2026. O `*negrito*` e o `_itálico_` são a formatação do WhatsApp.
@@ -418,7 +420,7 @@ docker compose logs -f backend
 O projeto foi feito para **demonstração**. O que mudaria para produção:
 
 - **WhatsApp Business Cloud API.** Em produção, o envio passaria pela API oficial da Meta, com número comercial verificado, token de System User, template aprovado ou janela de 24 horas, e webhook de status de entrega. Basta implementar mais um adapter do `WhatsAppSender`, sem tocar no domínio. Roteiro completo no [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md#caminho-para-produção).
-- **Execução em fila.** Hoje a coleta roda em `BackgroundTasks` do FastAPI, no mesmo processo. Com vários usuários ou agendamento, o certo seria uma fila (Celery/RQ ou um job agendado) e um processo que retome execuções órfãs.
+- **Execução em fila.** Hoje a coleta roda em `BackgroundTasks` do FastAPI, no mesmo processo. Com vários usuários ou agendamento, o certo seria uma fila (Celery/RQ ou um job agendado). Hoje uma execução interrompida por queda vira falha na próxima subida e espera um novo clique; com a fila, ela seria retomada sozinha.
 - **Agendamento.** Disparar o relatório sozinho quando o BCB publica um trimestre novo, em vez de depender de um clique.
 - **Planilhas personalizadas para analistas.** Exportar em Excel ou CSV os dados da consulta, com filtro por praça (UF), administradora e segmento. O relatório do WhatsApp é um resumo para o gestor; o analista precisa da tabela completa para cruzar com as vendas da loja. Os dados já chegam normalizados pelo `parsing/`, então a exportação é uma rota na API e um botão no painel; com o cache de ZIPs abaixo, ela também dispensaria nova coleta.
 - **Cache dos ZIPs.** Hoje só a lista de data-bases fica em cache. Cada consulta nova baixa os ZIPs de novo, mesmo que a data-base já tenha sido baixada antes. O [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) descreve o cache em disco com revalidação por `ETag`, que ainda não foi implementado.
