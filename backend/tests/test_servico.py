@@ -14,6 +14,7 @@ from app.domain.execucao import (
     StatusExecucao,
     chave_idempotencia,
 )
+from app.domain.retentativa import PoliticaDeRetentativa
 from app.domain.servico import ServicoExecucao
 from app.infra.db import RepositorioSQL, criar_engine, criar_tabelas
 from app.infra.whatsapp import FakeSender
@@ -54,8 +55,21 @@ def sender():
 
 
 @pytest.fixture
-def servico(repo, fonte, sender):
-    return ServicoExecucao(repo, fonte, sender, relogio=lambda: AGORA)
+def esperas():
+    """Registra as esperas entre tentativas no lugar de dormir."""
+    return []
+
+
+@pytest.fixture
+def servico(repo, fonte, sender, esperas):
+    return ServicoExecucao(
+        repo,
+        fonte,
+        sender,
+        relogio=lambda: AGORA,
+        retentativa=PoliticaDeRetentativa(tentativas=3, espera_inicial=5, fator=3),
+        dormir=esperas.append,
+    )
 
 
 def executar(servico, **kw):
@@ -280,3 +294,47 @@ class TestRecuperacaoDeExecucoesInterrompidas:
 
         assert repo.obter(enviada.id).status is S.ENVIADO
         assert repo.obter(sem_resultado.id).status is S.SEM_RESULTADO
+
+
+class TestRetentativaDaColeta:
+    """Indisponibilidade temporária do BCB: tenta de novo com esperas crescentes."""
+
+    def test_recupera_depois_de_falhas_transitorias(self, servico, fonte, esperas):
+        fonte.indisponivel_por = 2
+
+        execucao = executar(servico)
+
+        assert execucao.status is S.ENVIADO
+        assert fonte.chamadas == 3
+        assert esperas == [5, 15]
+
+    def test_desiste_depois_da_ultima_tentativa(self, servico, fonte, sender, esperas):
+        fonte.indisponivel_por = 99
+
+        execucao = executar(servico)
+
+        assert execucao.status is S.FALHA_COLETA
+        assert execucao.erro_tipo == "ColetaIndisponivel"
+        assert "3 tentativas" in execucao.erro_descricao
+        assert fonte.chamadas == 3
+        assert esperas == [5, 15], "não espera depois da última"
+        assert sender.enviadas == []
+
+    def test_falha_definitiva_nao_e_retentada(self, servico, fonte, esperas):
+        """Data-base não publicada não aparece esperando: tentar de novo só atrasa o erro."""
+        fonte.falhar_com = "data-base 209901 não publicada"
+
+        execucao = executar(servico)
+
+        assert execucao.status is S.FALHA_COLETA
+        assert fonte.chamadas == 1
+        assert esperas == []
+
+    def test_cada_tentativa_falha_fica_no_log_da_execucao(self, servico, fonte, caplog):
+        fonte.indisponivel_por = 1
+
+        execucao = executar(servico)
+
+        [aviso] = [r for r in caplog.records if "tentativa" in r.getMessage()]
+        assert aviso.execucao_id == execucao.id
+        assert "1 de 3" in aviso.getMessage()

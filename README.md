@@ -155,6 +155,8 @@ Toda a configuração vem de variáveis de ambiente, lidas pelo `pydantic-settin
 | `DATABASE_URL` | `sqlite:///./data/execucoes.db` | histórico das execuções |
 | `DATA_DIR` | `data` | ZIPs baixados do BCB |
 | `CATALOGO_TTL_HORAS` | `6` | validade do cache da lista de data-bases |
+| `COLETA_TENTATIVAS` | `3` | tentativas da coleta quando o BCB está fora do ar ou lento |
+| `COLETA_ESPERA_INICIAL_SEGUNDOS` | `5` | espera antes da 2ª tentativa; cada espera seguinte é 3× a anterior |
 | `PLAYWRIGHT_HEADLESS` | `true` | `false` abre a janela do navegador (só fora do Docker) |
 | `LOG_LEVEL` | `INFO` | nível do log estruturado |
 
@@ -382,7 +384,7 @@ docs/                     PRD, ADRs e registro de decisões técnicas
 | **Tratamento dos dados** | CSV em `windows-1252`, separador `;`, decimal com vírgula; `strip()` nos nomes com espaços; CNPJ mantido como texto com zeros à esquerda; cruzamento do dataset mensal com o trimestral | [ADR-002](docs/adr/ADR-002-fonte-bcb-e-estrategia-de-rpa.md) |
 | **Consulta sem resultado** | termina em `SEM_RESULTADO`, registra o motivo e **não envia** | [PRD §7](docs/PRD.md) |
 | **Informações incompletas** | campo numérico ausente ou ilegível vira zero; mês sem arquivo por UF usa o trimestre mais recente e o relatório informa a data-base de cada bloco | [PRD §7](docs/PRD.md) |
-| **Indisponibilidade e falha na navegação** | timeouts do Playwright e erros de download viram `ColetaError` → `FALHA_COLETA` com a descrição, sem vazar exceção de biblioteca | [DT-22](docs/DECISOES-TECNICAS.md#22-processar-nunca-deixa-exceção-escapar) |
+| **Indisponibilidade e falha na navegação** | timeouts do Playwright e erros de download viram `ColetaIndisponivel` e são retentados com espera crescente (3 tentativas: 5 s, 15 s). Esgotadas as tentativas, ou diante de erro definitivo, como data-base não publicada, a execução vai para `FALHA_COLETA` com a descrição, sem vazar exceção de biblioteca | [DT-22](docs/DECISOES-TECNICAS.md#22-processar-nunca-deixa-exceção-escapar) |
 | **Mensagem personalizada** | gerada a partir dos números apurados: praças, share, concorrentes e alertas | [DT-25](docs/DECISOES-TECNICAS.md#25-regras-do-template-do-relatório) |
 | **Integração com WhatsApp** | WAHA, com adapter trocável por variável de ambiente; QR code e status no painel | [ADR-009](docs/adr/ADR-009-waha-para-demonstracao.md) |
 | **Processamento ou envio duplicado** | hash SHA-256 dos parâmetros com **índice único parcial** no banco: duas execuções iguais em andamento são impossíveis (clique duplo). Consulta já feita é reenviada reaproveitando os dados, sem nova coleta. A lista de data-bases publicadas fica em cache por 6 horas | [ADR-004](docs/adr/ADR-004-persistencia-e-idempotencia.md), [ADR-010](docs/adr/ADR-010-reenvio-com-dados-reaproveitados.md), [ADR-006](docs/adr/ADR-006-estrategia-de-cache-e-revalidacao.md) |
@@ -409,7 +411,7 @@ docker compose logs -f backend
 | Cartão WhatsApp **Indisponível** com "WAHA não está acessível" | o container `waha` não subiu: `docker compose ps` e `docker compose logs waha` |
 | Envio falha com "o número … não tem WhatsApp" | o destinatário não tem conta no WhatsApp; confira DDD e número |
 | Painel demora ~10 s ao abrir | esperado na primeira carga: o robô está lendo o catálogo do BCB |
-| Execução em `FALHA_COLETA` | site do BCB fora do ar ou lento. A descrição do erro aparece no acompanhamento; tente de novo depois |
+| Execução em `FALHA_COLETA` | site do BCB fora do ar ou lento. O robô já tentou 3 vezes antes de desistir. A descrição do erro aparece no acompanhamento; tente de novo depois |
 | Quero ensaiar sem celular | `WHATSAPP_PROVIDER=fake` no `backend/.env` e `docker compose up -d backend`: a mensagem vai só para o log e para o painel |
 | Mudei o `backend/.env` e nada mudou | o `docker compose restart` **não relê** o `.env`. Use `docker compose up -d backend`, que recria o container |
 

@@ -389,3 +389,15 @@ O botão se chama **Gerar e enviar relatório**. Quando o gestor clicava numa co
 Agora, cada clique numa consulta já enviada cria uma execução nova que herda os dados e a mensagem da anterior e vai direto ao envio, sem abrir o site do BCB. O clique duplo continua barrado, agora por um índice único **parcial** no banco, que só vale enquanto a execução está em andamento. Cada envio é uma linha no histórico, com o seu horário e o id da mensagem.
 
 > **Em uma frase:** o que o desafio pede para evitar é o processamento repetido e o envio acidental. O envio pedido é o produto funcionando.
+
+## 28. Retentar só a falha transitória da coleta
+
+**Alternativa rejeitada:** retentar qualquer `ColetaError`, ou deixar a retentativa por conta do gestor.
+
+O enunciado cita a indisponibilidade temporária. O site do BCB às vezes demora ou recusa a conexão, e um único timeout virava `FALHA_COLETA` na hora. Agora a coleta tenta 3 vezes, com espera de 5 s e depois 15 s.
+
+Nem toda falha de coleta é passageira. `ColetaIndisponivel`, subclasse de `ColetaError`, marca as que valem nova tentativa: página que não carrega, catálogo que não chegou, download interrompido. Data-base não publicada, opção ausente no dropdown ou arquivo com nome inesperado continuam `ColetaError`, porque tentar de novo só atrasaria o mesmo erro.
+
+A retentativa fica no `ServicoExecucao`, e não no `FonteBCB`. Assim cada tentativa falha entra no log com o `execucao_id`, e o teste troca o `time.sleep` por uma lista que registra as esperas, sem esperar de verdade. A execução fica em `COLETANDO` durante as tentativas, e a descrição final informa quantas foram feitas. As esperas são fixas, sem variação aleatória: com um único usuário, não há vários clientes batendo no site ao mesmo tempo.
+
+> **Em uma frase:** esperar alguns segundos resolve a instabilidade do site; repetir um erro definitivo, não.
